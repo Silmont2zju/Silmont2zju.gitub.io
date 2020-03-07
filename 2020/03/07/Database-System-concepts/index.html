@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Database System: concepts | Silmont_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Silmont">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/silmont2000.github.io/',
+    theme: 'lx',
+    version: '0.2.2',
+    localsearch:{
+      "enable": false,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: '-'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="//cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+  <script src="/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "endless-river",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<div class="single">
+<div id="page">
+<div id="lx-aside" style="background-image: url(/images/page-cover.jpg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="/images/person_1.jpg"></a></div>
+    <span>2020-03-07</span>
+    <h2>Database Sys...</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-link" href="/silmont2000.github.io/tags/Database-System/" rel="tag">Database System</a></div>
+    </div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <p>[TOC]</p>
+<hr>
+<hr>
+<hr>
+<h2 id="CONCEPTS"><a href="#CONCEPTS" class="headerlink" title="CONCEPTS**"></a>CONCEPTS**</h2><h3 id="1-relation-relationship"><a href="#1-relation-relationship" class="headerlink" title="1. relation/relationship"></a><strong>1. relation/relationship</strong></h3><p>a relationship is a specific association among several entities.</p>
+<p>a relation is an abstract concept，mostly equals to a table.</p>
+<h3 id="2-principals"><a href="#2-principals" class="headerlink" title="2. principals"></a><strong>2. principals</strong></h3><p><em>key words： domain；atomic；null/true/false；relation schema/relation instance or database schema/database instance；unordered and no duplicate；</em></p>
+<h4 id="custom-writing-formats："><a href="#custom-writing-formats：" class="headerlink" title="custom writing formats："></a>custom writing formats：</h4><p>a relation schema： R = {A1, A2…,An}<br>                  INSTRUCTOR-SCHEMA = {ID, NAME, DEPT_NAME}<br>a relation： r(R) = {A1, A2…,An}<br>                  instructor_one(INSTRUCTOR-SCHEMA) = {ID, NAME, DEPT_NAME}<br>a tuple( a row in the table)：t || r<br>an attribute： t[name]</p>
+<h3 id="3-about-KEY"><a href="#3-about-KEY" class="headerlink" title="3. about KEY"></a><strong>3. about KEY</strong></h3><p><img src="https://cdn-images-1.medium.com/max/1000/1*GNDD3CpbMQOSfBkqKALn-Q.png" alt="img"></p>
+<p>student(people) = {<u>st-ID</u>, st-name，sex, address，major-ID}</p>
+<p>major(subject) = {<u>major-ID</u>, major-name}</p>
+<p>major-ID is not a primary key of relation student, but a primary key of major, then it’s called a foreign key （referencing major，and major-ID must exist while can be marked with NULL），student is called a referencing relation；and major is a referenced relation.</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*pF_yQGa7II-ylHXAsrLXSA.png" alt="img"></p>
+<center>Schema Diagram (模式图)</center>
+
+<h2 id="TALK-ABOUT-RELATIONAL-ALGEBRA"><a href="#TALK-ABOUT-RELATIONAL-ALGEBRA" class="headerlink" title="TALK ABOUT RELATIONAL ALGEBRA"></a><strong>TALK ABOUT RELATIONAL ALGEBRA</strong></h2><p>What plays a vital role in learning DBS is four basic operations： to add，to delete，to update the data and to select what you need. </p>
+<p>Pure languages form underlying basis of query languages that people use，including：</p>
+<h4 id="1-relational-algebra"><a href="#1-relational-algebra" class="headerlink" title="1. relational algebra"></a><strong>1. relational algebra</strong></h4><ul>
+<li><strong>select： format:  $\sigma$_ $\rho$(R)</strong> </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+<th align="center">D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\alpha$</td>
+<td align="center">$\alpha$</td>
+<td align="center">1</td>
+<td align="center">7</td>
+</tr>
+<tr>
+<td align="center">$\alpha$</td>
+<td align="center">$\beta$</td>
+<td align="center">5</td>
+<td align="center">7</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">$\beta$</td>
+<td align="center">12</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">$\beta$</td>
+<td align="center">23</td>
+<td align="center">10</td>
+</tr>
+</tbody></table>
+<p>incident: $\sigma$_(A=B ^ c&gt;20) (R)    result:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+<th align="center">D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\beta$</td>
+<td align="center">$\beta$</td>
+<td align="center">23</td>
+<td align="center">10</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>project : format: $\prod$_A,C(r)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+<th align="center">D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\alpha$</td>
+<td align="center">$\alpha$</td>
+<td align="center">1</td>
+<td align="center">7</td>
+</tr>
+<tr>
+<td align="center">$\alpha$</td>
+<td align="center">$\beta$</td>
+<td align="center">5</td>
+<td align="center">7</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">$\beta$</td>
+<td align="center">12</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">$\beta$</td>
+<td align="center">23</td>
+<td align="center">10</td>
+</tr>
+</tbody></table>
+<p>result：</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\alpha$</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">$\alpha$</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center">23</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>union</strong></li>
+<li><strong>set difference</strong></li>
+<li><strong>Cartesian product</strong></li>
+<li><strong>rename</strong></li>
+<li><strong>set intersection</strong></li>
+<li><strong>natural join</strong></li>
+<li><strong>division</strong></li>
+<li><strong>assignment</strong></li>
+</ul>
+<h4 id="2-tuple-relational-calculus"><a href="#2-tuple-relational-calculus" class="headerlink" title="2. tuple relational calculus"></a><strong>2. tuple relational calculus</strong></h4><h4 id="3-domain-relational-calculus"><a href="#3-domain-relational-calculus" class="headerlink" title="3. domain relational calculus"></a><strong>3. domain relational calculus</strong></h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(/images/footer_1.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="#">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>没有更新的文章</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(/images/footer_2.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/silmont2000.github.io/2020/03/07/hello-world/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>Hello W...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2019.<a href="/">Silmont_Blog</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.blleng.cn" target="_blank">Lx</a><br>
+  </div>
+</footer>
+</div>
+
+<button class="menu-trigger"></button>
+<div class="menu">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/images/person_1.jpg" alt="Silmont"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>Silmont</p>
+          <span class="tagline">Hello, World!</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/silmont2000.github.io/guestbook">留言</a></li>
+        <li><a href="/silmont2000.github.io/about">关于</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.blleng.cn" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+
+
+</body>
+</html>
