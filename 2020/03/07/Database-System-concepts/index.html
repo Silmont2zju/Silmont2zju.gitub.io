@@ -3,11 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Database System: concepts | Silmont_Blog</title>
+  <title>Database-System-concepts | ����Ҳ��ɹ̫���G</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Silmont">
   <meta name="keywords" content="">
-  <meta name="description" content="">
+  <meta name="description" content="д����������ʱ���ȥ��ƺɹ��̫�� ����ֳԸ���˿���������ձ�Ħ���� ֮����Ȼ����д������ �������ֺù��ܶ���">
   <script id="hexo-configurations">
   var CONFIG = {
     root: '/silmont2000.github.io/',
@@ -33,7 +33,7 @@
 	$(".menu-container").jSideMenu({
 	    jSidePosition: "position-right",
 	    jSideSticky: true,
-	    jSideSkin: "endless-river",
+	    jSideSkin: "between-clouds",
 	     });
 	}); 
 	</script>
@@ -49,8 +49,8 @@
   <div class="page-title">
     <div class="avatar"><a href="/"><img src="/images/person_1.jpg"></a></div>
     <span>2020-03-07</span>
-    <h2>Database Sys...</h2>
-    <div class="tags"><i class="fa fa-tag"></i><a class="tag-link" href="/silmont2000.github.io/tags/Database-System/" rel="tag">Database System</a></div>
+    <h2>Database-Sys...</h2>
+    
     </div>
 </div>
 </div>
@@ -59,11 +59,9 @@
   <div class="lx-post">
     <div class="lx-entry padding">
       <div>
-        <p>[TOC]</p>
+        <hr>
 <hr>
-<hr>
-<hr>
-<h2 id="CONCEPTS"><a href="#CONCEPTS" class="headerlink" title="CONCEPTS**"></a>CONCEPTS**</h2><h3 id="1-relation-relationship"><a href="#1-relation-relationship" class="headerlink" title="1. relation/relationship"></a><strong>1. relation/relationship</strong></h3><p>a relationship is a specific association among several entities.</p>
+<h2 id="CONCEPTS"><a href="#CONCEPTS" class="headerlink" title="CONCEPTS"></a>CONCEPTS</h2><h3 id="1-relation-relationship"><a href="#1-relation-relationship" class="headerlink" title="1. relation/relationship"></a><strong>1. relation/relationship</strong></h3><p>a relationship is a specific association among several entities.</p>
 <p>a relation is an abstract concept，mostly equals to a table.</p>
 <h3 id="2-principals"><a href="#2-principals" class="headerlink" title="2. principals"></a><strong>2. principals</strong></h3><p><em>key words： domain；atomic；null/true/false；relation schema/relation instance or database schema/database instance；unordered and no duplicate；</em></p>
 <h4 id="custom-writing-formats："><a href="#custom-writing-formats：" class="headerlink" title="custom writing formats："></a>custom writing formats：</h4><p>a relation schema： R = {A1, A2…,An}<br>                  INSTRUCTOR-SCHEMA = {ID, NAME, DEPT_NAME}<br>a relation： r(R) = {A1, A2…,An}<br>                  instructor_one(INSTRUCTOR-SCHEMA) = {ID, NAME, DEPT_NAME}<br>a tuple( a row in the table)：t || r<br>an attribute： t[name]</p>
@@ -74,135 +72,74 @@
 <p><img src="https://cdn-images-1.medium.com/max/1000/1*pF_yQGa7II-ylHXAsrLXSA.png" alt="img"></p>
 <center>Schema Diagram (模式图)</center>
 
-<h2 id="TALK-ABOUT-RELATIONAL-ALGEBRA"><a href="#TALK-ABOUT-RELATIONAL-ALGEBRA" class="headerlink" title="TALK ABOUT RELATIONAL ALGEBRA"></a><strong>TALK ABOUT RELATIONAL ALGEBRA</strong></h2><p>What plays a vital role in learning DBS is four basic operations： to add，to delete，to update the data and to select what you need. </p>
+<h2 id="TALK-ABOUT-RELATIONAL-ALGEBRA"><a href="#TALK-ABOUT-RELATIONAL-ALGEBRA" class="headerlink" title="TALK ABOUT RELATIONAL ALGEBRA"></a>TALK ABOUT RELATIONAL ALGEBRA</h2><p>What plays a vital role in learning DBS is four basic operations： to add，to delete，to update the data and to select what you need. </p>
 <p>Pure languages form underlying basis of query languages that people use，including：</p>
-<h4 id="1-relational-algebra"><a href="#1-relational-algebra" class="headerlink" title="1. relational algebra"></a><strong>1. relational algebra</strong></h4><ul>
-<li><strong>select： format:  $\sigma$_ $\rho$(R)</strong> </li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">A</th>
-<th align="center">B</th>
-<th align="center">C</th>
-<th align="center">D</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\alpha$</td>
-<td align="center">$\alpha$</td>
-<td align="center">1</td>
-<td align="center">7</td>
-</tr>
-<tr>
-<td align="center">$\alpha$</td>
-<td align="center">$\beta$</td>
-<td align="center">5</td>
-<td align="center">7</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">$\beta$</td>
-<td align="center">12</td>
-<td align="center">3</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">$\beta$</td>
-<td align="center">23</td>
-<td align="center">10</td>
-</tr>
-</tbody></table>
-<p>incident: $\sigma$_(A=B ^ c&gt;20) (R)    result:</p>
-<table>
-<thead>
-<tr>
-<th align="center">A</th>
-<th align="center">B</th>
-<th align="center">C</th>
-<th align="center">D</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\beta$</td>
-<td align="center">$\beta$</td>
-<td align="center">23</td>
-<td align="center">10</td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>project : format: $\prod$_A,C(r)</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">A</th>
-<th align="center">B</th>
-<th align="center">C</th>
-<th align="center">D</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\alpha$</td>
-<td align="center">$\alpha$</td>
-<td align="center">1</td>
-<td align="center">7</td>
-</tr>
-<tr>
-<td align="center">$\alpha$</td>
-<td align="center">$\beta$</td>
-<td align="center">5</td>
-<td align="center">7</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">$\beta$</td>
-<td align="center">12</td>
-<td align="center">3</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">$\beta$</td>
-<td align="center">23</td>
-<td align="center">10</td>
-</tr>
-</tbody></table>
-<p>result：</p>
-<table>
-<thead>
-<tr>
-<th align="center">A</th>
-<th align="center">C</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\alpha$</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center">$\alpha$</td>
-<td align="center">5</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">12</td>
-</tr>
-<tr>
-<td align="center">$\beta$</td>
-<td align="center">23</td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>union</strong></li>
-<li><strong>set difference</strong></li>
-<li><strong>Cartesian product</strong></li>
-<li><strong>rename</strong></li>
-<li><strong>set intersection</strong></li>
-<li><strong>natural join</strong></li>
-<li><strong>division</strong></li>
-<li><strong>assignment</strong></li>
-</ul>
-<h4 id="2-tuple-relational-calculus"><a href="#2-tuple-relational-calculus" class="headerlink" title="2. tuple relational calculus"></a><strong>2. tuple relational calculus</strong></h4><h4 id="3-domain-relational-calculus"><a href="#3-domain-relational-calculus" class="headerlink" title="3. domain relational calculus"></a><strong>3. domain relational calculus</strong></h4>
+<h3 id="1-relational-algebra"><a href="#1-relational-algebra" class="headerlink" title="1. relational algebra"></a><strong>1. relational algebra</strong></h3><h4 id="select：-sigma-rho-R"><a href="#select：-sigma-rho-R" class="headerlink" title="select： $\sigma$_ $\rho$(R) "></a>select： $\sigma$_ $\rho$(R) <img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170550040.png" alt="image-20200308170550040"></h4><p>incident: $\sigma$_(A=B ^ c&gt;20) (R)    result:</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170640349.png" alt="image-20200308170640349"></p>
+<hr>
+<h4 id="project-prod-A-C-r"><a href="#project-prod-A-C-r" class="headerlink" title="project :  $\prod$_A,C(r)"></a>project :  $\prod$_A,C(r)<img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170659603.png" alt="image-20200308170659603"></h4><p>result：</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170722947.png" alt="image-20200308170722947"></p>
+<hr>
+<h4 id="union"><a href="#union" class="headerlink" title="union"></a>union<img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170830612.png" alt="image-20200308170830612"></h4><p>result： merger of similar items. </p>
+<p>for R union S to be, they must have the same arity (same number of attributes) and the domains must be compatible.</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170848539.png" alt="image-20200308170848539"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308164500042.png" alt="image-20200308164500042"></p>
+<h4 id="set-difference-a-b"><a href="#set-difference-a-b" class="headerlink" title="set difference: a-b"></a>set difference: a-b</h4><p>example is showed in union; and also the same requirements.  while after setting difference, the result should be : </p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170907433.png" alt="image-20200308170907433"></p>
+<h4 id="set-intersection"><a href="#set-intersection" class="headerlink" title="set intersection"></a>set intersection</h4><p>example is showed in union; and also the same requirements.  while after setting difference, the result should be : </p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308173354362.png" alt="image-20200308173354362"></p>
+<hr>
+<h4 id="Cartesian-product"><a href="#Cartesian-product" class="headerlink" title="Cartesian product"></a>Cartesian product</h4><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170933374.png" alt="image-20200308170933374"></p>
+<p>result: list out all the possible permutation results</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308170950775.png" alt="image-20200308170950775"></p>
+<hr>
+<h4 id="rename"><a href="#rename" class="headerlink" title="rename"></a>rename</h4><p>$\rho$_x(E): rename E as x;</p>
+<p>x can be x(a1, a2 …, an) to rename attributes at the same time.</p>
+<hr>
+<h4 id="natural-join-a-special-case-of-theta-join"><a href="#natural-join-a-special-case-of-theta-join" class="headerlink" title="natural join (a special case of theta join)"></a>natural join (a special case of theta join)</h4><p>first find out the same attributes(1,a; 2,b).</p>
+<p>second make Cartesian product.</p>
+<p>at last merge similar items.</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308173613414.png" alt="image-20200308173613414"></p>
+<hr>
+<h4 id="division"><a href="#division" class="headerlink" title="division"></a>division</h4><p>Inverse calculation of Cartesian product</p>
+<p>example: Q = R/S</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308174447859.png" alt="image-20200308174447859"></p>
+<hr>
+<h4 id="assignment"><a href="#assignment" class="headerlink" title="assignment"></a>assignment</h4><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200309162625959.png" alt="image-20200309162625959"></p>
+<p>in fact, this thought is similiar to that in <em>example: banking; 7</em> ,  to <strong>take away what we don’t need</strong> (tmp2).</p>
+<hr>
+<h4 id="extended-relational-algebra-operations"><a href="#extended-relational-algebra-operations" class="headerlink" title="extended relational-algebra-operations"></a>extended relational-algebra-operations</h4><p><strong>generalized projection</strong>: use arithmetic expressions as the projection order.</p>
+<p><strong>aggregate functions &amp; operations</strong>: returns a single value as a result. requirements can be avg，min，max，sum，count；rename the result with ‘as’.</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200309165427164.png" alt="image-20200309165427164"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200309165755602.png" alt="image-20200309165755602"></p>
+<p><strong>Left Out Join &amp; Right Out Join &amp; Full Outer Join</strong>: define the basis for retaining results.</p>
+<hr>
+<hr>
+<h3 id="EXAMPLE-banking"><a href="#EXAMPLE-banking" class="headerlink" title="EXAMPLE: banking"></a>EXAMPLE: banking</h3><hr>
+<p><strong>branch (<u>branch-name</u>, branch-city, assets)</strong></p>
+<p><strong>customer (<u>customer-name</u>, customer-street, customer-city)</strong></p>
+<p><strong>account (<u>account-number</u>, branch-name, balance)</strong></p>
+<p><strong>loan (<u>loan-number</u>, branch-name, amount)</strong></p>
+<p><strong>depositor (<u>customer-name, account-number</u>)</strong></p>
+<p><strong>borrower (<u>customer-name, loan-number</u>)</strong></p>
+<p>Q:</p>
+<p>1: Find all loans of over $1200</p>
+<p>2: Find the <strong>loan number</strong> for each loan of an amount greater than $1200</p>
+<p>3: Find the names of all customers who have a loan, <strong>or</strong> an account, or both, from the bank.</p>
+<p>4: WHAT ABOUT <strong>AND</strong>?</p>
+<p>5: Find the names of all customers who have a loan at the Perryridge branch.(<strong>USE AXB</strong>)</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200308172122007.png" alt="image-20200308172122007"></p>
+<p>6: Find the names of all customers who have a loan at the Perryridge branch but do not have</p>
+<p> an account at any branch of the bank.(<strong>USE A-B</strong>)</p>
+<p><strong>7: Find the largest account balance.</strong></p>
+<p>ans = all - not the largest</p>
+<p>​       = all - $\prod$<em>_account_balance   $\rho$</em> _(a1.account&lt;a2.account) (a1 x a2)     //a1 == a2 ==account</p>
+<p>​       = $\prod$<em>balance (account) - $\prod$a1.balance   $\rho$</em> _(a1.account&lt;a2.account) (a1 x a2) </p>
+<h3 id="2-tuple-relational-calculus"><a href="#2-tuple-relational-calculus" class="headerlink" title="2. tuple relational calculus"></a><strong>2. tuple relational calculus</strong></h3><p>//To be added</p>
+<h3 id="3-domain-relational-calculus"><a href="#3-domain-relational-calculus" class="headerlink" title="3. domain relational calculus"></a><strong>3. domain relational calculus</strong></h3><p>//To be added</p>
+<h2 id="about-NULL-value"><a href="#about-NULL-value" class="headerlink" title="about NULL value"></a>about NULL value</h2><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200309171926902.png" alt="image-20200309171926902"></p>
+<p>ALL in all，null is known, unknown is unknown.</p>
+
       </div>
     </div>
   </div>
@@ -240,7 +177,7 @@
 
 <footer>
   <div>
-  Copyright &copy; 2019.<a href="/">Silmont_Blog</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.blleng.cn" target="_blank">Lx</a><br>
+  Copyright &copy; 2019.<a href="/">����Ҳ��ɹ̫���G</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.blleng.cn" target="_blank">Lx</a><br>
   </div>
 </footer>
 </div>
@@ -257,7 +194,7 @@
         </div>
         <div class="row for-name">
           <p>Silmont</p>
-          <span class="tagline">Hello, World!</span>
+          <span class="tagline">Learn from everything</span>
         </div>
       </div>
     </span>
