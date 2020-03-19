@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.1k 字
+                    1.8k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      7 分钟
+                      10 分钟
                   </span>
                 
 
@@ -169,8 +169,7 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <p>[TOC]</p>
-<h1 id="What‘s-SQL"><a href="#What‘s-SQL" class="headerlink" title="What‘s  SQL"></a>What‘s  SQL</h1><p>结构化查询语言，structured query language，called ”SEQUEL“. It can define the structure of the data, modify data in the database, and specify security constraints. </p>
+              <h1 id="What‘s-SQL"><a href="#What‘s-SQL" class="headerlink" title="What‘s  SQL"></a>What‘s  SQL</h1><p>结构化查询语言，structured query language，called ”SEQUEL“. It can define the structure of the data, modify data in the database, and specify security constraints. </p>
 <p>There are four SQL conformance levels: entry level, transitional,  intermediate and full. But currently no DBMS products achieve Full SQL level.</p>
 <p>including:</p>
 <h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><p>data_definition language. DDL is used to operate the <strong>table</strong>.</p>
@@ -194,68 +193,159 @@
 <li>time: ‘08:15:30’ or ‘08:15:30.75’</li>
 <li>timestamp: date + time. timestamp ‘2000-2-17 08:15:30.75’</li>
 </ul>
-<h2 id="basic-schema-definition-amp-basic-structure-of-select"><a href="#basic-schema-definition-amp-basic-structure-of-select" class="headerlink" title="basic schema definition &amp; basic structure of select"></a>basic schema definition &amp; basic structure of select</h2><h3 id="create-a-table"><a href="#create-a-table" class="headerlink" title="create a table"></a>create a table</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table department			-- name of the table</span><br><span class="line">	(dept_name varchar(20) NOT NULL,</span><br><span class="line">     -- name of the attribute; domain of the attribute</span><br><span class="line">    building varchar(15),</span><br><span class="line">    budget numeric(12,2),</span><br><span class="line">    primary key(dept_name)		-- &lt;integrity_constraint&gt;</span><br><span class="line">     -- more than one primary keys are allowed</span><br><span class="line">    foreign key(dept_name) references department);</span><br></pre></td></tr></table></figure>
-
+<h2 id="basic-schema-definition-amp-basic-structure-of-select"><a href="#basic-schema-definition-amp-basic-structure-of-select" class="headerlink" title="basic schema definition &amp; basic structure of select"></a>basic schema definition &amp; basic structure of select</h2><h3 id="create-a-table"><a href="#create-a-table" class="headerlink" title="create a table"></a>create a table</h3><pre><code class="mysql">create table department            -- name of the table
+    (dept_name varchar(20) NOT NULL,
+     -- name of the attribute; domain of the attribute
+    building varchar(15),
+    budget numeric(12,2),
+    primary key(dept_name)        -- &lt;integrity_constraint&gt;
+     -- more than one primary keys are allowed
+    foreign key(dept_name) references department);    </code></pre>
 <p>SQL supports a number of different integrity constraints. For example: <strong>primary key, foreign key references</strong> <em>s</em>, <strong>not null</strong>. Without a ban, every attribute can be null. As for primary key, the following writing is also equivalent:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> department			</span><br><span class="line">	(primary <span class="keyword">key</span>,</span><br><span class="line">     dept_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   ...);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="sql">create table department            
+    (primary key,
+     dept_name varchar(20) NOT NULL,
+   ...);    
+</code></pre>
 <p>And if a check is necessary, we write:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table instructor</span><br><span class="line">(ID char(5),</span><br><span class="line">primary key,			-- mark the folowing line is the primary key</span><br><span class="line">name varchar(20),</span><br><span class="line">dept_name varchar(20),</span><br><span class="line">salary numeric(8,2),</span><br><span class="line">check(salary&gt;&#x3D;0));		-- add some conditions</span><br></pre></td></tr></table></figure>
-
+<pre><code class="mysql">create table instructor
+(ID char(5),
+primary key,            -- mark the folowing line is the primary key
+name varchar(20),
+dept_name varchar(20),
+salary numeric(8,2),
+check(salary&gt;=0));        -- add some conditions</code></pre>
 <h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><p>And the relation is empty initially. We write as below to insert a tuple; The values are specified in the order in which the corresponding attributes are listed i<strong>n the relation schema</strong>. </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> instructor</span><br><span class="line">	<span class="keyword">values</span> (<span class="number">10211</span>, <span class="string">"Silmont"</span>, <span class="string">"digital media"</span>, <span class="number">66000</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="sql">insert into instructor
+    values (10211, &quot;Silmont&quot;, &quot;digital media&quot;, 66000);
+</code></pre>
 <p>But what if I forgot the order?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into instructor(name, dept_name, salary, ID)-- specify the order</span><br><span class="line">	values(&quot;Silmont&quot;, &quot;digital media&quot;, 66000, 10211);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="mysql">insert into instructor(name, dept_name, salary, ID)-- specify the order
+    values(&quot;Silmont&quot;, &quot;digital media&quot;, 66000, 10211);</code></pre>
 <h3 id="select"><a href="#select" class="headerlink" title="*select"></a>*select</h3><h4 id="queries-on-single-relation"><a href="#queries-on-single-relation" class="headerlink" title="queries on single relation"></a>queries on single relation</h4><p>The <strong>select</strong> clause is used to list the attributes desired in the result of a query. The <strong>from</strong> clause is a list of the relations to be accessed in the evaluation of the query.  The simplest statement is:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> instructor;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="sql">select name
+from instructor;</code></pre>
 <p>Ending with a semicolon, the statement means take out all the <em>names</em> of the relation <em>instructor</em>, the result will have a heading “<strong><em>name</em></strong>“. But if we do the same thing to find dept_name, lots of duplication will happen because <strong>more than one</strong> employee works in this department. The solution is:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept_name</span><br><span class="line"><span class="keyword">from</span> instructor;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="sql">select distinct dept_name
+from instructor;</code></pre>
 <p>With <strong>distinct</strong>, we force the elimination(淘汰) of duplicates ( <strong>exactly</strong> the same results) . On the contrary, select all is used to emphasize that duplicates should not be removed. And <strong>all is the default.</strong></p>
 <p>The select clause may also contain arithmetic expressions involving the operators +, − , ∗,a n d / operating on constants or attributes of tuples, while not result in any change to relation. For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select ID, name, salary * 1.1</span><br><span class="line">from instructor;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="mysql">select ID, name, salary * 1.1
+from instructor;</code></pre>
 <p>While in life, sometimes only those who contribute more can get a rise. So we need to specifies the condition, like:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select ID, name, salary * 1.1</span><br><span class="line">from instructor</span><br><span class="line">where salary &gt;&#x3D;10 000 and dept_name &#x3D; &#39;Comp.Sci&#39;;</span><br></pre></td></tr></table></figure>
-
-<p>The <strong>where</strong> clause is a predicate involving attributes of the relation in the <strong>from</strong> clause, if omitted, the predicate is <strong>true</strong>. Some other symbols has the same status as ‘&gt;’: <strong>&lt;, =,</strong> <strong>between</strong> num1 <strong>and</strong> num2; <strong>NOT</strong> and <strong>OR</strong> are used widely, too.</p>
+<pre><code class="mysql">select ID, name, salary * 1.1
+from instructor
+where salary &gt;=10 000 and dept_name = &#39;Comp.Sci&#39;;</code></pre>
+<p>The <strong>where</strong> clause is a predicate involving attributes of the relation in the <strong>from</strong> clause, if omitted, the predicate is <strong>true</strong>. Some other symbols has the same status as ‘&gt;’: <strong>&lt;, =,</strong> <strong>between</strong> num1 <strong>and</strong> num2, <strong>not</strong> <strong>between</strong>; <strong>NOT</strong> and <strong>OR</strong> are used widely, too.</p>
+<pre><code class="mysql">where (instructor.ID, dept_name) = (teaches.ID, &#39;bio&#39;)；</code></pre>
+<p>The statement above is also legal.</p>
 <h4 id="queries-on-multiple-relations"><a href="#queries-on-multiple-relations" class="headerlink" title="queries on multiple relations"></a>queries on multiple relations</h4><p>To solve the problem that more than one relation are involved to get a result, we need to <strong>select</strong> from a unioned-relation. For example, “Retrieve the names of all instructors, along with their department names and department building name”,  the operations are related to the relation <em>instructor</em>, <em>department</em>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select name, instructor.dept_name, building</span><br><span class="line">from instructor, department</span><br><span class="line">where instructor.dept_name &#x3D; department.dept_name;</span><br><span class="line">or</span><br><span class="line">from instructor natural join teaches;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="mysql">select name, instructor.dept_name, building
+from instructor, department
+where instructor.dept_name = department.dept_name;
+or
+from instructor natural join teaches;</code></pre>
 <p>First, the relation name are used <strong>necessarily</strong> as a prefix to make <em>dept_name</em> clear. Second, list the relations that need to be accessed in the <strong>from</strong> clause(Cartesian Product), and specify the matching condition in the <strong>where</strong> clause. The example above is a natural union.</p>
 <p>In the previous article, I mentioned that when finding the <em>most</em>, making a Cartesian product with the relation itself is feasible. But they will have the same prefix, so renaming is put forward:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select name as instructor_name, course_ID</span><br><span class="line">from instructor as I, teaches as T</span><br><span class="line">where I.ID &#x3D; T.ID;</span><br><span class="line"></span><br><span class="line">select distinct name</span><br><span class="line">from instructor as I, instructor as T</span><br><span class="line">where I.salary &lt; T.salary and T.dept_name &#x3D; &quot;Comp.Sci&quot;;</span><br></pre></td></tr></table></figure>
+<pre><code class="mysql">select name as instructor_name, course_ID
+from instructor as I, teaches as T
+where I.ID = T.ID;
 
+select distinct name
+from instructor as I, instructor as T
+where I.salary &lt; T.salary and T.dept_name = &quot;Comp.Sci&quot;;</code></pre>
 <p>‘AS’ is optional. It rename the result of column A as B, so you can also write count(name) as name_num. </p>
-<h3 id="drop"><a href="#drop" class="headerlink" title="drop"></a>drop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table instructor; -- delete all information</span><br></pre></td></tr></table></figure>
-
+<h3 id="drop"><a href="#drop" class="headerlink" title="drop"></a>drop</h3><pre><code class="mysql">drop table instructor; -- delete all information</code></pre>
 <p>delete everything about instructor, including the relation itself.</p>
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><p><strong>delete</strong> retains relation <em>instructor</em>, but deletes all tuples in <em>instructor</em>. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from instructor;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="mysql">delete from instructor;</code></pre>
 <h3 id="alter"><a href="#alter" class="headerlink" title="alter"></a>alter</h3><p><strong>Alter</strong> is used to add or drop or modify attributes to an existing relation. A is the new attribute, D is its domain.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table r add (A1 D1, A2 D2...,An Dn);</span><br><span class="line">alter table r drop A;-- may be not supported</span><br><span class="line">alter table r modify (ID char(10), salary not null);</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="mysql">alter table r add (A1 D1, A2 D2...,An Dn);
+alter table r drop A;-- may be not supported
+alter table r modify (ID char(10), salary not null);</code></pre>
 <h3 id="create-index"><a href="#create-index" class="headerlink" title="create index"></a>create index</h3><p>It is used to create indexes on tables. Indexes enable database applications to look up data faster without reading the entire table. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name</span><br><span class="line">ON table_name (column_name a, b,...,n);</span><br><span class="line">-- Creates a unique index on a table. Duplicate values are not allowed:</span><br><span class="line">CREATE UNIQUE INDEX index_name</span><br><span class="line">ON table_name (column_name)</span><br></pre></td></tr></table></figure>
+<pre><code class="mysql">CREATE INDEX index_name
+ON table_name (column_name a, b,...,n);
+-- Creates a unique index on a table. Duplicate values are not allowed:
+CREATE UNIQUE INDEX index_name
+ON table_name (column_name)</code></pre>
+<h2 id="string-operations"><a href="#string-operations" class="headerlink" title="string operations"></a>string operations</h2><h3 id="string-matching-operator-通配符"><a href="#string-matching-operator-通配符" class="headerlink" title="string-matching operator 通配符"></a>string-matching operator 通配符</h3><h4 id="all"><a href="#all" class="headerlink" title="*: all"></a>*: all</h4><pre><code class="mysql">select * from student where dept_name = &quot;Sci&quot;;</code></pre>
+<h4 id="matches-any-substring"><a href="#matches-any-substring" class="headerlink" title="%:  matches any substring."></a>%:  matches any substring.</h4><h4 id="matches-any-char"><a href="#matches-any-char" class="headerlink" title="_:  matches  any char."></a>_:  matches  any char.</h4><p>Must be used with <strong>LIKE</strong> in <strong>WHERE</strong>.</p>
+<pre><code class="mysql">SELECT * FROM Websites
+WHERE url LIKE &#39;https%&#39;</code></pre>
+<p>Caution that patterns are case sensitive, uppercase characters do not match lowercase characters. </p>
+<p>• ’Intro%’ matches any string beginning with “Intro”. </p>
+<p>• ’%Comp%’ matches any string containing “Comp” as a substring, for example, ’Intro. to Computer Science’, and ’Computational Biology’. </p>
+<p>• ’ _ _ _ ’matches any string of exactly three characters . </p>
+<p>• ’ _ _ _%’ matches any string of at least three characters. </p>
+<h3 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h3><p>The <strong>escape character</strong> is used immediately before a special pattern character to indicate that the special pattern character is to be treated like a normal character. We define the escape character for a <strong>like</strong> comparison using the <strong>escape</strong> keyword. To illustrate, consider the following patterns, which use a backslash (\) as the escape character.</p>
+<p>• <strong>like</strong> ’ab%cd%’ <strong>escape</strong> ’\’   matches all strings beginning with “ab%cd”. </p>
+<p>• <strong>like</strong> ’ab\cd%’ <strong>escape</strong> ’\’    matches all strings beginning with “ab\cd”. </p>
+<p> the string “It’s right” can be specified by “It<strong>”</strong>s right”. And sometimes we use <strong>not</strong> <strong>like</strong> to find mismatches.</p>
+<h3 id="concatenating-串联"><a href="#concatenating-串联" class="headerlink" title="concatenating 串联"></a>concatenating 串联</h3><pre><code class="mysql">select 教师名 =  || name 
+from instructor
+where ...</code></pre>
+<p>the output is: 教师名 = SU…</p>
+<h3 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h3><p>and by using function <strong>lower(s), upper(s)</strong> we can convert from upper to lower case and vice versa; <strong>trim(s)</strong> helps to remove the space at the end of the sentence.</p>
+<h2 id="display-the-tuples"><a href="#display-the-tuples" class="headerlink" title="display the tuples"></a>display the tuples</h2><h3 id="ordering"><a href="#ordering" class="headerlink" title="ordering"></a>ordering</h3><pre><code class="mysql">select name from instructor where dept_name = &#39;CS&#39;
+order by salary desc, name asc;</code></pre>
+<p>We specify desc for descending order, and asc for ascending order. <strong>Asc is the default.</strong></p>
+<h2 id="set-operations"><a href="#set-operations" class="headerlink" title="set operations"></a>set operations</h2><p>Unlike <strong>SELECT</strong> clause, all these operations automatically eliminates duplicates. Use <strong>union all, intersect all</strong> and <strong>except all</strong> to retain duplicates.</p>
+<p>union</p>
+<pre><code class="mysql">-- select courses in this long term 
+(select course id from section where semester = ’Fall’ and year= 2009) 
+union 
+(select course id from section where semester = ’Spring’ and year= 2010); 
 
-
-
-<h2 id="string-matching-operator-通配符"><a href="#string-matching-operator-通配符" class="headerlink" title="string-matching operator 通配符"></a>string-matching operator 通配符</h2><h3 id="all"><a href="#all" class="headerlink" title="*: all"></a>*: all</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from student where dept_name &#x3D; &quot;Sci&quot;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="matches-any-substring"><a href="#matches-any-substring" class="headerlink" title="%:  matches any substring."></a>%:  matches any substring.</h3><h3 id="matches-any-char"><a href="#matches-any-char" class="headerlink" title="_:  matches  any char."></a>_:  matches  any char.</h3><p>Must be used with <strong>LIKE</strong> in <strong>WHERE</strong>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Websites</span><br><span class="line">WHERE url LIKE &#39;https%&#39;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2><p>‘%‘ -&gt; %</p>
+-- get a complete result
+(select course id from section where semester = ’Fall’ and year= 2009) 
+union all
+(select course id from section where semester = ’Spring’ and year= 2010); 
+</code></pre>
+<p>intersect and except are similar to union.</p>
+<h2 id="aggregate-functions"><a href="#aggregate-functions" class="headerlink" title="aggregate functions"></a>aggregate functions</h2><p>These functions operate on the multi-set of values of a column of a relation, and return  <strong>a value.</strong></p>
+<p>avg (col ):  average value</p>
+<p>min (col ):   minimum value</p>
+<p>max (col ):   maximum value</p>
+<p>sum (col ):   sum of values</p>
+<p>count (col ):   number of values</p>
+<ul>
+<li>Attributes in <strong>select</strong> clause outside of <strong>aggregate</strong> functions must appear in <strong>group</strong> <strong>by</strong> list</li>
+</ul>
+<p>要么在聚合函数里  要么在group by里</p>
+<h2 id="examples"><a href="#examples" class="headerlink" title="examples"></a>examples</h2><ol>
+<li>输出计院的老师工资平均数: 得到结果</li>
+</ol>
+<pre><code class="mysql">select avg(salary) as avg_salary
+from instructor
+where dept_name = &#39;CS&#39;;</code></pre>
+<ol start="2">
+<li>输出各个学院的平均工资： 得到分组结果</li>
+</ol>
+<pre><code class="mysql">select dept_name, avg(salary) as avg_salary
+from instructor
+group by dept_name;</code></pre>
+<ol start="3">
+<li>找出每个支行的用户数：得到需要自然连接的分组结果</li>
+</ol>
+<pre><code class="mysql">select bra_name, count(distinct id) as num
+from account, depositor
+where account.bra_name=depositor.bra_name
+group by bra_name;</code></pre>
+<ol start="4">
+<li>找出平均工资大于…的学院：对分组结果进行选择（having，出现的也是要么在聚合函数，要么在group by）</li>
+</ol>
+<pre><code class="mysql">select dept_name, avg(salary) as avg
+from instructor
+group by deot_name
+having avg(salary)&gt;42000;</code></pre>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><p><strong>execution order:</strong></p>
+<p>from-&gt; where-&gt; group-&gt; having-&gt; select-&gt;order by</p>
+<p><strong>notes</strong>: </p>
+<p>having/select语句，出现的也是要么在聚合函数，要么在group by</p>
+<p>where里面不能直接加聚合函数要放到having</p>
+<h2 id="null-value"><a href="#null-value" class="headerlink" title="null value"></a>null value</h2><p>对null值做加减乘除结果都是null</p>
+<p>和null的一切比较（包括=）结果都是unknown（防止逻辑矛盾），所以如果要统计null值要写 A is null， 而不能是 A = null；或者写 A = null is unknown，聚合函数会忽略空值。但count（*）来计算总记录数目，不会忽略空值。</p>
 
             </div>
             <hr>

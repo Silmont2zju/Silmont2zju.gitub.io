@@ -17,7 +17,7 @@
   <meta name="description" content="写不出东西的时候就去草坪晒个太阳 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆 之后虽然还是写不出来 但日子又好过很多了">
   <meta name="author" content="Silmont">
   <meta name="keywords" content="">
-  <title>Database System: concepts, relational algebra, null value - 今天也有晒太阳欸</title>
+  <title>Database System: nested subqueries, complex queries and examples - 今天也有晒太阳欸</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -124,7 +124,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期一, 三月 9日 2020, 5:54 下午
+                  星期三, 三月 18日 2020, 7:20 晚上
                 </p>
               
 
@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    627 字
+                    919 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      3 分钟
+                      4 分钟
                   </span>
                 
 
@@ -169,86 +169,126 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h2 id="CONCEPTS"><a href="#CONCEPTS" class="headerlink" title="CONCEPTS"></a>CONCEPTS</h2><h3 id="1-relation-relationship"><a href="#1-relation-relationship" class="headerlink" title="1. relation/relationship"></a><strong>1. relation/relationship</strong></h3><p>a relationship is a specific association among several entities.</p>
-<p>a relation is an abstract concept，mostly equals to a table.</p>
-<h3 id="2-principals"><a href="#2-principals" class="headerlink" title="2. principals"></a><strong>2. principals</strong></h3><p><em>key words： domain；atomic；null/true/false；relation schema/relation instance or database schema/database instance；unordered and no duplicate；</em></p>
-<h4 id="custom-writing-formats："><a href="#custom-writing-formats：" class="headerlink" title="custom writing formats："></a>custom writing formats：</h4><p>a relation schema： R = {A1, A2…,An}<br>                  INSTRUCTOR-SCHEMA = {ID, NAME, DEPT_NAME}<br>a relation： r(R) = {A1, A2…,An}<br>                  instructor_one(INSTRUCTOR-SCHEMA) = {ID, NAME, DEPT_NAME}<br>a tuple( a row in the table)：t || r<br>an attribute： t[name]</p>
-<h3 id="3-about-KEY"><a href="#3-about-KEY" class="headerlink" title="3. about KEY"></a><strong>3. about KEY</strong></h3><p><img src="https://cdn-images-1.medium.com/max/1000/1*GNDD3CpbMQOSfBkqKALn-Q.png" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
-<p>student(people) = {<u>st-ID</u>, st-name，sex, address，major-ID}</p>
-<p>major(subject) = {<u>major-ID</u>, major-name}</p>
-<p>major-ID is not a primary key of relation student, but a primary key of major, then it’s called a foreign key （referencing major，and major-ID must exist while can be marked with NULL），student is called a referencing relation；and major is a referenced relation.</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851554/1_wdgu4h.png" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
-<center>Schema Diagram (模式图)</center>
+              <h1 id="views"><a href="#views" class="headerlink" title="views"></a>views</h1><p>好处：因为展示的属性比较少，所以更安全/容易使用</p>
+<pre><code class="mysql">create view &lt;name&gt; as
+    select c1,c2....from...;
 
-<h2 id="TALK-ABOUT-RELATIONAL-ALGEBRA"><a href="#TALK-ABOUT-RELATIONAL-ALGEBRA" class="headerlink" title="TALK ABOUT RELATIONAL ALGEBRA"></a>TALK ABOUT RELATIONAL ALGEBRA</h2><p>What plays a vital role in learning DBS is four basic operations： to add，to delete，to update the data and to select what you need. </p>
-<p>Pure languages form underlying basis of query languages that people use，including：</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583852096/2_orcqst.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200310231102353"></p>
-<h3 id="1-relational-algebra"><a href="#1-relational-algebra" class="headerlink" title="1. relational algebra"></a><strong>1. relational algebra</strong></h3><h4 id="select：-sigma-rho-R"><a href="#select：-sigma-rho-R" class="headerlink" title="select： $\sigma$_ $\rho$(R)"></a>select： $\sigma$_ $\rho$(R)</h4><p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170550040_adbark.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170550040"></p>
-<p>incident: $\sigma$_(A=B ^ c&gt;20) (R)    result:</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170640349_trjdbw.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170640349"></p>
-<hr>
-<h4 id="project-prod-A-C-r"><a href="#project-prod-A-C-r" class="headerlink" title="project :  $\prod$_A,C(r)"></a>project :  $\prod$_A,C(r)</h4><h4 id><a href="#" class="headerlink" title></a><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170659603_dnoiiw.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170659603"></h4><p>result：</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170722947_cb5kcy.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170722947"></p>
-<hr>
-<h4 id="union"><a href="#union" class="headerlink" title="union"></a>union</h4><h4 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170830612_klxjsz.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170830612"></h4><p>result： merger of similar items. </p>
-<p>for R union S to be, they must have the same arity (same number of attributes) and the domains must be compatible.</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170848539_mvp8cl.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170848539"></p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308164500042_hioijk.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308164500042"></p>
-<h4 id="set-difference-a-b"><a href="#set-difference-a-b" class="headerlink" title="set difference: a-b"></a>set difference: a-b</h4><p>example is showed in union; and also the same requirements.  while after setting difference, the result should be : </p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170907433_jfynpx.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170907433"></p>
-<h4 id="set-intersection"><a href="#set-intersection" class="headerlink" title="set intersection"></a>set intersection</h4><p>example is showed in union; and also the same requirements.  while after setting difference, the result should be : </p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308173354362_tb2c8k.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308173354362"></p>
-<hr>
-<h4 id="Cartesian-product"><a href="#Cartesian-product" class="headerlink" title="Cartesian product"></a>Cartesian product</h4><p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170933374_budd0t.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170933374"></p>
-<p>result: list out all the possible permutation results</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851120/image-20200308170950775_aiim6b.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308170950775"></p>
-<hr>
-<h4 id="rename"><a href="#rename" class="headerlink" title="rename"></a>rename</h4><p>$\rho$_x(E): rename E as x;</p>
-<p>x can be x(a1, a2 …, an) to rename attributes at the same time.</p>
-<hr>
-<h4 id="natural-join-a-special-case-of-theta-join"><a href="#natural-join-a-special-case-of-theta-join" class="headerlink" title="natural join (a special case of theta join)"></a>natural join (a special case of theta join)</h4><p>first find out the same attributes(1,a; 2,b).</p>
-<p>second make Cartesian product.</p>
-<p>at last merge similar items.</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200308173613414_gadtj6.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308173613414"></p>
-<hr>
-<h4 id="division"><a href="#division" class="headerlink" title="division"></a>division</h4><p>Inverse calculation of Cartesian product</p>
-<p>example: Q = R/S</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200308174447859_ilinqp.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308174447859"></p>
-<hr>
-<h4 id="assignment"><a href="#assignment" class="headerlink" title="assignment"></a>assignment</h4><p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200309162625959_qismip.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200309162625959"></p>
-<p>in fact, this thought is similiar to that in <em>example: banking; 7</em> ,  to <strong>take away what we don’t need</strong> (tmp2).</p>
-<hr>
-<h4 id="extended-relational-algebra-operations"><a href="#extended-relational-algebra-operations" class="headerlink" title="extended relational-algebra-operations"></a>extended relational-algebra-operations</h4><p><strong>generalized projection</strong>: use arithmetic expressions as the projection order.</p>
-<p><strong>aggregate functions &amp; operations</strong>: returns a single value as a result. requirements can be avg，min，max，sum，count；rename the result with ‘as’.</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200309165427164_lvksfv.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200309165427164"></p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200309165755602_livi38.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200309165755602"></p>
-<p><strong>Left Out Join &amp; Right Out Join &amp; Full Outer Join</strong>: define the basis for retaining results.</p>
-<hr>
-<hr>
-<h3 id="EXAMPLE-banking"><a href="#EXAMPLE-banking" class="headerlink" title="EXAMPLE: banking"></a>EXAMPLE: banking</h3><hr>
-<p><strong>branch (<u>branch-name</u>, branch-city, assets)</strong></p>
-<p><strong>customer (<u>customer-name</u>, customer-street, customer-city)</strong></p>
-<p><strong>account (<u>account-number</u>, branch-name, balance)</strong></p>
-<p><strong>loan (<u>loan-number</u>, branch-name, amount)</strong></p>
-<p><strong>depositor (<u>customer-name, account-number</u>)</strong></p>
-<p><strong>borrower (<u>customer-name, loan-number</u>)</strong></p>
-<p>Q:</p>
-<p>1: Find all loans of over $1200</p>
-<p>2: Find the <strong>loan number</strong> for each loan of an amount greater than $1200</p>
-<p>3: Find the names of all customers who have a loan, <strong>or</strong> an account, or both, from the bank.</p>
-<p>4: WHAT ABOUT <strong>AND</strong>?</p>
-<p>5: Find the names of all customers who have a loan at the Perryridge branch.(<strong>USE AXB</strong>)</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200308172122007_qs6btb.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200308172122007"></p>
-<p>6: Find the names of all customers who have a loan at the Perryridge branch but do not have</p>
-<p> an account at any branch of the bank.(<strong>USE A-B</strong>)</p>
-<p><strong>7: Find the largest account balance.</strong></p>
-<p>ans = all - not the largest</p>
-<p>​       = all - $\prod$<em>_account_balance   $\rho$</em> _(a1.account&lt;a2.account) (a1 x a2)     //a1 == a2 ==account</p>
-<p>​       = $\prod$<em>balance (account) - $\prod$a1.balance   $\rho$</em> _(a1.account&lt;a2.account) (a1 x a2) </p>
-<h3 id="2-tuple-relational-calculus"><a href="#2-tuple-relational-calculus" class="headerlink" title="2. tuple relational calculus"></a><strong>2. tuple relational calculus</strong></h3><p>//To be added</p>
-<h3 id="3-domain-relational-calculus"><a href="#3-domain-relational-calculus" class="headerlink" title="3. domain relational calculus"></a><strong>3. domain relational calculus</strong></h3><p>//To be added</p>
-<h2 id="about-NULL-value"><a href="#about-NULL-value" class="headerlink" title="about NULL value"></a>about NULL value</h2><p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1583851121/image-20200309171926902_o7qkus.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200309171926902"></p>
-<p>ALL in all，null is known, unknown is unknown.</p>
+create view &lt;name&gt; as(d1,d2...) -- 列重命名
+    select c1...from...</code></pre>
+<p>还是拿之前的照秋学期春学期开课的题目做例子：</p>
+<pre><code class="mysql">create view physics_fall_2009 as -- 建立一个09年秋季物理系开课情况表
+select course.course_id,sec_id,building,room_number
+from course, section
+where course.course_id = section.course_id
+        and course.dept_name = &#39;Physics&#39;
+        and section.semester = &#39;fall&#39;
+        and section.year = &#39;2009&#39;;
+
+select course_id                -- 按照正常的表格使用
+from physics_fall_2009
+where building = &#39;waston&#39;;</code></pre>
+<h1 id="complex-queries"><a href="#complex-queries" class="headerlink" title="complex queries"></a>complex queries</h1><h2 id="derived-relations-导出关系创建局部视图"><a href="#derived-relations-导出关系创建局部视图" class="headerlink" title="derived relations 导出关系创建局部视图"></a>derived relations 导出关系创建局部视图</h2><p>e.g. 找出那些平均工资高于42000美元的学院。</p>
+<pre><code class="mysql">select dept_name, avg_salary            -- 3所求（结合内部）
+from(select dept_name, avg(salary)        -- 1先按学院计算平均工资
+    from instructor
+    group by dept_name)
+    as dept_avg(dept_name, avg_salary)    -- 2导出为表格dept_avg
+    -- 把子查询导出为一个relation，因为from后面应该加一个relation name
+where avg_salary &gt; 4200;</code></pre>
+<p>from … as …  将内部 select 语句导出为一个<strong>局部视图</strong>，仅在执行时产生，执行结束就没有了，而 create view 是全局视图</p>
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="with-clause-创建局部视图"><a href="#with-clause-创建局部视图" class="headerlink" title="with clause 创建局部视图"></a>with clause 创建局部视图</h2><pre><code class="mysql">with max_budget(value) as             -- 局部视图m_b，只有一个属性view
+select max(budget)
+from department
+
+select budget                        -- 匹配最有钱的部门
+from department, max_budget
+where department.budegt = max_budget.value;</code></pre>
+<p>在这里 with 也产生一个临时视图，语句结束就消失。也可以同时创建多个：</p>
+<p>e.g. 找出支出工资平均大于总体平均值的系</p>
+<pre><code class="mysql">with 
+    dept_total(dept_name, value) as        -- 建立分类表格
+    (select dept_name, avg(salary)
+    from instructor
+    group by dept_name)
+
+    dept_total_avg(value) as            -- 求总体平均值
+    (select avg(value)
+    from dept_total)
+
+select dept_name                        -- 比较，from要同时加入两个relation
+from dept_total A, dept_total_avg B
+where A.value &gt; B.value;</code></pre>
+<h1 id="examples"><a href="#examples" class="headerlink" title="examples"></a>examples</h1><h2 id="嵌套例题"><a href="#嵌套例题" class="headerlink" title="嵌套例题"></a>嵌套例题</h2><p>概念：select语句中套着另一个select语句。</p>
+<ol>
+<li><h3 id="同时在09年秋季和10年春季开课的课程"><a href="#同时在09年秋季和10年春季开课的课程" class="headerlink" title="同时在09年秋季和10年春季开课的课程"></a>同时在09年秋季和10年春季开课的课程</h3></li>
+</ol>
+<pre><code class="mysql">select distinct course_id
+from section
+where semester=&#39;fall&#39; and year = 2009 and
+    course_id in (
+    select course_id
+    from section
+    where semester=&#39;spring&#39; and year = 2010);</code></pre>
+<p>这里有一个 <strong>in</strong> 关键词，用来做一个check。相对的就是not in， 没有出现。</p>
+<ol start="2">
+<li><h3 id="上过10101老师上过的课-注意必须去重"><a href="#上过10101老师上过的课-注意必须去重" class="headerlink" title="上过10101老师上过的课: 注意必须去重"></a>上过10101老师上过的课: 注意必须去重</h3></li>
+</ol>
+<pre><code class="mysql">select count(distinct id)
+from takes
+where (course_id, sec_id, semester, year)
+    in(
+    select course_id, sec_id, semester, year
+    from teaches
+    where instructor_id = 10101);</code></pre>
+<ol start="3">
+<li><h3 id="找出每个银行中最大存款的账户"><a href="#找出每个银行中最大存款的账户" class="headerlink" title="找出每个银行中最大存款的账户"></a>找出每个银行中最大存款的账户</h3></li>
+</ol>
+<pre><code class="mysql">select account_num AN, balance from account A
+where balance &gt;=
+(select max(balance) from account B
+ where A.branch_name = B.branch_name
+)order by balance;</code></pre>
+<p>解释：内层的语句和外层不独立，先从内层账户中提取一个max值，条件就是和我当前检查的账户在同一个支行，然后再次比较当前账户的balance和max值进行比较，计算量相当可观。</p>
+<ol start="4">
+<li><h3 id="输出比至少一个生物系老师工资高的老师"><a href="#输出比至少一个生物系老师工资高的老师" class="headerlink" title="输出比至少一个生物系老师工资高的老师"></a>输出比至少一个生物系老师工资高的老师</h3></li>
+</ol>
+<pre><code class="mysql">select distince T.name
+from instructor T,instructor S
+where T.salary&gt;S.salary and S.dept_name = &quot;BIO&quot;;</code></pre>
+<pre><code class="mysql">select name 
+from instructor
+where salary &gt; some 
+    (select salary
+     from instructor
+     where dept_name = &quot;BIO&quot;);</code></pre>
+<p>这里引入some和all，可以用于where中的比较。<strong>= some 即 in， 但 ≠some 不意味着 not in。</strong>返回T/F。</p>
+<ol start="4">
+<li><h3 id="找出上了生物系所有课程的学生"><a href="#找出上了生物系所有课程的学生" class="headerlink" title="找出上了生物系所有课程的学生"></a>找出上了生物系所有课程的学生</h3></li>
+</ol>
+<pre><code class="mysql">select distinct S.id, S.name
+from student as S                 -- 检索所有学生
+where not exists((                -- 检查生物系所有课-S选的所有课是否是空集
+                               -- 是的话就输出
+
+    select course_id            -- 列出生物系所有课程id
+    from course
+    where dept_name = &quot;BIO&quot;)
+    except(
+    select T.student_id            -- 列出S选出的所有课
+    from takes as T
+    where S.id = T.id));</code></pre>
+<p>exist： 不是空集， not exists 是空集，返回T/F。</p>
+<p>类似的有unique，not unique，判断是否有重复，返回T,F。</p>
+<h2 id="运用例题"><a href="#运用例题" class="headerlink" title="运用例题"></a>运用例题</h2><ol>
+<li>找出上了十门课以上的学生； <em>enroll: 选课表</em></li>
+</ol>
+<pre><code class="mysql">select sno from enroll
+group by sno
+having count(distinct cno) &gt; 10;</code></pre>
+<ol start="2">
+<li>找出这些学生的名字</li>
+</ol>
+<pre><code class="mysql"></code></pre>
 
             </div>
             <hr>
@@ -439,7 +479,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Database System: concepts, relational algebra, null value&nbsp;",
+        "Database System: nested subqueries, complex queries and examples&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
