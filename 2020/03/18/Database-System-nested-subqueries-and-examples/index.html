@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    919 字
+                    1k 字
                   </span>
                 
 
@@ -286,9 +286,20 @@ where not exists((                -- 检查生物系所有课-S选的所有课�
 group by sno
 having count(distinct cno) &gt; 10;</code></pre>
 <ol start="2">
-<li>找出这些学生的名字</li>
+<li><p>找出这些学生的名字：涉及两个表</p>
+<p>不管是否被引用，导出表 (或称<strong>嵌套表</strong>) 必须给出别名</p>
+<p>Student(sno, sname, ssex, sage, sdept)</p>
+<p>Enroll(sno, cno, score)</p>
+<p>Course(cno, cname, credits, pcourse)</p>
+</li>
 </ol>
-<pre><code class="mysql"></code></pre>
+<pre><code class="mysql">select TT.sno, sname, c_num
+from
+    (select sno, count(cno) as c_num    -- 分组求选课总数
+    from enroll
+    group by sno)
+as TT, student S                        -- 笛卡尔积 连接两个表
+where TT.sno = S.sno and c_num &gt; 10;        -- 筛选</code></pre>
 
             </div>
             <hr>

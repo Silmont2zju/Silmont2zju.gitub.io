@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.8k 字
+                    2.2k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      10 分钟
+                      12 分钟
                   </span>
                 
 
@@ -217,11 +217,13 @@ salary numeric(8,2),
 check(salary&gt;=0));        -- add some conditions</code></pre>
 <h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><p>And the relation is empty initially. We write as below to insert a tuple; The values are specified in the order in which the corresponding attributes are listed i<strong>n the relation schema</strong>. </p>
 <pre><code class="sql">insert into instructor
-    values (10211, &quot;Silmont&quot;, &quot;digital media&quot;, 66000);
+    values (null, &quot;Silmont&quot;, &quot;digital media&quot;, 66000);
 </code></pre>
 <p>But what if I forgot the order?</p>
 <pre><code class="mysql">insert into instructor(name, dept_name, salary, ID)-- specify the order
-    values(&quot;Silmont&quot;, &quot;digital media&quot;, 66000, 10211);</code></pre>
+    values(&quot;Silmont&quot;, &quot;digital media&quot;, 66000, null);
+    -- or：
+    -- select e1, e2, ... from ...;</code></pre>
 <h3 id="select"><a href="#select" class="headerlink" title="*select"></a>*select</h3><h4 id="queries-on-single-relation"><a href="#queries-on-single-relation" class="headerlink" title="queries on single relation"></a>queries on single relation</h4><p>The <strong>select</strong> clause is used to list the attributes desired in the result of a query. The <strong>from</strong> clause is a list of the relations to be accessed in the evaluation of the query.  The simplest statement is:</p>
 <pre><code class="sql">select name
 from instructor;</code></pre>
@@ -258,7 +260,56 @@ where I.salary &lt; T.salary and T.dept_name = &quot;Comp.Sci&quot;;</code></pre
 <h3 id="drop"><a href="#drop" class="headerlink" title="drop"></a>drop</h3><pre><code class="mysql">drop table instructor; -- delete all information</code></pre>
 <p>delete everything about instructor, including the relation itself.</p>
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><p><strong>delete</strong> retains relation <em>instructor</em>, but deletes all tuples in <em>instructor</em>. </p>
-<pre><code class="mysql">delete from instructor;</code></pre>
+<p>e.g. 删除金融系的所有教师信息</p>
+<pre><code class="mysql">delete from instructor
+where dept_name = &#39;Finace&#39;;</code></pre>
+<p>删除 Needham 市所有支行的所有存款信息，并删除存款人中的相关信息</p>
+<pre><code class="mysql">delete from account
+where branch_name in
+    (select branch_name                 -- 先找到要删哪些支行
+    from branch
+    where branch_city = &#39;Needham&#39;);
+
+delete from depositer
+where account_number in
+    (select account_number
+    from branch B, branch A
+    where branch_city = &#39;Needham&#39; and B.branch_name = A.branch_name)</code></pre>
+<p>删除所有工资水平低于平均水平的老师</p>
+<pre><code class="mysql">delete from instructor
+where salary &lt;
+    (select avg(salary)
+    from instructor);            
+    -- 虽然是数和avg返回集合的比较  但因为集合是单元素集合 所以ok
+    -- 另外 这里不必考虑删除元组造成的avg更新 因为在同一SQL语句内  除非外层查询的元组变量引入内层查询  否则内层查询只进行一次</code></pre>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>对relation的更新：</p>
+<p>Example: all instructors with salary over $100,000 receive a 3 percent raise, whereas (而) all others receive a 5 percent raise. 这里如果更新两次，那么顺序很重要，要避免两类人群发生交叠。</p>
+<pre><code class="mysql">update instructor
+    set salary =salary * 1.05
+    where salary &gt; 10000;
+update instructor 
+    set salary = salary * 1.03
+    where salary &lt;= 10000;
+
+update instructor             -- 可以用 case 语句解决顺序问题
+set salary = case
+            when salary &lt;=10000
+            then salary * 1.05
+            else salary * 1.03
+            end;</code></pre>
+<p>对view的更新：</p>
+<pre><code class="mysql">create view faculty as
+select ID, name, dept_name
+from instructor
+
+insert into faculty
+values(&#39;30765&#39;,&#39;Green&#39;,&#39;music&#39;);
+
+
+-- 这实际上是：
+insert into instructor value(&#39;3..&#39;,&#39;G..&#39;,&#39;m..&#39;, null);
+-- 正因此，太过复杂的view的更新难以翻译，所以不被允许
+-- 换句话说，view 只是一个续表，宽松查询，严格更新</code></pre>
 <h3 id="alter"><a href="#alter" class="headerlink" title="alter"></a>alter</h3><p><strong>Alter</strong> is used to add or drop or modify attributes to an existing relation. A is the new attribute, D is its domain.</p>
 <pre><code class="mysql">alter table r add (A1 D1, A2 D2...,An Dn);
 alter table r drop A;-- may be not supported
