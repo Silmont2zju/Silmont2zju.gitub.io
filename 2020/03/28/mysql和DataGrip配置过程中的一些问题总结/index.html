@@ -171,14 +171,14 @@
             <div class="markdown-body">
               <h1 id="mysql下载与配置"><a href="#mysql下载与配置" class="headerlink" title="mysql下载与配置"></a>mysql下载与配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p>
 <p>下载社区版，进入推荐下载，会有两个版本：</p>
-<p><img src="/silmont2000.github.io/2020/03/28/mysql%E5%92%8CDataGrip%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/image-20200328195329462.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328195329462"></p>
+<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1585657445/image-20200328195329462_hc7gtw.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328195329462"></p>
 <p>这里面看msi的命名可以看出下面这个有个web，意思是在线安装包。二者区别不大，在线安装是用官方的下载器，运行下载器后下载安装包并自动安装，网络通畅的情况下ok；离线的话手动安装。</p>
 <p>一路next下面，到Choosing a Setup Type的时候选择custom，然后进入Select Products and Features，选择MySQL Servers下面的第三级目录，选择一个32位或64位的server即可。输入密码的时候要记好自己的密码。</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>后来发生了神奇的事情，我的mysql仅在下载当天第一次通过密码登陆成功，之后mysql的窗口输入密码后回车闪退。于是开始尝试网上的方法：</p>
 <h3 id="mysql服务未开启"><a href="#mysql服务未开启" class="headerlink" title="mysql服务未开启"></a>mysql服务未开启</h3><p>打开“服务”窗口，找到mysq80，双击打开看是否开启，的确没开启然后手动开启的时候出现如下提示：（因为是我已经修复啦只是一个截图，所以不是mysql80）</p>
-<p><img src="/silmont2000.github.io/2020/03/28/mysql%E5%92%8CDataGrip%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/image-20200328202123309.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328202123309"></p>
+<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1585657445/image-20200328202123309_h5lmxe.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328202123309"></p>
 <p>我心想：嗯？难道我应该打开mysql窗口？重复了一下又失败了。这时我发现：</p>
-<p><img src="/silmont2000.github.io/2020/03/28/mysql%E5%92%8CDataGrip%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/image-20200328202303552.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328202303552"></p>
+<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1585657445/image-20200328202303552_zmedop.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200328202303552"></p>
 <p>？</p>
 <p>为什么我有三个</p>
 <p>于是我试着把正在运行的这个给关掉，再打开正经的mysql80：</p>
