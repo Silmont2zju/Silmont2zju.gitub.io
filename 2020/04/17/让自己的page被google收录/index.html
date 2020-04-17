@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="27z_W5AnQzBSH6OUQE1R9SFm194-UyXDI_iVWTSZ4qw" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/silmont2000.github.io/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/silmont2000.github.io/img/favicon.jpg">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <meta name="theme-color" content="#2f4154">
+    <meta name="description" content="写不出东西的时候就去草坪晒个太阳 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆 之后虽然还是写不出来 但日子又好过很多了">
+    <meta name="author" content="Silmont">
+    <meta name="keywords" content="">
+    <title>让自己的page被google收录（hexo搭建） - 今天也有晒太阳欸</title>
+
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/silmont2000.github.io/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/silmont2000.github.io/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/silmont2000.github.io/">&nbsp;<strong>小谢的零食屋qwq</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/silmont2000.github.io/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期五, 四月 17日 2020, 3:57 下午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    880 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      3 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h1><p>还是想给自己的网站留点可量化的数据，然后搜索了一下自己的blog：</p>
+<p>？？？？？？？？？？？？？？？？？竟然没有？？？？？？？？？？？？？？？</p>
+<p>吓得我连忙去看了看自己的Github page还在不在… …果然还是太菜了… …</p>
+<p>我完全不知道被搜索到还是要自己提交材料的…</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>这里我选择让google收录，百度…emmmm…</p>
+<p>好吧其实也是我比较懒（</p>
+<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><h3 id="检查是否收录"><a href="#检查是否收录" class="headerlink" title="检查是否收录"></a>检查是否收录</h3><p>先直接google一下自己的site，看一看有没有出现在第一条，如果有的话就已经收录了下面就不用做啦：</p>
+<pre><code class="c">site:https://silmont2000.github.io/</code></pre>
+<h3 id="检查站点地图"><a href="#检查站点地图" class="headerlink" title="检查站点地图"></a>检查站点地图</h3><p>其次检查根目录下的public文件夹有没有一个站点地图文件，后缀名是xml，打开可以看到自己网站的结构，一般情况下命名是sitemap或者local-research之类。</p>
+<p>有: 看下一点</p>
+<p>没有：在git bash中执行：</p>
+<pre><code>npm install hexo-generator-sitemap --save</code></pre><p>然后在hexo配置目录中加入：</p>
+<pre><code>sitemap:
+    path: silmont2000.xml</code></pre><p>然后回到bash：</p>
+<pre><code>hexo clean
+hexo g
+hexo d</code></pre><p>不出意外这个时候再检查public文件夹下就应该有这个地图文件啦。</p>
+<h3 id="检查站点地图格式"><a href="#检查站点地图格式" class="headerlink" title="检查站点地图格式"></a>检查站点地图格式</h3><p>现在打开这个xml，检查一些常见 XML 错误：</p>
+<ul>
+<li><p>站点地图必须使用正确的标头。例如，如果站点地图包含视频信息，则会具有以下标头：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
+        xmlns:video=&quot;http://www.google.com/schemas/sitemap-video/1.1&quot;&gt;</code></pre>
+</li>
+<li><p>标头中的命名空间必须为 <strong>“<a href="http://www.sitemaps.org/schemas/sitemap/0.9&quot;" target="_blank" rel="noopener">http://www.sitemaps.org/schemas/sitemap/0.9&quot;</a></strong>（而非 <strong>.9</strong>）。</p>
+</li>
+<li><p>所有 XML 属性必须括在单引号 (‘) 或双引号 (“) 中，并且必须采用直引号，而不是弯引号。Microsoft Word 之类的文字处理程序可能会插入弯引号。</p>
+</li>
+<li><p><strong>结尾是否有结束标签/&lt;/urlset/&gt;</strong></p>
+</li>
+</ul>
+<h3 id="补习：站点地图："><a href="#补习：站点地图：" class="headerlink" title="补习：站点地图："></a>补习：站点地图：</h3><p>XML代表<strong>可扩展标记语言</strong>（XML），这是一个标准的机器可读的文件格式。一个站点地图是XML的文档，可以帮助谷歌和其他主要搜索引擎更好地理解你的网站而进行抓取。它<strong>结构化地</strong>列出了一个网站。有点像你所有页面url的一个有逻辑的集合。</p>
+<h2 id="向google提交材料"><a href="#向google提交材料" class="headerlink" title="向google提交材料"></a>向google提交材料</h2><h3 id="用HTML标记验证所有权"><a href="#用HTML标记验证所有权" class="headerlink" title="用HTML标记验证所有权"></a>用HTML标记验证所有权</h3><p>访问<a href="https://search.google.com/search-console?resource_id=https%3A%2F%2Fsilmont2000.github.io%2F" target="_blank" rel="noopener">Google Search Console</a>：</p>
+<p>选择输入网址前缀（右边这个），可以自己选择方式验证。我选择了看上去最简单的html标记：其他验证方法–html标记；</p>
+<p><img src="/silmont2000.github.io/2020/04/17/%E8%AE%A9%E8%87%AA%E5%B7%B1%E7%9A%84page%E8%A2%ABgoogle%E6%94%B6%E5%BD%95/image-20200417161608624.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200417161608624"></p>
+<p>然后复制它提供给你的代码，到hexo主题文件夹下的（我现在是fluid主题）\themes\fluid\layout_partial，找到head.ejs，有的可能是header.ejs，把它给你的代码粘在head里面；</p>
+<p>这个时候！不要忘记再编译部署一下，否则google也是验证不到的。</p>
+<h3 id="提交站点地图"><a href="#提交站点地图" class="headerlink" title="提交站点地图"></a>提交站点地图</h3><p>还记得我们前面提到的sitemap嘛！</p>
+<p><a href="https://support.google.com/webmasters/answer/7451001#error-list" target="_blank" rel="noopener">https://support.google.com/webmasters/answer/7451001#error-list</a></p>
+<p>这个时候选择左边资源里面你的网址，然后进入站点地图：</p>
+<p><img src="/silmont2000.github.io/2020/04/17/%E8%AE%A9%E8%87%AA%E5%B7%B1%E7%9A%84page%E8%A2%ABgoogle%E6%94%B6%E5%BD%95/image-20200417162515880.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200417162515880"></p>
+<p>填写你的xml文件（加后缀），然后提交，就可以啦！</p>
+<p>(想到本零食屋即将有其他朋友来我就好激动啊哈哈哈哈哈哈哈</p>
+<h2 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h2><p>请参考<a href="https://support.google.com/webmasters/answer/7451001#error-list" target="_blank" rel="noopener">官方文档</a></p>
+<p>如果hexo插件生成的总是有问题，建议使用第三方插件：<a href="https://smallseotools.com/zh/xml-sitemap-generator/" target="_blank" rel="noopener">XML站点地图生成器</a> ,  <a href="https://www.xml-sitemaps.com/" target="_blank" rel="noopener">这个没有名字</a></p>
+<p>前者能识别中文，后者有可能有点问题</p>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">问题总结</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Google/">Google</a>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Github-Page/">Github Page</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC80OTU5NS8yNjA4Ng==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.defer = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      零食总消耗<span id="busuanzi_value_site_pv"></span>袋 :P  
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      零食屋总客流量<span id="busuanzi_value_site_uv"></span>小只
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/silmont2000.github.io/js/main.js" ></script>
+
+
+  <script  src="/silmont2000.github.io/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "让自己的page被google收录（hexo搭建）&nbsp;",
+      ],
+      cursorChar: "：P",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/silmont2000.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/silmont2000.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
