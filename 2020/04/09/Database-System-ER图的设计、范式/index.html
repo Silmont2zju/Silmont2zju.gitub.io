@@ -15,7 +15,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
     <meta name="theme-color" content="#2f4154">
-    <meta name="description" content="写不出东西的时候就去草坪晒个太阳 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆 之后虽然还是写不出来 但日子又好过很多了">
+    <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
     <meta name="author" content="Silmont">
     <meta name="keywords" content="">
     <title>Database System: ER图的设计、范式 - 今天也有晒太阳欸</title>
@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    3.2k 字
+                    3.3k 字
                   </span>
                 
 
@@ -306,8 +306,9 @@
 <h2 id="多值独立性-Multivalued-Dependencies-MVD"><a href="#多值独立性-Multivalued-Dependencies-MVD" class="headerlink" title="多值独立性 Multivalued Dependencies  ( MVD )"></a>多值独立性 Multivalued Dependencies  ( MVD )</h2><p>一个课程对应多本课本、多本书，但书和老师之间是独立的，书不会因为不同的老师而改变的。但假如三者成为一个R，显然会有大量的冗余，但因为课程是一个superkey，又满足了BCNF。所以在实际生活中还是会出现一些使用以上NF不够的情况。类似的还如：员工-&gt;部门；员工-&gt;员工子女，但子女和部门之间独立。</p>
 <h2 id="多值决定"><a href="#多值决定" class="headerlink" title="多值决定"></a>多值决定</h2><p>MVD意义上的平凡（trivial）：b属于a，且a并b是R全集。记为：a-&gt;-&gt;b is trivial。其中：-&gt;-&gt;是多值决定的意思。</p>
 <p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1586598055/ERNF/image-20200409175237965_adaul6.png" srcset="/silmont2000.github.io/img/loading.gif" alt="duozhhi"></p>
-<p>（未完成，先更新上去。</p>
-<p>看到66）</p>
+<p>实际上，a-&gt;b 是a-&gt;-&gt;b的一种特殊情况。即：每一个FD都符合MVD。MVD当然也有闭包的概念，不过有些工作比FD会复杂得多。</p>
+<h2 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h2><p>和BC范式是一摸一样的，另外需要注意第四范式分解也不保证依赖保持。方法就是从主键出发，逐渐剥离，得到次级主键（我的理解）等等。</p>
+<p><img src="/silmont2000.github.io/2020/04/09/Database-System-ER%E5%9B%BE%E7%9A%84%E8%AE%BE%E8%AE%A1%E3%80%81%E8%8C%83%E5%BC%8F/image-20200423090137909.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200423090137909"></p>
 
             </div>
             <hr>

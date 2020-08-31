@@ -18,7 +18,7 @@
     <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
     <meta name="author" content="Silmont">
     <meta name="keywords" content="">
-    <title>让自己的page被google收录（hexo搭建） - 今天也有晒太阳欸</title>
+    <title>Database System: 语句处理 - 今天也有晒太阳欸</title>
 
     <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -125,7 +125,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期五, 四月 17日 2020, 3:57 下午
+                  星期三, 五月 20日 2020, 3:30 下午
                 </p>
               
 
@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    880 字
+                    1.4k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      3 分钟
+                      5 分钟
                   </span>
                 
 
@@ -177,52 +177,52 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h1 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h1><p>还是想给自己的网站留点可量化的数据，然后搜索了一下自己的blog：</p>
-<p>？？？？？？？？？？？？？？？？？竟然没有？？？？？？？？？？？？？？？</p>
-<p>吓得我连忙去看了看自己的Github page还在不在… …果然还是太菜了… …</p>
-<p>我完全不知道被搜索到还是要自己提交材料的…</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>这里我选择让google收录，百度…emmmm…</p>
-<p>好吧其实也是我比较懒（</p>
-<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><h3 id="检查是否收录"><a href="#检查是否收录" class="headerlink" title="检查是否收录"></a>检查是否收录</h3><p>先直接google一下自己的site，看一看有没有出现在第一条，如果有的话就已经收录了下面就不用做啦：</p>
-<pre><code class="c">site:https://silmont2000.github.io/</code></pre>
-<h3 id="检查站点地图"><a href="#检查站点地图" class="headerlink" title="检查站点地图"></a>检查站点地图</h3><p>其次检查根目录下的public文件夹有没有一个站点地图文件，后缀名是xml，打开可以看到自己网站的结构，一般情况下命名是sitemap或者local-research之类。</p>
-<p>有: 看下一点</p>
-<p>没有：在git bash中执行：</p>
-<pre><code>npm install hexo-generator-sitemap --save</code></pre><p>然后在hexo配置目录中加入：</p>
-<pre><code>sitemap:
-    path: silmont2000.xml</code></pre><p>然后回到bash：</p>
-<pre><code>hexo clean
-hexo g
-hexo d</code></pre><p>不出意外这个时候再检查public文件夹下就应该有这个地图文件啦。</p>
-<h3 id="检查站点地图格式"><a href="#检查站点地图格式" class="headerlink" title="检查站点地图格式"></a>检查站点地图格式</h3><p>现在打开这个xml，检查一些常见 XML 错误：</p>
-<ul>
-<li><p>站点地图必须使用正确的标头。例如，如果站点地图包含视频信息，则会具有以下标头：</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
-        xmlns:video=&quot;http://www.google.com/schemas/sitemap-video/1.1&quot;&gt;</code></pre>
+              <p>本章主要是讲语句的执行。</p>
+<p>语法分析与翻译 parsing and translation</p>
+<p>执行 evolution</p>
+<h1 id="优化-optimization"><a href="#优化-optimization" class="headerlink" title="优化 optimization"></a>优化 optimization</h1><p>因为不同的语句可能得到相同的结果，我们要执行当中代价最小、效率最高的那种；同一个语句还可以有很多种不同的实现算法（重点）。</p>
+<p>查询执行计划：不仅要标注关系代数关系，还要标注算法。</p>
+<p>优化器的功能：选出代价最小的等价语句。代价小指需要的时间，需要估算。</p>
+<p>时间包括：disk accesses + CPU + network communication，我们主要估算磁盘IO时间。IO时间包括寻道时间、读时间、写时间。为了简便，我们不区分读写，统一成传输时间。Tt表示传输单位时间，Ts表示寻道单位时间。这样IO时间只需要计算传输时间和寻道时间。</p>
+<p>缓存很大程度上会影响IO时间，因为如果缓存里面有就没必要请求磁盘了，但这个是动态的，我们只考虑最小缓存情况和最好缓存情况。</p>
+<h1 id="选择算法"><a href="#选择算法" class="headerlink" title="选择算法"></a>选择算法</h1><h2 id="等值"><a href="#等值" class="headerlink" title="等值"></a>等值</h2><ol>
+<li><p>A1 顺序，不用索引。只要一次寻道，从头到尾，线性搜索。设br是数据所占的块数，最坏的一共的时间是一次寻道时间+br次IO时间（传输时间）。如果是按照一个key来查询的话，因为是唯一的所以不必全部读，需要一次寻道+br/2次传输。</p>
+<p>好处是不管什么情况下都可能用，无论条件、顺序、索引。但因为原来的数据不一定排序了，所以二分法搜索不太常用；如果排序了还可以用。另外二分法会导致寻道次数增加。</p>
 </li>
-<li><p>标头中的命名空间必须为 <strong>“<a href="http://www.sitemaps.org/schemas/sitemap/0.9&quot;" target="_blank" rel="noopener">http://www.sitemaps.org/schemas/sitemap/0.9&quot;</a></strong>（而非 <strong>.9</strong>）。</p>
+<li><p>A2 候选码索引辅助的相等条件的扫描  index scan。默认是B+树，搜索条件建立在索引项上</p>
+<p>。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200520160856264.png?token=ANRR26MQM3OKEXWZ2FXVFZS7JSXEO" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520160856264"></p>
+<p>HI：根节点到叶子结点的过程，然后把所在block取回。</p>
 </li>
-<li><p>所有 XML 属性必须括在单引号 (‘) 或双引号 (“) 中，并且必须采用直引号，而不是弯引号。Microsoft Word 之类的文字处理程序可能会插入弯引号。</p>
+<li><p>A3 非候选码的主索引上的相等条件 scan。可能返回多条记录。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200520165710513.png?token=ANRR26MVUIHMV5D5RUWDSP27JSXFI" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520165710513"></p>
+<p>前面HI还是寻找的过程，后面因为是主索引的顺序所以只需要一次寻道定位，之后要读所有的块。b是大约所有符合条件的记录占的块数。</p>
 </li>
-<li><p><strong>结尾是否有结束标签/&lt;/urlset/&gt;</strong></p>
+<li><p>A4 二级索引的等值比较。第一种这个二级索引也是key，不会重复，这时开销和2是一样的。但假如不是一个key，就涉及到多次的寻道，因为信息不是按照二级索引排序的。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200520170208026.png?token=ANRR26I3M3OAQO5NSOFIBQS7JSXF4" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520170208026"></p>
 </li>
-</ul>
-<h3 id="补习：站点地图："><a href="#补习：站点地图：" class="headerlink" title="补习：站点地图："></a>补习：站点地图：</h3><p>XML代表<strong>可扩展标记语言</strong>（XML），这是一个标准的机器可读的文件格式。一个站点地图是XML的文档，可以帮助谷歌和其他主要搜索引擎更好地理解你的网站而进行抓取。它<strong>结构化地</strong>列出了一个网站。有点像你所有页面url的一个有逻辑的集合。</p>
-<h2 id="向google提交材料"><a href="#向google提交材料" class="headerlink" title="向google提交材料"></a>向google提交材料</h2><h3 id="用HTML标记验证所有权"><a href="#用HTML标记验证所有权" class="headerlink" title="用HTML标记验证所有权"></a>用HTML标记验证所有权</h3><p>访问<a href="https://search.google.com/search-console?resource_id=https%3A%2F%2Fsilmont2000.github.io%2F" target="_blank" rel="noopener">Google Search Console</a>：</p>
-<p>选择输入网址前缀（右边这个），可以自己选择方式验证。我选择了看上去最简单的html标记：其他验证方法–html标记；</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1587112355/image-20200417161608624_q5vdj0.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200417161608624"></p>
-<p>然后复制它提供给你的代码，到hexo主题文件夹下的（我现在是fluid主题）\themes\fluid\layout_partial，找到head.ejs，有的可能是header.ejs，把它给你的代码粘在head里面；</p>
-<p>这个时候！不要忘记再编译部署一下，否则google也是验证不到的。</p>
-<h3 id="提交站点地图"><a href="#提交站点地图" class="headerlink" title="提交站点地图"></a>提交站点地图</h3><p>还记得我们前面提到的sitemap嘛！</p>
-<p><a href="https://support.google.com/webmasters/answer/7451001#error-list" target="_blank" rel="noopener">https://support.google.com/webmasters/answer/7451001#error-list</a></p>
-<p>这个时候选择左边资源里面你的网址，然后进入站点地图：</p>
-<p><img src="https://res.cloudinary.com/de5pgx71x/image/upload/v1587112358/image-20200417162631979_rxgmkh.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200417162515880"></p>
-<p>填写你的xml文件（加后缀），然后提交，就可以啦！</p>
-<p>(想到本零食屋即将有其他朋友来我就好激动啊哈哈哈哈哈哈哈</p>
-<h2 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h2><p>请参考<a href="https://support.google.com/webmasters/answer/7451001#error-list" target="_blank" rel="noopener">官方文档</a></p>
-<p>如果hexo插件生成的总是有问题，建议使用第三方插件：<a href="https://smallseotools.com/zh/xml-sitemap-generator/" target="_blank" rel="noopener">XML站点地图生成器</a> ,  <a href="https://www.xml-sitemaps.com/" target="_blank" rel="noopener">这个没有名字</a></p>
-<p>前者能识别中文，后者有可能有点问题</p>
+</ol>
+<h2 id="涉及比较的"><a href="#涉及比较的" class="headerlink" title="涉及比较的"></a>涉及比较的</h2><ol>
+<li>遍历</li>
+<li>A5 基于主索引的比较：假设是按照主索引来排序和选择的，如果是&gt;=，就定位到第一条符合的，然后一直扫描下去；如果是&lt;=，就从开头一直读到不符合，甚至不用索引。</li>
+<li>A6 基于辅助索引的比较：在叶子节点上使用2的方法，但是这样开销非常大。</li>
+</ol>
+<h2 id="涉及逻辑操作and-or-not-的"><a href="#涉及逻辑操作and-or-not-的" class="headerlink" title="涉及逻辑操作and or not 的"></a>涉及逻辑操作and or not 的</h2><ol>
+<li>A7 用一个索引：在所有单个条件里面选一个条件最小的来计算读到内存，然后在内存里再验证是否符合其他条件（and）。</li>
+<li>A8 用组合索引（composite index / multiple-key index）：建立在我所需要的属性上，可以用A3-A5算法。</li>
+<li>A9 先把所有的条件中涉及到的元组地址取回来，然后取交集，在用这些地址稍微排个序在取本体（and）。</li>
+<li>A10 在A9的情况下取交集（or）。</li>
+<li>not的计算：1. 线性扫描   2. 转换成肯定句</li>
+</ol>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>我们的重点是，内存不够大时的外部归并排序。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200520171718321.png?token=ANRR26LPV6PSI2ORAMD43SK7JSXGQ" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520171718321"></p>
+<p>M:只有三块内存，一块内存只能放一条元组。第一步先三个三个读进来排序（Pass0），然后马上写成文件放出去。因为只能同时最多打开三个文件来读写，读两个run file，写一个。写的时候是分别读一条进来，写一个小的，然后再从小的原来所在的文件读一条，直到结束。</p>
+<p>产生的文件数=本轮文件数 /（最多打开文件数-1）取上整。如果内存很大（大于N）一次归并就够了。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200520173004006.png?token=ANRR26N6ENRLQYATVTFJAUK7JSXHE" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520173004006"></p>
+<p>代价分析：</p>
+<ol>
+<li>传输开销</li>
+</ol>
+<p>$$<br>总共轮数是 \lceil log_{M-1} (b_r/M)\rceil,不包括Pass0；\<br>也就是\lceil log_{M-1}(N_0)\rceil。N_0就是Pass0产生的文件数。\<br>块传输的话，我们不计算最后一次的写的时间。因为有可能是不写回磁盘而是传给上一步操作。\<br>每一次块传输的次数都是2b_r.\<br>整个外部排序的block\quad transfer数目是轮数\times每轮的传输数-最后一次，也就是\<br>BTcost = 2 b_r (\lceil log_{M-1}(b_r/M)\rceil+1)-b_r.<br>$$</p>
+<ol start="2">
+<li>寻道开销<br>$$<br>第一次run的时候，要产生一个run\quad file，\就需要先定位到原来的M-1个文件开始，再定位到接收答案的文件开始，所以需要两次寻道。\这样Pass0一共的寻道次数就是2\lceil b_r/M\rceil次。\那在排序过程中不可能内存真的小到每次只能放一块，所以引入一个b_b的概念\表示一次可以读b_b个块。一共是b_r块，就需要b_r/b_b次读块。\每一个块在前一个Pass中被写，后一个Pass中被读，\所以是2\lceil b_r/b_b \rceil 次的寻道（因为他们就不像最开始的记录那样挨着）\但最后一次不用算，所以一共的次数是\2\lceil b_r/M\rceil+2\lceil b_r/b_b\rceil(\lceil log_{M-1}(b_r/M)\rceil)-b_r/b_b.<br>$$</li>
+</ol>
 
             </div>
             <hr>
@@ -232,7 +232,7 @@ hexo d</code></pre><p>不出意外这个时候再检查public文件夹下就应�
                   <span>
                 <i class="iconfont icon-inbox"></i>
                     
-                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">问题总结</a>
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E6%96%B0%E7%9F%A5%E6%95%B4%E7%90%86/">新知整理</a>
                       &nbsp;
                     
                   </span>&nbsp;&nbsp;
@@ -241,9 +241,7 @@ hexo d</code></pre><p>不出意外这个时候再检查public文件夹下就应�
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Google/">Google</a>
-                    
-                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Github-Page/">Github Page</a>
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Database-System/">Database System</a>
                     
                   </span>
                 
@@ -471,7 +469,7 @@ hexo d</code></pre><p>不出意外这个时候再检查public文件夹下就应�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "让自己的page被google收录（hexo搭建）&nbsp;",
+        "Database System: 语句处理&nbsp;",
       ],
       cursorChar: "：P",
       typeSpeed: 70,

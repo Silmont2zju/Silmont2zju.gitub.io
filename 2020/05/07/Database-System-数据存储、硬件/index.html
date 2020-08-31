@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="27z_W5AnQzBSH6OUQE1R9SFm194-UyXDI_iVWTSZ4qw" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/silmont2000.github.io/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/silmont2000.github.io/img/favicon.jpg">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <meta name="theme-color" content="#2f4154">
+    <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
+    <meta name="author" content="Silmont">
+    <meta name="keywords" content="">
+    <title>Database System: 数据存储、硬件 - 今天也有晒太阳欸</title>
+
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/silmont2000.github.io/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/silmont2000.github.io/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/silmont2000.github.io/">&nbsp;<strong>小谢的零食屋qwq</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/silmont2000.github.io/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期四, 五月 7日 2020, 10:57 上午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      21 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <p>本文基本来源数据库系统概念第六版英文版</p>
+<h1 id="物理储存介质总览"><a href="#物理储存介质总览" class="headerlink" title="物理储存介质总览"></a>物理储存介质总览</h1><h2 id="高速缓存Cache"><a href="#高速缓存Cache" class="headerlink" title="高速缓存Cache"></a>高速缓存Cache</h2><p>速度：最快</p>
+<p>价格：最贵</p>
+<p>大小：相对来说比较小</p>
+<p>可靠性：易失的volatile</p>
+<h2 id="主存main-memory"><a href="#主存main-memory" class="headerlink" title="主存main memory"></a>主存main memory</h2><p>主存上执行通用命令</p>
+<p>速度：很快</p>
+<p>价格：对于存储数据库来说较昂贵</p>
+<p>大小：对于数据库来说不够</p>
+<p>可靠性：易失的</p>
+<h2 id="闪存flash-memeory"><a href="#闪存flash-memeory" class="headerlink" title="闪存flash memeory"></a>闪存flash memeory</h2><p>分为NAND和NOR两种，相同成本下NAND的储存能力更好，它也被广泛应用在笔记本电脑、相机等。闪存在越来越多的替代磁盘，一方面它的存储总量不断变大，已经大于主存，另一方面它取得信息的速度也快于磁盘。</p>
+<p>价格：比主存低一些</p>
+<p>可靠性：不易失的 nonvolatile</p>
+<h2 id="磁盘-magnetic-disk"><a href="#磁盘-magnetic-disk" class="headerlink" title="磁盘 magnetic-disk"></a>磁盘 magnetic-disk</h2><p>通常整个数据库是存储在磁盘上的，然后系统将这些数据转移到主存来操作，然后把改写好的数据写回磁盘。是不易失的。</p>
+<h2 id="总体上来说"><a href="#总体上来说" class="headerlink" title="总体上来说"></a>总体上来说</h2><p>价格越低，读写数据越慢，越不易失，反之就越快、越易失。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200507112949377.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200507112949377"></p>
+<h1 id="磁盘和闪存"><a href="#磁盘和闪存" class="headerlink" title="磁盘和闪存"></a>磁盘和闪存</h1><p>磁盘是以块的形式来储存数据的。对于一个数据库来说，可能需要几百个磁盘。闪存的容量飞速的扩大，逐渐成为可以与磁盘相匹敌的存在。</p>
+<h2 id="物理特征"><a href="#物理特征" class="headerlink" title="物理特征"></a>物理特征</h2><p>一个磁盘-》多个“盘”-》多个磁道-》多个扇区，扇区是储存的最小单位。通常我们认为一个磁盘有一到五个盘（platter），一个盘有5万到10万个磁道（track），一个磁道有500-1000个扇区（sector），一个扇区有512 byte。磁道是环形排列的，所以最里面的长度最短。在旋转时他们是高度同步的，所以上下所有盘的第i个磁道被称为第i个cylinder。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200507114019603.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200507114019603"></p>
+<p><strong>磁盘管理器（disk controller）</strong>实现了从系统到硬件之间的接口。磁盘管理器是放置在磁盘驱动中的，它接受IO命令，然后驱动arm移动到第几个磁道；在向磁盘写入数据时，他还负责向每个sector中写入校验和；读出（read back）数据时重新计算校验和（checksums）并和取出时候的比较。如果出现问题就会重新进行一次read操作，如果多次读数据之后还是错误就会发出一个warning；当发现有扇区损坏时，它会在物理上将数据换到其他的扇区（remapping of bad sectors）。出于这个目的，磁盘在设计之初也会留有一些空余的扇区。这些分配信息可能储存在磁盘自己身上，也有可能储存在其他不易失的介质上。</p>
+<h2 id="表现衡量（主要涉及到计算）"><a href="#表现衡量（主要涉及到计算）" class="headerlink" title="表现衡量（主要涉及到计算）"></a>表现衡量（主要涉及到计算）</h2><p>The main measures of the qualities of a disk are capacity, access time, data-transfer </p>
+<p>rate, and reliability. 磁盘质量的主要衡量指标是容量，访问时间，数据传输速率和可靠性。</p>
+<h3 id="ACCESS-TIME-seek-time-rotational-latency-time"><a href="#ACCESS-TIME-seek-time-rotational-latency-time" class="headerlink" title="ACCESS TIME = seek time + rotational latency time"></a>ACCESS TIME = seek time + rotational latency time</h3><p>指系统发出IO命令后到数据开始传输的时间。物理上，这个过程包括：ARM先移动到正确的track上（<strong>对应seek time</strong>），然后等待磁盘旋转到需要的扇区位置（<strong>对应rotational latency time</strong>）。</p>
+<p>seek time可能一般有2-30毫秒（milliseconds），理所当然地，更近的轨道位置、小的platter相对来说寻道时间就更短。所以这是没有实际意义的。对此提出了 average seek time的概念：用一系列均匀的命令去测试。</p>
+<pre><code>如果所有磁道具有相同的扇区数，并且我们忽略磁头开始移动和停止移动所需的时间，我们可以证明平均寻道时间是最坏情况下寻道时间的三分之一。考虑到这些因素，平均寻道时间约为最大寻道时间的一半。当前，平均搜索时间在4到10毫秒之间，具体取决于磁盘型号。</code></pre><p>现在磁盘的旋转速度大约是每分钟5400到15000转。我们认为平均需要转半圈来找到对应的扇区，所以rotational latency time也就是转一圈的一半时间。</p>
+<p>总结下来access time 大约是8-20毫秒之间。一旦所需扇区到达磁头，数据传输立即开始。</p>
+<h3 id="data-transfer-rate"><a href="#data-transfer-rate" class="headerlink" title="data-transfer rate"></a>data-transfer rate</h3><p>The data-transfer rate is the rate at which data can be retrieved from or stored to the disk。这指读取和写入数据的rate。当下的磁盘能支持的最大传输rate是每秒25-100兆字节。但对于靠内的磁道来说他们的传输速率明显小于最大值，因为他们的扇区太少了。</p>
+<h3 id="MTTF"><a href="#MTTF" class="headerlink" title="MTTF"></a>MTTF</h3><p>mean time to failure 这是一个衡量可靠性（reliability）的指标。这是一个磁盘能够不间断正常运行的时间。根据vendor的理论现在这个数值在57到136年。当然这是模拟计算出来的。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>严格的来说这是仅仅针对access的优化。</p>
+<p>一系列的请求也分为两种，顺序访问和随机访问。在顺序访问中，第一次需要寻道，那之后就可以连续的访问，或者有短暂的寻找相邻扇区的seek time。但在随机的访问中每一块都要重新寻道，每秒大约能做100-200次，慢了很多。</p>
+<p>所以人们做了很多的优化：</p>
+<h3 id="buffering缓冲"><a href="#buffering缓冲" class="headerlink" title="buffering缓冲"></a>buffering缓冲</h3><p>读出来的数据放入内存的缓冲区，数据库系统和操作系统都会做这件事。</p>
+<h3 id="read-ahead"><a href="#read-ahead" class="headerlink" title="read-ahead"></a>read-ahead</h3><p>即使暂时没有请求，也先读入一些后面一个扇区的内容到内存缓冲区，这样对顺序访问来说就快了很多。操作系统自己也会有一些提前读的常规操作，但这对于随机访问用处不大。</p>
+<h3 id="scheduling"><a href="#scheduling" class="headerlink" title="scheduling"></a>scheduling</h3><p>这有点像坐电梯，即经典的升降机算法，以此来调度arm的行为。在升降机算法的控制下，对于有访问请求的每个轨道，手臂将停止在该轨道上，为该轨道提供服务，然后继续向外移动，直到没有等待更远的轨道的请求为止。在这一点上，手臂改变方向，并向内移动，再次停在有要求的每个轨道上，直到到达没有要求向中心更远的轨道的轨道为止。然后，它反转方向并开始新的循环。磁盘控制器通常执行重新排序读取请求以提高性能的任务，因为它们密切了解磁盘上块的组织，磁盘盘的旋转位置以及磁盘臂的位置。（以上为机翻）</p>
+<h3 id="file-organization"><a href="#file-organization" class="headerlink" title="file organization"></a>file organization</h3><p>我们可以把磁盘上的数据按照希望的顺序来放。例如，如果我们希望文件被顺序访问，那么理想情况下，我们应该将文件的所有块顺序保留在相邻柱面上。较早的操作系统（例如IBM大型机操作系统）为程序员提供了对文件放置的精细控制，从而使程序设计人员或管理员可以轻松地对文件进行处理。但是，这种控制给程序员带来了负担。或由系统管理员决定要为一个文件分配多少个柱面，并且如果将数据插入文件或从文件中删除数据，则可能需要进行昂贵的重组。</p>
+<p>这之后的系统就不再向用户展示这部分功能了，转而自动的给一个文件分配相邻的空间（extent）。但长此以往，一个多次被追加的文件还是会变得支离破碎的，对此操作系统会进行重写（restore），先备份一下数据，然后整理写回。</p>
+<p>这极大地提高了access的效率。</p>
+<h3 id="nonvolatile-write-buffers"><a href="#nonvolatile-write-buffers" class="headerlink" title="nonvolatile write buffers"></a>nonvolatile write buffers</h3><p>平常使用非易失性随机存取存储器（nonvolatile random-access memory）来存一些主存的东西（因为主存易失）。这可以用来极大地提高性能。当一个file要被写入disk，磁盘管理器把它写进NRAM,然后转头告诉数据库系统已经写完了。之后没事儿了或者存满了它再慢慢地写到磁盘里面去。</p>
+<p>系统崩溃后的恢复时，NRAM中所有还没写到disk的数据都会写到disk去。</p>
+<h3 id="log-disk"><a href="#log-disk" class="headerlink" title="log disk"></a>log disk</h3><p>和上面的方法很像的是拿一个盘来专门写顺序存储的数据，这之后在写到应该写的位置。这就比随机的写又快了很多。</p>
+<p>此外，日志磁盘可以对写入进行重新排序，以最大程度地减少磁盘臂移动。如果系统在完成对实际磁盘位置的写入之前崩溃了，则在系统恢复备份时，它将读取日志磁盘以查找尚未完成的写入，然后执行这些写入。</p>
+<p>支持这个操作的系统被称之为日记文件系统。日志文件系统也可以没有这个日志盘，就在一个磁盘上操作。这样做可以降低金钱成本，但会降低性能。</p>
+<h2 id="闪存"><a href="#闪存" class="headerlink" title="闪存"></a>闪存</h2><p>NOR闪存允许随机访问存储器的各个字，并且读取时间与主存相当。但是，与NOR闪存不同，从NAND闪存读取数据需要从NAND闪存中提取<strong>整页数据</strong>，通常包括512到4096字节之间的数据，并将其从主存储器中取出。因此，NAND闪存中的页面类似于磁盘中的扇区。但是NAND闪存比NOR闪存便宜得多，并且具有更高的存储容量，并且到目前为止使用更为广泛。</p>
+<p>使用NAND闪存构建的存储系统提供与磁盘存储相同的面向块的接口。与磁盘相比，闪存可以提供更快的随机访问：一页数据可以从闪存中检索大约1或2微秒，而对磁盘的随机访问则需要5到10毫秒。<strong>闪存的传输速率比磁盘低</strong>，常见的是每秒20兆字节。最近的一些闪存将传输速率提高了每秒100至200兆字节。但是，固态驱动器并行使用多个闪存芯片，以将传输速率提高到每秒200兆字节，这比大多数磁盘的传输速率快。写入闪存要复杂一些。写入闪存页面通常需要几微秒。但是，一旦写入，则<strong>不能直接覆盖闪存的页面</strong>。相反，必须先擦除它，然后再<strong>重写</strong>。可以一次在多个页面上执行擦除操作，称为擦除块（erase block），大约需要1到2毫秒。擦除块的大小（在闪存文献中通常称为“块”）通常明显大于存储系统的块大小。此外，对闪存页的擦除次数有限制，通常约为100,000至1,000,000次。一旦达到此限制，则可能会发生存储位错误。</p>
+<p>闪存系统通过将逻辑页码映射到物理页码来限制慢速擦除速度和更新限制的影响。当您对所有用户都进行了更改时，可以删除原来的位置。每个物理页都有一小部分内存用于存储其逻辑地址。如果逻辑地址重新映射到另一个物理页面，则原始物理页面被标记为已删除。因此，通过扫描物理页面，我们可以找到每个逻辑页面所在的位置。</p>
+<p>逻辑到物理的页面映射被复制到内存中的转换表中，以便快速访问。定期擦除包含多个已删除页面的块，请务必先将这些块中未删除的页面复制到另一个块中（为这些未删除的页面更新翻译表）。由于每个物理页面只能更新固定次数，因此，已多次擦除的物理页面被分配为“冷数据”，即很少更新的数据，而未擦除多次的页面则被用于存储“热数据”，即经常更新的数据。这种在物理块上均匀分配擦除操作的原理称为损耗均衡（wear leveling），并由闪存控制器透明地进行分配。如果物理页由于过多的更新而损坏，则可以将其从使用中删除，而不会影响整个闪存。</p>
+<p>以上所有操作均由称为闪存翻译层（flash translation layer）的软件层执行。</p>
+<h1 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h1><p>文件是操作系统的基底。</p>
+<p>每一个文件在逻辑上被分成一些定长的block，这些block也是分配储存空间和数据传输的单元。通常默认的block大小是4-8 k 字节，但对特定的数据库实例来说block大小也允许被指定。至于一个block能储存多少信息，要看所用的数据组织形式。、</p>
+<p>以下默认没有一条储存记录比一个block还大（大部分情况是成立的，除了一些图片什么的），并且能够完整的储存在一个block里面，不存在截断。</p>
+<h2 id="定长fixed-length-records"><a href="#定长fixed-length-records" class="headerlink" title="定长fixed-length records"></a>定长fixed-length records</h2><pre><code class="sql">type instructor = record 
+    ID varchar (5); 
+    name varchar(20); 
+    dept name varchar (20); 
+    salary numeric (8,2); 
+end </code></pre>
+<p>这个记录的长度为5+20+20+8=53 bytes。也就是每53个字节分配一个元组。缺点：</p>
+<ol>
+<li><p>一个block很有可能不是53字节的倍数大小，所以就会造成结尾的元组跨块，访问时需要访问两个block。</p>
+</li>
+<li><p>维护困难。删除中间的某一个记录时需要其他记录的填充。</p>
+</li>
+</ol>
+<p>解决：</p>
+<ol>
+<li>对于那些需要跨块的记录直接换到下一块。剩下的就不用了。</li>
+<li>把删除记录后面的所有记录都往前移动一个，或者把最后一条记录移动到这里，更好的做法是让这块空间等待下一次插入，因为插入比删除来说操作更简单、频繁，而且移动记录还需要额外的access。但如果只是标记一下这个位置空了，在插入时就不容易找到它。所以引入了新的组织形式：</li>
+</ol>
+<p>在文件开头，分配一个file header，现在就只需要mark第一个内容被删除了的记录的地址。这个第一条记录就用来储存下一个被删除的records的地址，有点像指针。这些链表式的记录被称为free list。</p>
+<p>On insertion of a new record, we use the record pointed to by the header. We change the header pointer to point to the next available record. If no space is available, we add the new record to the end of the file. </p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200513140036551.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200513140036551"></p>
+<h2 id="变长-variable-length-records"><a href="#变长-variable-length-records" class="headerlink" title="变长 variable-length records"></a>变长 variable-length records</h2><p>在同一个文件里面存储不同类型的记录，或允许一个或多个内存单元可变长度的，或者允许重复字段的（例如数组或多集）。在存储变长数据时需要考虑的问题是，怎样保证单独的属性能够便捷地取出和怎样在一个block中便捷地取出一条完整的记录。</p>
+<p>一般来说变长记录的展示方式一般有两个部分，定长部分+变长部分（好像是废话）。变长部分在前面先以pair的形式出现（offset，length），offset是开始的位置，length是属性长度。这些属性的值在记录的初始固定长度部分之后连续存储。因此，<strong>记录的初始部分存储有关每个属性的固定大小的信息，无论它是固定长度还是可变长度。</strong>不变长度的属性通常是数字、日期、定长字符串等，变长的则一般是varchar。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200513193356581.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200513193356581"></p>
+<p>在这个instructor的元组里，只有salary是定长属性（65000）。分析一下结构：前面几个是（offset，length）的标记，每一个占2字节，共12字节；之后是定长的salary，因为是numeric (8,2)所以占8字节，后面接null bitmap，后面接变长部分，就是简单的一个字符一个字节啦。</p>
+<p>这里要提一嘴null bitmap，它用来记录哪个属性是空值，长度是1字节（0000）。如果工资是空值，工资是表中第四个属性，这个null bitmap会变成0001. 在12-19上的信息就会被忽略，但空间还是保留。在另一种情况下， bitmap被放在记录的最前面，并且空值是不被留空间的。这样的表示将节省一些存储空间，但要付出额外的工作来提取记录的属性。在那种，有很多很多空属性的表里会选择这样的方法。</p>
+<p>接下来，我们解决将可变长度记录存储在块中的问题。分页页面（slotted-page structure）结构通常用于组织块内的记录，如图10.9所示。3每个块的开头都有一个标头，其中包含以下信息：</p>
+<ol>
+<li>The number of record entries in the header. </li>
+<li>The end of free space in the block. </li>
+<li>An array whose entries contain the location and size of each record. </li>
+</ol>
+<ol>
+<li>标题中的记录条目数。</li>
+<li>块中的可用空间的末尾。</li>
+<li>一个数组，其条目包含每个记录的位置和大小。</li>
+</ol>
+<p>向block写入时是从结尾处开始写的，所以结束条目（entry）-&gt;block开头这段空间是连续的空白。</p>
+<p>在删除记录时，占用空间释放，条目状态变为删除，比如大小用-1表示。然后后面所有的记录都向前移动，保证空余空间连续。同时指向空余空间末尾的指针也会更新，记录的扩展和缩小也是类似的，只要剩余空间还足够就可以。因为空间是固定的，所以移动记录的代价不是非常大。</p>
+<p>值得注意的是，指针不会指向真正的记录，而是指向entries。Entries中存储的是数据的真正地址。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517181844381.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517181844381"></p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517171442087.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517171442087"></p>
+<p>但一个数据库的信息总量往往不是一页（一个block）就能储存的。一些图片或者音频，会用sql所支持的blob或clob来存储。</p>
+<h1 id="文件中的记录存储组织"><a href="#文件中的记录存储组织" class="headerlink" title="文件中的记录存储组织"></a>文件中的记录存储组织</h1><ol>
+<li>堆存储。也叫流水存储。在文件中可以随便放，只要放的下就可以。也没什么顺序，每一个relation对应一个单独的文件。</li>
+<li>顺序。根据search key来排列。</li>
+<li>哈希表。给每一个record计算出对应的哈希值，然后得到应该存放的位置。</li>
+</ol>
+<p>以上都是一个relation就对应一个文件的。还有一种多表集群文件组织（multi-table clustering file organization），可能同一个file里面存着不同relation的record。</p>
+<h2 id="重点：顺序存储"><a href="#重点：顺序存储" class="headerlink" title="重点：顺序存储"></a>重点：顺序存储</h2><p>search key不一定非要是主键，随便什么属性都可以。排列时理论上为了最快的取用，我们用指针来链接相邻的record，为了最少的block access，我们尽可能的按照search key来排列。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517173025413.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517173025413"></p>
+<p>但为了维护这个顺序关系，移动record的代价是非常大的。所以我们通常用指针来解决这个问题。比如一次插入之后：</p>
+<ol>
+<li>在要按搜索键顺序插入记录之前的文件中放一下该记录。</li>
+<li>如果在与此记录相同的块中有空闲记录（即删除后剩余的空间），则在其中插入新记录。否则，请将新记录插入溢出块中。但无论是哪一种，指针（链表）都需要更新。</li>
+</ol>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517180759337.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517180759337"></p>
+<p>在溢出的记录很少的时候，这种方法非常奏效。但久而久之物理上就往往不是按照search key顺序排列的了（lost the correspondence) 。这时候顺序存储就不再那么高效了。这时候可能需要重整（reorganized），但重整的代价将是巨大的，而且必须在系统占用少的时候完成。重整的频率基本和插入数据的频率成正相关。</p>
+<h2 id="多表群集文件组织"><a href="#多表群集文件组织" class="headerlink" title="多表群集文件组织"></a>多表群集文件组织</h2><h2 id="Multitable-Clustering-File-Organization"><a href="#Multitable-Clustering-File-Organization" class="headerlink" title="Multitable Clustering File Organization"></a>Multitable Clustering File Organization</h2><p>一个relation一个file的组织形式很适合低成本的，比如嵌入式的系统、便携设备数据库等的实现。这些情况下数据库总量小，复杂的文件组织优势不明显。另外，在这种情况下，目标代码（object code）也要，简单的文件组织缩减了代码量。</p>
+<p>但是当文件变大时，他就不那么有效了。即使我们保留一个relation一个file，更为复杂的文件组织也可以为我们提供一些优势。</p>
+<p>但是，许多大型数据库系统并不直接依赖底层操作系统进行文件管理。而是将一个较大的操作系统文件分配给数据库系统。然后数据库系统把所有的relation都存在这里面自己管理。但是同时，虽然一个relation不能独自占有一个file了，他们大部分时间还是会放在同一个block里面。其他的时候呢，把多个relation放在一起存储，也有一些好处。比如：</p>
+<pre><code class="sql">select dept name, building, budget, ID, name, salary from department natural join instructor; </code></pre>
+<p>最坏的情况下每个需要取的元组都在不同的block上，但也可以像下面这样混起来存储：</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517213920465.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517213920465"></p>
+<p>在上面，每个学院之后跟随相应老师的信息。老师的学院信息因为重复而被省略了。这对于上面那条指令来说就非常高效。但对于其他的指令来说就不一定了。比如：</p>
+<pre><code class="sql">select * from department; </code></pre>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517214350754.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517214350754"></p>
+<p>反而需要更多的block access。为了方便，我们也用指针把同类型的连接起来。</p>
+<p>最终怎么组织，还要取决于这个数据库最频繁的操作是什么。</p>
+<h1 id="数据字典-Data-Dictionary"><a href="#数据字典-Data-Dictionary" class="headerlink" title="数据字典 Data-Dictionary"></a>数据字典 Data-Dictionary</h1><p>元数据，metadata，用来存储数据的数据：比如relation的schema之类的。数据字典（或者system catalog）就是用来存放这些的。存储的信息有：</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517214835344.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517214835344"></p>
+<p>（Integrity constraints (for example, key constraints). ，完整性约束，例如…）</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517214951783.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517214951783"></p>
+<p>这些元数据可以有一个单独的文件，也可以用表去管理，也存在数据库里面。下面这些就是新建数据库时会自动生成的一些元数据表：</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517215857220.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517215857220"></p>
+<h1 id="数据缓冲-buffer"><a href="#数据缓冲-buffer" class="headerlink" title="数据缓冲 buffer"></a>数据缓冲 buffer</h1><p>磁盘和内存之间的读写速度有很大的差别，所以要是什么都从磁盘直接IO就会很慢。所以创建了buffer作为操作的媒介。</p>
+<p>磁盘的信息可以放到buffer里面（buffer在内存），暂时IO。但是buffer的大小肯定不能让它全部吞下数据库，所以就需要一些管理方式。</p>
+<p>从数据库（磁盘）读是以块的形式读的，存到缓存的page里面。一个page和一个block差不多一样大。</p>
+<p><img src="/silmont2000.github.io/2020/05/07/Database-System-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E7%A1%AC%E4%BB%B6/image-20200517220346224.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200517220346224"></p>
+<p>pinned：已经被应用程序“盯住”，不允许交换、写回去。</p>
+<p>dirty：某些数据被修改过了</p>
+<p>应用先调用buffer manager，看看缓存，如果缓存里面已经有需要的信息，就返回地址（理想状态）；否则就要分配一块新的空间。但假如空间不够，还需要舍弃（throwing out）旧的page。如果是dirty的，就写回磁盘，加入没改过，就直接扔掉。然后读新的内容到buffer里面，放到新的page。</p>
+<p>至于替换哪一些呢？这几道LRU/MRU策略。</p>
+<p>LRU：替换最少用的；MRU：替换刚用的。</p>
+<p>至于用哪种，就需要缓存管理做一些估计。除了IO信息。还会记录一些某个指令涉及到哪些relation的信息。但是现在更常用的是Heuristic法则，就是把数据字典一直放在内存缓存。</p>
+<h2 id="写回的几种情况："><a href="#写回的几种情况：" class="headerlink" title="写回的几种情况："></a>写回的几种情况：</h2><p>pinned block：当被多个应用使用的时候，pin count会增加，只有==0的时候才能释放或写回去。</p>
+<p>toss-immediate 立即丢弃。最后一个元组处理完了就扔。</p>
+<p>forced output：强制输出。某一时刻需要确定所有的改动都已经写回去了，所有的脏页都被强制写回去。</p>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E6%96%B0%E7%9F%A5%E6%95%B4%E7%90%86/">新知整理</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Database-System/">Database System</a>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/%E7%A1%AC%E4%BB%B6/">硬件</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC80OTU5NS8yNjA4Ng==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.defer = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      零食总消耗<span id="busuanzi_value_site_pv"></span>袋 :P  
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      零食屋总客流量<span id="busuanzi_value_site_uv"></span>小只
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/silmont2000.github.io/js/main.js" ></script>
+
+
+  <script  src="/silmont2000.github.io/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Database System: 数据存储、硬件&nbsp;",
+      ],
+      cursorChar: "：P",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/silmont2000.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/silmont2000.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

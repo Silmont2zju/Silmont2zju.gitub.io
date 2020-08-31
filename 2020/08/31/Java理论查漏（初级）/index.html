@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="27z_W5AnQzBSH6OUQE1R9SFm194-UyXDI_iVWTSZ4qw" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/silmont2000.github.io/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/silmont2000.github.io/img/favicon.jpg">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <meta name="theme-color" content="#2f4154">
+    <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
+    <meta name="author" content="Silmont">
+    <meta name="keywords" content="">
+    <title>Java理论查漏 - 今天也有晒太阳欸</title>
+
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/silmont2000.github.io/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/silmont2000.github.io/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/silmont2000.github.io/">&nbsp;<strong>小谢的零食屋qwq</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/silmont2000.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/silmont2000.github.io/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期一, 八月 31日 2020, 3:48 下午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    7.3k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      28 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="Java理论查漏（初级）"><a href="#Java理论查漏（初级）" class="headerlink" title="Java理论查漏（初级）"></a>Java理论查漏（初级）</h1><ol>
+<li><p>final关键字：当用final修饰一个类时，表明这个类不能被继承（extend）。也就是说，如果一个类你永远不会让他被继承，就可以用final进行修饰。final类中的成员变量可以根据需要设为final，但是要注意final类中的所有成员方法都会被隐式地指定为final方法。</p>
+<p><a href="https://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3736238.html</a></p>
+<p>下面这段话摘自《Java编程思想》第四版第143页：</p>
+<p>　　“使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升。在最近的Java版本中，不需要使用final方法进行这些优化了。“</p>
+<p>　　因此，如果只有在<strong>想明确禁止 该方法在子类中被覆盖</strong>的情况下才将方法设置为final的。</p>
+<p>　　注：<strong>类的private方法会隐式地被指定为final方法。</strong></p>
+<p>修饰变量是final用得最多的地方.对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改,但是它指向的对象(如一个类的成员变量）的内容是可变的。；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</p>
+<pre><code class="java">public class Pass {
+    public static void main(String[] args) {
+        final String a = &quot;hello&quot;;
+        String b = &quot;hello&quot;;
+        String c=&quot;hello2&quot;;
+        System.out.println(&quot;a+2=&quot; + (a + 2));//hello2
+        System.out.println(&quot;b+2=&quot; + (b + 2));//hello2
+        System.out.println(&quot;a==c is &quot;+(a+2==c));//true
+        System.out.println(&quot;b==c is &quot;+(b+2==c));//false
+    }
+}
+//当final变量是基本数据类型以及String类型时，如果在编译期间能知道它的确切值，则编译器会把它当做编译期常量使用</code></pre>
+</li>
+</ol>
+<ol start="2">
+<li><p>JAVA图形界面组件层次关系：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/20190223221456236.jpg?token=ANRR26L4OXD3DKUIT6QJSMC7JSXI2" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
+</li>
+<li><p>JAVA程序运行不受错做系统限制。原本.class字节码文件需要java虚拟机解释称机器码才能执行，虚度较慢，随着JVM的发展，执行速度直逼C++</p>
+<p>结构：.java-&gt;编译器-&gt;字节码文件.class-&gt;解释器（JVM）</p>
+</li>
+<li><p>JDK Java Development Kit 是Sun公司推出的Java开发工具包，包括Java类库、 Java编译器、 Java解释器、 Java运行环境和Java命令行工具。JDK主要有3种版本<br>J2SE：standard edition,  Java标准版或Java标准平台。可以开发Java桌面应用程序和低端服务器应用程序，也可开发Java Applet程序<br>J2EE：enterpsise edtion, Java企业版或Java企业平台,它包含J2SE平台，并增加了附加类库，支持目录管理，交易管理等功能。<br>J2ME：micro edtion,Java微型版或Java小型平台,用于嵌入式的消费产品中，如移动电话，掌上电脑等</p>
+<p>普通用户只需要安装 JRE来运行 Java 程序。而程序开发者必须安装JDK来编译、调试程序</p>
+<p>javac.exe是编译器</p>
+</li>
+<li><p><strong>JRE</strong>   Java runtime environment 是运行基于Java语言编写的程序所不可缺少的运行环境，用于解释执行Java的字节码文件。bin里的就是JVM，lib中则是JVM工作所需要的类库，而JVM和 lib和起来就称为JRE</p>
+</li>
+<li><p><strong>JVM</strong>：Java Virtual Machine 是Java的虚拟机，是JRE的一部分。它是整个java实现跨平台的最核心的部分，负责解释执行字节码文件，是可运行java字节码文件的虚拟计算机。</p>
+<p>所有平台的上的JVM向编译器提供相同的接口，而编译器只需要面向虚拟机，生成虚拟机能识别的代码，然后由虚拟机来解释执行。</p>
+</li>
+<li><p><strong>编译执行和解释执行：</strong>编译过程只进行一次，所以，编译过程的速度并不是关键，目标代码的运行速度是关键。因此，编译器一般都集成尽可能多的优化技术，使生成的目标代码具备更好的执行效率。解释则在每次程序运行时都需要解释器和源代码，不能集成太多优化技术，因为代码优化技术会消耗运行时间，使整个程序的执行速度受到影响。</p>
+</li>
+<li><p>java没有头文件、指针、结构体、运算符重载、多重继承。</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827142041106.png?token=ANRR26PUSDXUDJHKQGBHHI27JSXJM" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827142041106"></p>
+</li>
+<li><p><strong>一个程序必须至少有一个输出</strong>。System是Java类库中的一个类，out是System类中的一个对象，println(或print)是out对象的一个方法。</p>
+</li>
+<li><p>可以是$开头：Java 的标识符由字母、数字、_和$组成，长度不限，但实际命名不宜过长。<br>标识符的第一个字符必须为字母、 “_”或 “$” 。标识符区分大小写。<strong>不能数字开头。</strong></p>
+</li>
+<li><p>变量名、对象名、方法名、包名等标识符全部采用小写字母；若标识符由多个单词构成，则首单词小写，其后单词的首字母大写，其余字母小写。如getAge。<br>类名首字母大写。<br>常量名全部字母大写。</p>
+<p>关键字全部小写。</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827142930953.png?token=ANRR26I7OMDJXI57VDIXFMC7JSXJ2" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827142930953"></p>
+<p>注意数组、接口和类叫做“引用类型“，没有一种类型叫“实型”</p>
+<p>其实String可以骑墙，在这里先视作引用类型。</p>
+</li>
+<li><p>Java的long型占8个字节，表示方式为数字后加L或者l。float也只占4个字节，double8个。</p>
+</li>
+<li><p>八进制：开头是0；十六进制：0X或0x为前缀。</p>
+</li>
+<li><p>关于“float精度”：<a href="https://blog.csdn.net/albertsh/article/details/92385277" target="_blank" rel="noopener">https://blog.csdn.net/albertsh/article/details/92385277</a></p>
+<p>(±)a.b x 10^c</p>
+<p><code>float</code>的存储正是将4字节32位划分为了3部分来分别存储正负号，小数部分和指数部分的：</p>
+<ol>
+<li>Sign（1位）：用来表示浮点数是正数还是负数，0表示正数，1表示负数。</li>
+<li>Exponent（8位）：指数部分。即上文提到数字c，但是这里不是直接存储c，为了同时表示正负指数以及他们的大小顺序，这里实际存储的是c+127。</li>
+<li>Mantissa（23位）：尾数部分。也就是上文中提到的数字b。</li>
+</ol>
+</li>
+<li><p>2.5E4:2.5称为尾数，4称为阶码</p>
+</li>
+<li><p>char类型：<strong>占两个字节</strong>，16位。表示方式：’a’，’\u0043’</p>
+</li>
+<li><p>boolean类型：占一个字节，和C++不同，不能与数值0或1等同</p>
+</li>
+<li><p>单目运算符的优先级高于双目运算符，而在双目运算符中，先*、/、%运算，再+、-运算。但是当x=y–时，y先传递值，后–。n++：取n值作为表达式 n++ 的值；n = n + 1</p>
+</li>
+<li><p>字符类型操作数的比较依据是其Ascii码值，如’a’&lt;‘d ‘。字符串只能用==或者！=，不能比大小；boolean类的也是。Ascii码的顺序：数字-大写-小写；==和！=优先级低</p>
+</li>
+<li><p>运算有优先级，顺序为算术运算→关系运算→逻辑运算→条件运算→赋值运算。</p>
+<p>算术关系没逻辑，给了条件才赋值</p>
+</li>
+<li><pre><code>System.out.println(&#39;A&#39;+1);//65
+System.out.println(&#39;A&#39;);//A</code></pre></li>
+<li><p>关于数据类型转化级别：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827150535730.png?token=ANRR26JSRN733ZMG5KJRBGS7JSXKQ" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827150535730"></p>
+<p>Char类型可自动转换成int类型，其值为字符的Ascii码值<br>而int类型到Char类型需要经过强制类型转换</p>
+</li>
+<li><p>java.lang.Math类提供方法来执行基本数学函数的运算。round()方法:返回最接近操作数的整数<br>算法是将操作数加上0.5，并取最接近的最小整数<br>对于正数而言就是四舍五入取整，对负数时》0.6的小数向绝对值更大的方向舍。</p>
+<p><img src="/silmont2000.github.io/2020/08/31/Java%E7%90%86%E8%AE%BA%E6%9F%A5%E6%BC%8F%EF%BC%88%E5%88%9D%E7%BA%A7%EF%BC%89/image-20200827151117847.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827151117847"></p>
+<p>random()方法:返回一个double型随机数，此方法不带参数<br>随机数范围：<strong>大于等于</strong>0.0且小于1.0<br>产生固定范围内的随机整数：<br>(Int)((上界-下界+1)<em>Math.random()+下界)<br>int a=(int)(Math.random()</em>10);    //大于等于0小于10的随机整数<br>int b= (int)(89*Math.random()+10);//大于等于10小于99的随机整数（如果是要两位数应该写到90）</p>
+<p>Math.exp(int n)返回e的n次幂</p>
+<p>重要常量：Math.PI 和 Math.E</p>
+</li>
+<li><p>和System类似，Scanner也是一个类（在import java.util.Scanner ; 或 import java.util.*; ），需要先创建实例化对象Scanner in=new Scanner(System.in); 然后用in.next来读取键盘输入，需要注意，并没有in.nextString，也没有nextChar，只有nextline(),nextInt(),nextDouble(),nextFloat() 。光一个next到空格就停止。</p>
+</li>
+<li><p><code>;</code>也是一个语句，是空语句。</p>
+</li>
+<li><p>任何程序有三种基本的结构：顺序、分支、选择。这是基本的结构。</p>
+</li>
+<li><p>java分支：if：二选一（不是多选一）  if扩展、嵌套、switch：多选一</p>
+</li>
+<li><p>闰年判断：<code>year%4==0 &amp;&amp; year%100!=0 || year%400==0</code></p>
+</li>
+<li><p>else总与离他最近的if配对。</p>
+</li>
+<li><p>switch语句判断数据类型可以是short，int，char，byte，不可以是浮点数和long。如果没有break，执行后续所有case语句中的语句块，default不执行。</p>
+</li>
+<li><p>循环的两种类型：计数控制和事态控制。</p>
+</li>
+<li><p>continue：是跳过当前这轮循环，剩下的语句全部跳过，不是只跳一个</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200829090024682.png?token=ANRR26KLCH7NX3OWBNQAVZK7JSXLC" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200829090024682"></p>
+</li>
+<li><p>水仙花数：三位数各位数字立方和等于它本身。</p>
+<p>完数：因子的和与它本身相等。</p>
+<pre><code class="java">public class PerfectNumber {
+    public static void PerfectN(){
+
+        for(int a=2;a&lt;=1000;a++){
+            int s=a;
+            for(int i=1;i&lt;a;i++){
+                if(a%i==0){
+                    s=s-i;
+                }
+            }
+            if(s==0){
+                System.out.println(&quot;输出完数：&quot;+a);
+            }
+        }
+
+    }
+    public static void main(String[] args){
+        PerfectN();
+   }
+}
+</code></pre>
+</li>
+<li><p>Java叫方法，只能在类class中声明</p>
+</li>
+<li><p>void的标准含义：方法没有返回值。里面包含变量声明，语句，返回语句</p>
+</li>
+<li><p>在JAVA中只有值传递</p>
+</li>
+<li><p>递归，关键的是递归公式和递归出口</p>
+</li>
+<li><p>汉诺塔：</p>
+<p>若用A、B和C表示3根针，将n个金片由A针移动到C针，步骤如下：<br>将A上的n-1个金片借助C针移动到B针上。<br>将A针上剩下的一个金片由A针移动到C针上。<br>将最后剩下的n-1个金片借助A针由B针移动到C针上。</p>
+<pre><code class="java">static void  hanoi( int n , char  a ,  char b  ,  char c ) 
+{
+ if (n = = 1) 
+     moves(a, c);//如果只剩一片，直接移动
+ else//还剩很多片
+     hanoi(n - 1, a, c, b);//先把n-1片移动好，从a借助c放到b上
+     moves(a, c);//然后把最后一片移动
+     hanoi(n - 1, b, a, c);//再把n-1片移动到这最后一片上去，从b借助a放到c上。
+            }
+</code></pre>
+</li>
+<li><p>保留2位小数：<code>(int)(a*100+0.5)/100.0</code></p>
+<pre><code class="java">    import java.math.BigDecimal;
+    import java.text.DecimalFormat;
+    import java.text.NumberFormat;
+    public class format {
+        double f = 111231.5585;
+        public void m1() {
+            BigDecimal bg = new BigDecimal(f);
+            double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            System.out.println(f1);
+        }
+        /**
+         * DecimalFormat转换最简便
+         */
+        public void m2() {
+            DecimalFormat df = new DecimalFormat(&quot;#.00&quot;);
+            System.out.println(df.format(f));
+        }
+        /**
+         * String.format打印最简便
+         */
+        public void m3() {
+            System.out.println(String.format(&quot;%.2f&quot;, f));//会四舍五入
+        }
+
+        public static void main(String[] args) {//这个博主写的实际上是错的，仅供参考方法。
+            //他的方法没有写static，main是无法调用的。
+            format f = new format();
+            f.m1();
+            f.m2();
+            f.m3();
+        }
+    }</code></pre>
+</li>
+<li><p>关于length和length():<a href="http://www.itwanger.com/java/2019/12/08/java-array-string-length.html" target="_blank" rel="noopener">http://www.itwanger.com/java/2019/12/08/java-array-string-length.html</a></p>
+<p>数组的长度是可以确定的，直接用一个属性length去表示就可以了。但对于String来说，length的源码是</p>
+<pre><code class="java">    /**
+     * Returns the length of this string.
+     * The length is equal to the number of Unicode
+     * code units in the string.
+     */
+    public int length() {
+        return value.length;//因为value是一个private值，所以需要一个方法作为接口。
+    }</code></pre>
+</li>
+<li><p>计算单词个数：要注意abandon       （多个空格）after这种情况。</p>
+<pre><code class="java">import java.io.IOException;
+import java.util.Scanner;
+
+public class Pass {
+    public static void main(String[] args) {
+        int ri, repeat,count, word,i;
+        String line;
+        char c;
+        Scanner in=new Scanner(System.in);
+        repeat=(in.nextLine()).charAt(0)-&#39;0&#39;;
+        for(ri=1; ri&lt;=repeat; ri++){
+            line=in.nextLine();
+            word=0;count=0;
+            for(i=0;i&lt;line.length();i++)
+            {
+                if(line.charAt(i)!=&#39; &#39;)
+                { if(word==0)
+                    count++;
+                    word=word+1;
+                }
+                else word=0;//用来标记是不是已经没单词了
+            }
+            System.out.println( count);
+        }
+    }
+}</code></pre>
+</li>
+<li><p>nextint和nextline在一起用会出问题，因为nextint之后光标不略过回车。参考<code>repeat = in.nextLine().charAt(0)-&#39;0&#39;;</code></p>
+</li>
+<li><p>计算单词个数，因为结尾没有空格，那么就计算空+有的结构，不要计算有+空的结构。</p>
+</li>
+<li><p>java数组数据类型要相同。数组必须进过申明和初始化，确定数组名、维数和元素数据类型才能使用。各元素的存数空间是连续的。</p>
+<p><strong>二维数组初始化时，可以每行单独进行，允许各行元素数目不同。</strong></p>
+<p>数组的复制：可以用循环语句，也可以直接a=b。</p>
+<pre><code class="java">
+public class Pass {
+    public static void main(String[] args) {
+        int a[] = {1, 2, 3};
+        int b[] = {1, 2, 3, 4, 5};
+        System.out.println(&quot;before:&quot;);
+        for (int i = 0; i &lt; a.length; i++) {
+            System.out.print(a[i]);//123
+        }
+        System.out.println();
+        for (int i = 0; i &lt; b.length; i++) {
+            System.out.print(b[i]);//12345
+        }
+        System.out.println();
+
+        b = a;
+        System.out.println(&quot;after:&quot;);
+        for (int i = 0; i &lt; b.length; i++) {
+            System.out.print(b[i]);//123
+        }
+        System.out.println();
+
+        a[2] = 100;
+        System.out.println(&quot;after2:&quot;);
+        for (int i = 0; i &lt; b.length; i++) {
+            System.out.print(b[i]);
+            //12100,说明直接a=b传递的是地址，且b的大小也会和a一样。
+        }
+    }
+}</code></pre>
+</li>
+<li><p>选择法：每次都选当前数组最小的数，然后交换一次，用一个pos变量来记录现在这个“最小数”的位置。 </p>
+</li>
+<li><p>杨辉三角：a[i][j]=a[i-1][j-1]+a[i-1][j];</p>
+</li>
+<li><p>数组作为参数，形参必须有[]，实参可以没有。数组名传递地址，数组元素做参数传递的是值。</p>
+</li>
+<li><pre><code class="java">char a[]={&#39;C&#39;,&#39;h&#39;,&#39;i&#39;,&#39;n&#39;,&#39;a&#39;};
+System.out.println(a);//可以输出China</code></pre>
+</li>
+<li><pre><code class="java">import java.io.IOException;
+import java.util.Scanner;
+
+public class Pass {
+    public static void main(String[] args) {
+        String a = &quot;hello&quot;;
+        String b = a;
+        String c = &quot;&quot;;
+        c = a;
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println();
+        a = &quot;Hello&quot;;
+        System.out.println(a);//Hello
+        System.out.println(b);//hello,是浅拷贝
+        System.out.println(c);//hello
+    }
+}
+//https://www.cnblogs.com/genggeng/p/10065885.html</code></pre>
+<p>浅拷贝只进行值的传递，本质上还是两份不同的数据。</p>
+<p>对于数组、某个类的实例化对象，这都属于引用数据类型，进行引用传递，也就是地址。这时它们是指向同一块内存的。</p>
+</li>
+<li><p>String的函数： indexOf返回的index是从0开始数的。indexOf（str，in）返回从第in个开始，str首次出现的位置。</p>
+<pre><code class="java">public class Pass {
+    public static void main(String[] args) {
+        String a = &quot;abababababab&quot;;
+        System.out.println(a.indexOf(&quot;ab&quot;, 2));//2,是从整个字符串算的下标。
+    }
+}</code></pre>
+<p>substring（in1，in2）返回两个in之间的子字符串，in2可以省略。</p>
+<pre><code class="java">public class Pass {
+    public static void main(String[] args) {
+        String a = &quot;abcdefg&quot;;
+        System.out.println(a.substring(0, 2));//ab,包括0不包括2
+    }
+}</code></pre>
+<p>equalsIgnoreCase（str）忽略大小写的比较。</p>
+<p>compareTo(str) 与str进行比较。大正小负，返回第一个不相等的差值，不是下标。</p>
+<p>String.valueOf(数据)，把数据<strong>变成</strong>string类型。变成其他类型：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200830101458679.png?token=ANRR26P5DLTT5MJNWE5ABRS7JSXLY" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200830101458679"></p>
+</li>
+<li><p>面向对象的程序设计认为：程序由类（对象）组成。</p>
+</li>
+<li><p>类属于引用数据类型，因此在声明时系统不会分配空间，需要手动new一个空间。当使用new运算符实例化一个对象时，Java做两件事：系统为对象创建内存区域，自动调用构造方法初始化成员变量。程序不能直接调用构造方法。New实例化一个对象时，自动调用；无构造方法，生成一个无参的默认构造方法，使用默认值初始化对象的成员变量：数值型-0；布尔型-false ;字符型’\0’,字符串型null。参数个数和参数类型都能用来区分构造方法的重载。</p>
+</li>
+<li><p>一个类就有一个.class文件，能被运行的是有main方法的类（主类）。</p>
+</li>
+<li><p>new运算符实例化对象<br>过程：系统为对象分配所需的存储空间<br>但内存空间有限，不能存放无限多的对象<br>为此，Java提供了资源回收机制，自动销毁无用对象，回收其所占用的存储空间<br>如需主动释放对象，或在释放时执行特定操作，则在类中可以定义 finalize() 方法：</p>
+<pre><code class="java">    public void finalize()
+    {
+      方法体；
+     }  
+</code></pre>
+</li>
+</ol>
+<ol start="58">
+<li><p>封装性是面向对象的核心特征之一<br>类的封装（对设计者而言）包含2层含义<br><strong>将数据和对数据的操作组合起来构成类，类是一个不可分割的独立单位，类是Java程序的构成。</strong>类中包括：<br>数据成员变量 对象的属性<br>对数据的操作成员方法 对象所能完成的功能<br><strong>类中既要提供与外部联系的接口，同时又要尽可能隐藏类的实现细节。</strong><br>具体方法就是为类及成员变量和成员方法设置合理的访问权限<br>对于设计者而言,封装使模块之间的耦合和交差大大减少,降低了程序开发的复杂性<br>对于使用者，不需要关心类内部的细节，只要知道：<br>哪些类可以选择，类的功能,即提供了哪些方法可使用</p>
+</li>
+<li><p>包是一组相关类和接口的集合</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th><strong>访问控制</strong></th>
+<th><strong>本类</strong></th>
+<th><strong>同一包中的类</strong></th>
+<th><strong>其他包中子类</strong></th>
+<th><strong>其他包中的类</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>public</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>private</strong></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td><strong>protected</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+</tr>
+<tr>
+<td><strong>缺省</strong></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<p>缺省就是这个包里面都能访问；proteted是其他包的其他类不能访问。真事儿多。</p>
+</li>
+<li><p>声明一个类可使用的权限修饰符：public、缺省，<strong>不能使用：private、protected</strong></p>
+</li>
+<li><p><strong>Java的类中可以包含两种成员：实例成员和类成员</strong><br><strong>实例成员属于对象</strong><br>包括实例成员变量和实例成员方法<br>必须通过对象访问实例成员变量，调用实例成员方法</p>
+<p>实例方法使用变量是不是static都行</p>
+<p><strong>类成员属于类</strong><br>包括类成员变量和类成员方法，<strong>申明时用static修饰</strong><br>通过对象可以引用类成员变量和类方法<br>也可以通过类名可直接访问类成员变量，调用类成员方法<br>没有创建对象，也可以引用类成员</p>
+<p>类成员变量在该类被加载到内存时就分配了存储空间，是共享的。</p>
+<p>类成员方法使用变量只能访问同为static的变量，要调用实例成员方法时也必须通过创建对象才行。</p>
+</li>
+<li><p>逆序数：</p>
+<pre><code class="java">while(number&gt;0){
+            digit=number%10; //分离出个位数字
+            a=a*10+digit;    //形成当前的逆序数
+            number=number/10;
+      }</code></pre>
+</li>
+<li><p>10转2</p>
+<pre><code class="JAVA">      String t=&quot;&quot;; //保存二进制数
+      do {
+          t=n%2+t;  //n除2后的余数拼接到t的前面
+          n=n/2;  //获得除2后的商
+      }while(n&gt;0);</code></pre>
+</li>
+<li><p>继承关键字：extend<strong>s</strong>注意有s。被继承的叫做superclass或baseclass或parentclass，新的类称为derived class，或者subclass，childclass。</p>
+</li>
+<li><p>所有类都直接或间接的继承自object。所以如果没有指定，就默认继承它；object类有许多成员和方法，比如hashcode（）获取hash码，equals（）检测相等。</p>
+</li>
+<li><p>子类不继承父类构造方法。保护和私有的成员也都继承，但是私有的变量不能直接访问。</p>
+</li>
+<li><pre><code class="java">public Ctor(){
+    this(6);//是可以用this指代构造函数的
+}
+public Ctor(int a){
+    this.a=a;
+}</code></pre>
+</li>
+<li><p>多态性：指同一名字的方法有多种实现。他们根据参数或调用对象进行区分。在oop中表现为，重载类的方法、子类覆盖父类方法。重载表现为形参的<strong>个数、类型和顺序</strong>不同。方法的<strong>返回值和参数名称</strong>不是判断依据；覆盖是指子类定义了父类中的同名方法。表现为父类与子类之间方法的多态性。寻找对应的执行方法时，先从当前类开始，如果没有符合的再看上一级。</p>
+</li>
+<li><p><strong>注意，用final修饰的类不能被继承（固定作用|已经完美）<br>用final修饰的成员方法不能被覆盖<br>用final修饰的成员变量不能被修改（编译错误）。</strong></p>
+</li>
+<li><p>接口是一组常量+抽象方法，包是一组类和接口。包&gt;接口。</p>
+</li>
+<li><p>抽象类是供子类继承、但不能创建实例的类。关键字是abstract:</p>
+<pre><code class="java">[权限修饰符] abstract class   类名{
+    成员变量声明
+    [权限修饰符] abstract  返回类型  方法名(参数表);
+} </code></pre>
+</li>
+<li><p>抽象类可以有不抽象的方法，反之不行。即使抽象类不包含抽象方法也不能被继承。子类必须给出所有具体实现。</p>
+</li>
+<li><p>相比之下接口的要求更严格，只能定义public的抽象方法和静态的、公有常量。接口提供了方法声明与实现相分离的机制，实现相同接口的多个类表现出相同的行为模式，每个实现接口的类可以根据各自要求，给出抽象方法的具体实现。</p>
+<pre><code class="java">[访问权限] interface  接口名 [extends  父接口名] {
+    成员变量表(常量)
+ 成员方法列表（抽象）
+}</code></pre>
+</li>
+<li><p>接口的权限只能是public和缺省，方法必须是public abstract所以可以省略，常量必须是public static final所以也可以省略，接口允许没有父接口，也就是没有最高层（类有最高层、必须有父接口Object）</p>
+<pre><code class="java">class 类名 [extends 父类名] implements 接口名列表{
+     类体
+}
+说明
+一个类可以实现多个接口，各个接口之间用逗号分开
+该类必须要实现接口中所有的抽象方法，即使本类中不使用的抽象方法也要实现
+对不使用的抽象方法如何实现:
+不需要返回值的方法:空方法实现,即方法中没有语句
+有返回值的方法:在方法中使用默认值返回，如0
+实现抽象方法，需指定访问权限为public</code></pre>
+</li>
+<li><p>接口和抽象类比较：</p>
+<p><strong>相同点</strong><br>都不能被实例化<br><strong>不同点</strong><br>一个类只能继承一个抽象类，是单继承；一类可以实现多个接口,具有多重继承功能<br>抽象类是类,类中可以包含成员变量、构造方法、抽象方法和普通方法；而接口是<strong>一组抽象方法和常量的组合</strong>。<br>抽象类中的成员具有和普通类中的成员一样的访问权限，而接口中成员访问权限只能是public。</p>
+</li>
+<li><p>一个源程序导入包中的类或接口后，引用该类和接口时，包名可省略，Import语句在源程序中必须位于其他类或接口申明之前。</p>
+</li>
+<li><p>一个Java的源程序文件（.java文件）中可包含：</p>
+<pre><code class="java">[package  包名 ]                 // 声明所在包 
+[import 包名.类名 |包名.接口名]  //导入其它包中的类或接口，  
+                                             “|”表示2者选1
+[ public ] class | interface     //声明类或接口</code></pre>
+<p>一个源程序文件中，最多只能有<strong>一条package</strong>语句，并且必须是第一条语句。一个源程序文件中，可以有<strong>多条import</strong>语句，并且必须位于其它类或接口声明之前。一个源程序文件中，可定义多个类或接口，但只能定义一个<strong>public类或public接口，并且该类或接口名与文件名相同</strong>。</p>
+</li>
+<li><p>异常：程序运行过程中出现的非正常现象。Java提供了异常处理机制：异常类，用来<strong>描述和处理</strong>异常，每个异常类只反映一类运行错误。异常情况分为Exception和Error两大类，Error是内部系统错误，只能关闭程序，Exception可在程序中捕获和处理。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831105153693.png?token=ANRR26J33HULFCPC5M422D27JSXMS" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831105153693"></p>
+</li>
+<li><p>Exception的处理方法：</p>
+<ol>
+<li><p>try…catch…finally来对异常进行捕获和处理。</p>
+<pre><code class="java">public class Exception1 {
+  public static void main(String args[])      {
+      try {
+          int a[]={1,2,3,4,5}, sum=0;
+          for (int i=0; i&lt;=5; i++) 
+        sum=sum+a[i];
+          System.out.println(&quot;sum=&quot;+sum);
+          System.out.println(&quot;Successfully! &quot;);
+       }//异常类名1对应的异常处理代码, 若干条catch捕获各类异常，一旦出现，终止try代码块运行，自动跳转到异常所对应的catah块中，执行其中的代码
+     catch (ArrayIndexOutOfBoundsException e){//catch (异常类名2   异常对象名2)
+          System.out.println(&quot;ArrayIndexOutOfBoundsException  detected&quot;);
+      }
+     finally    {
+         System.out.println(&quot; Programm Finished! &quot;);
+      }//Finally代码块是个可选项，如果有，无论异常是否发生， Finally块中的代码最终必定执行
+ }} 
+</code></pre>
+</li>
+<li><p>throw语句和throws选项抛出异常。通常异常是系统自动捕获的，也可以通过throw语句自己抛出而不捕获。<code>throw  new 异常类名（信息）</code>异常类名为系统异常类名或用户自定义的异常类名，“信息”是可选信息。若有该信息，toString()方法的中将增加该信息内容,toString()方法用于返回系统给出的异常信息.</p>
+<pre><code class="java">//捕获多个异常
+public class Exception2
+{
+  public static int Sum(int n) {
+    int s = 0;
+    int x[ ]=new int[n];
+    for (int i=0; i&lt;=n; i++) {  
+           if(i==n)  throw new ArrayIndexOutOfBoundsException(&quot;下标越界&quot;);
+           x[i]=i;
+           s = s +x[i];}  
+    return s;    
+  }
+</code></pre>
+<p>为了明确一个方法不捕获异常，也可在声明该方法时，使用throws选项，抛出该类异常。格式为：</p>
+<pre><code class="java">[修饰符] 返回值类型 方法名[（参数表）] throws 异常类名{
+……
+}</code></pre>
+</li>
+</ol>
+</li>
+<li><p>自定义异常类，可以继承Exception。</p>
+</li>
+<li><p>Java的输入输出，以流的方式处理。如字节流、字符流等。特点是都按照数据序列的顺序。InputStream和OutStream是java处理字节流的基本类，Reader和Writer是处理字符流的基本类。<strong>都包含在io包中。</strong></p>
+</li>
+<li><p>Java系统预先定义2个流对象分别<strong>表示标准输入、输出设备：</strong></p>
+<ol>
+<li><p>System.in   标准输入设备：键盘</p>
+<p>它是InputStream类的一个对象<strong>（不是类）</strong></p>
+<pre><code class="java">import java.io.*;// 声明导入IO包
+public class StandardIn1 {   
+    public static void main(String[] args) throws IOException{
+      //使用read()时，应对IOException类异常进行捕获或抛出
+      char c;
+      System.out.println(&quot; 输入一个字符&quot;);
+      c=(char)System.in.read();   //使用read()方法从键盘读入1个字符
+      System.out.print( &quot;输入的字符是：&quot;+c); 
+    }
+}</code></pre>
+<p>使用bufferedReader（Reader类的子类）的readLine（）可以从键盘键入字符串，一次读一行。</p>
+<pre><code class="java">import java.io.*;
+public class StandardIn3 {
+  public static void main(String[] args)    throws IOException {
+    InputStreamReader iin=new InputStreamReader(System.in);
+    BufferedReader bin =new BufferedReader(iin);
+    String s;  
+    int i; 
+    s=bin.readLine();              //输入一个字符串
+    i=Integer.parseInt(bin.readLine());    //输入一个整数
+           System.out.println(&quot;输入的字符串:&quot;+s);         
+            System.out.println(&quot;输入的整数:&quot;+i);         
+   }
+}</code></pre>
+<p>Scanner类是SDK1.5新增的一个类，使用该类创建的对象可扫描键盘的输入 ，即程序直接读取键盘输入的数据.</p>
+<pre><code class="java">Scanner in=new Scanner(System.in);</code></pre>
+<p>命令行输入字符串数据。</p>
+</li>
+<li><p>System.out  标准输出设备：显示器，属于PrintStream类。使用print和println方法来输出各类数据。printf（）是JDK1.5才开始支持。格式说明的形式：</p>
+<pre><code>%  -   m.n  格式字符 </code></pre><p>%：表示格式说明的起始符号，不可缺<br>-：有”-”号表示左对齐输出，如省略表示右对齐输出。<br>m.n：m指域宽，即对应的输出项在输出设备上所占的宽度（列数）。n指精度，用于说明输出的实型数的小数位数。</p>
+<pre><code class="java">目前printf支持以下格式： 
+%c       单个字符 
+%d       十进制整数 
+%f        十进制浮点数 
+%o        八进制数 
+%s        字符串 
+%u        无符号十进制数 
+%x        十六进制数 
+%%       输出百分号%
+
+public class Pass {
+    public static void main(String[] args) {
+        int [ ][ ] a=new int[4][4];
+        int i,j,s=0;
+        for(i=0;i&lt;4;i++){
+            for(j=0;j&lt;4;j++){
+                a[i][j]=(int)(Math.random()*9+1);
+                s+=a[i][j];
+                System.out.printf(&quot;%-4d&quot;,a[i][j] ); }
+            System.out.println();
+        }
+        System.out.printf(&quot;%6.2f&quot;, s/16.0);
+
+    }
+
+}</code></pre>
+<p>输出：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831131350058.png?token=ANRR26OTVQQBIM4KA7WXYQS7JSXNE" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831131350058"></p>
+</li>
+</ol>
+</li>
+<li><p>Java进阶：</p>
+<ol>
+<li><p>Java应用程序要分为Application和Applet两种。Application可以直接独立运行，Applet必须借助浏览器。它集成java.applet.Applet类，嵌入HTML，通常置于服务器端，客户端下载之后通过浏览器运行。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831131634655.png?token=ANRR26LGT6UK2MO6U7WRK227JSXNS" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831131634655"></p>
+<pre><code class="java">import java.awt.*;      //一个Applet程序的例子
+import java.applet.*;
+public class Drawing extends Applet{
+    public void paint(Graphics g){
+        g.setColor(Color.red);
+        g.drawString(&quot;我一边喝咖啡，一边学Java&quot;, 5, 60);
+        g.setColor(Color.blue);
+        g.drawString(&quot;我学得很认真&quot;, 5, 100);
+    }
+}
+//可以在Eclipse中直接运行
+//可以嵌入到HTML文件中，在浏览器中运行
+&lt;html&gt;
+&lt;applet code=Drawing.class height=100 width=300&gt;
+&lt;/applet&gt;
+&lt;/html&gt;
+
+//在命令行窗口，用appletviewer.exe程序运行，格式：
+//appletviewer  HTML文件名.html</code></pre>
+</li>
+<li><p>多线程机制：可以同时云香精多个执行体。</p>
+<p>主线程是main对应的县城。要实现多线程要在主线程中创建新的线程（Thread类和它的子类来表示）每个线程要经历由“新生就绪运行阻塞死亡”五种状态，线程从新生到死亡的状态变化过程称为生命周期。 <img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831132017018.png?token=ANRR26KC24SNB3BIIQREK2S7JSXOO" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831132017018"></p>
+<ol>
+<li><p>通过Tread类继承实现：</p>
+<pre><code class="java">class Thread1 extends Thread{//是一个类
+     String s;
+      int m, count=0;
+      Thread1(String ss, int mm) { //构造函数
+          s=ss; 
+         m=mm; 
+       }
+    public void run() {//运行时方法的覆盖
+        try{
+              while (true){
+                   System.out.print(s); 
+                sleep(m); 
+                   count++;
+                if (count &gt;= 20) break;      
+            }
+              System.out.println(s+&quot;finished !&quot;);
+          }
+        catch(InterruptedException e)   {return;}
+    }
+}
+
+public static void main(String args[]) {
+    Thread1 threadA = new Thread1(&quot;A  &quot;, 50);
+    Thread1 threadB = new Thread1(&quot;B  &quot;, 100);
+    threadA.start();
+    threadB.start();
+}    </code></pre>
+</li>
+<li><p>也可以通过实现Runnable接口的类来实现。（没有例子）</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E6%96%B0%E7%9F%A5%E6%95%B4%E7%90%86/">新知整理</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Java/">Java</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC80OTU5NS8yNjA4Ng==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.defer = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      零食总消耗<span id="busuanzi_value_site_pv"></span>袋 :P  
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      零食屋总客流量<span id="busuanzi_value_site_uv"></span>小只
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/silmont2000.github.io/js/main.js" ></script>
+
+
+  <script  src="/silmont2000.github.io/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java理论查漏&nbsp;",
+      ],
+      cursorChar: "：P",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/silmont2000.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/silmont2000.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

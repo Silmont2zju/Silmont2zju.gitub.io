@@ -18,7 +18,7 @@
     <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
     <meta name="author" content="Silmont">
     <meta name="keywords" content="">
-    <title>标签 - 今天也有晒太阳欸</title>
+    <title>Database System：索引等 - 今天也有晒太阳欸</title>
 
     <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -44,7 +44,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -122,6 +122,40 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期三, 五月 20日 2020, 9:22 上午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    592 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      2 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
           </div>
 
           
@@ -132,24 +166,129 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/silmont2000.github.io/tags/DataGrip/" style="font-size: 15px; color: #bbe">DataGrip</a> <a href="/silmont2000.github.io/tags/Database-System/" style="font-size: 30px; color: #337ab7">Database System</a> <a href="/silmont2000.github.io/tags/E-R/" style="font-size: 15px; color: #bbe">E-R</a> <a href="/silmont2000.github.io/tags/Excel/" style="font-size: 15px; color: #bbe">Excel</a> <a href="/silmont2000.github.io/tags/Github-Page/" style="font-size: 15px; color: #bbe">Github Page</a> <a href="/silmont2000.github.io/tags/Google/" style="font-size: 15px; color: #bbe">Google</a> <a href="/silmont2000.github.io/tags/Java/" style="font-size: 22.5px; color: #779bd3">Java</a> <a href="/silmont2000.github.io/tags/mysql/" style="font-size: 15px; color: #bbe">mysql</a> <a href="/silmont2000.github.io/tags/%E7%A1%AC%E4%BB%B6/" style="font-size: 15px; color: #bbe">硬件</a>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="本篇不是总结"><a href="#本篇不是总结" class="headerlink" title="本篇不是总结"></a>本篇不是总结</h1><ol>
+<li><p>索引分为顺序(ordered)和散列（hash indices)索引。</p>
+</li>
+<li><p>评价因素：ACCESS TYPES 支持相等/范围查找？哈希索引就不擅长范围查找；access/insertion/deletion time ,space overhead(空间开销)。</p>
+</li>
+<li><p>主索引（primary index / clustering index）/二级索引(non-clustering index / secondary index)的区别：索引的search key是否是记录顺序排序的依据。但不一定是主码。</p>
+</li>
+<li><p>二级索引一定是稠密索引(dense index)，而不能是稀疏索引 (sparse index)，因为二级索引不具备遍历的条件，记录不是按照二级索引排列的。</p>
+</li>
+<li><p>多级索引的好处是索引占的空间小，节约磁盘访问开销，缺点是维护成本高，插入删除时可能每一层都需要更新.</p>
+</li>
+<li><p>稀疏索引的好处：索引少，占空间少，维护的开销相对来说小，缺点是有点慢。解决办法是每块一个稀疏索引项，然后定位到块，读进内存，内存的遍历就会快很多。</p>
+</li>
+<li><p>在搜索时使用的是二分法（Binary search），所以如果索引项占据了n个块，搜索时间复杂度是<br>$$<br>\lceil log_2N \rceil<br>$$<br>那么假如二级索引有10个，一共需要的时间就是（4+1+1）*15 ms(一个block read的时间)=90 ms。</p>
+</li>
+</ol>
+<p><img src="/silmont2000.github.io/2020/05/20/Database-System%EF%BC%9A%E7%B4%A2%E5%BC%95%E7%AD%89/image-20200520101033334.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520101033334"></p>
+<ol start="8">
+<li>无论是主索引还是二级索引都可以应用多级索引，因为索引本身是有顺序的。</li>
+<li>按主索引的遍历也是比较快的，但按照二级索引就会很麻烦</li>
+</ol>
+<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p>优点是调整的开销比较小，缺点是维护开销比较大（局部的小调整），空间上存在浪费</p>
+<ol>
+<li><p>B+树是平衡树，从root到叶子结点的步长相等</p>
+<p><img src="/silmont2000.github.io/2020/05/20/Database-System%EF%BC%9A%E7%B4%A2%E5%BC%95%E7%AD%89/image-20200520102644452.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200520102644452"></p>
+</li>
+<li><p>只有叶子节点之间才有连续的指针-&gt;，是为了遍历方便</p>
+</li>
+<li><p>通常一个节点对应一个block</p>
+</li>
+<li><p>非叶节点构成了多层的稀疏索引</p>
+</li>
+<li><p>假如每个节点都达到刚好半满，一共有M个search key，那么树的高度最大是<br>$$<br>log_{\lceil n/2 \rceil} (M)<br>$$</p>
+</li>
+</ol>
+<p>   n为最大扇出数。每层有n/2个key，每个key下一层还有n/2个key。</p>
+<h1 id="用B-树的文件组织"><a href="#用B-树的文件组织" class="headerlink" title="用B+树的文件组织"></a>用B+树的文件组织</h1><p>直接把数据记录放到叶节点上。提高空间利用率可以提高下限，但是同时维护的代价会上升。</p>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E6%96%B0%E7%9F%A5%E6%95%B4%E7%90%86/">新知整理</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Database-System/">Database System</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC80OTU5NS8yNjA4Ng==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.defer = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -231,6 +370,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
 
@@ -270,7 +460,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "来了就吃点奶油草莓和小西红柿叭！&nbsp;",
+        "Database System：索引等&nbsp;",
       ],
       cursorChar: "：P",
       typeSpeed: 70,
