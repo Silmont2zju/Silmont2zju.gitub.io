@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    7.3k 字
+                    9.1k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      28 分钟
+                      36 分钟
                   </span>
                 
 
@@ -177,115 +177,156 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h1 id="Java理论查漏（初级）"><a href="#Java理论查漏（初级）" class="headerlink" title="Java理论查漏（初级）"></a>Java理论查漏（初级）</h1><ol>
-<li><p>final关键字：当用final修饰一个类时，表明这个类不能被继承（extend）。也就是说，如果一个类你永远不会让他被继承，就可以用final进行修饰。final类中的成员变量可以根据需要设为final，但是要注意final类中的所有成员方法都会被隐式地指定为final方法。</p>
-<p><a href="https://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3736238.html</a></p>
-<p>下面这段话摘自《Java编程思想》第四版第143页：</p>
-<p>　　“使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升。在最近的Java版本中，不需要使用final方法进行这些优化了。“</p>
-<p>　　因此，如果只有在<strong>想明确禁止 该方法在子类中被覆盖</strong>的情况下才将方法设置为final的。</p>
-<p>　　注：<strong>类的private方法会隐式地被指定为final方法。</strong></p>
-<p>修饰变量是final用得最多的地方.对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改,但是它指向的对象(如一个类的成员变量）的内容是可变的。；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</p>
-<pre><code class="java">public class Pass {
-    public static void main(String[] args) {
-        final String a = &quot;hello&quot;;
-        String b = &quot;hello&quot;;
-        String c=&quot;hello2&quot;;
-        System.out.println(&quot;a+2=&quot; + (a + 2));//hello2
-        System.out.println(&quot;b+2=&quot; + (b + 2));//hello2
-        System.out.println(&quot;a==c is &quot;+(a+2==c));//true
-        System.out.println(&quot;b==c is &quot;+(b+2==c));//false
-    }
-}
-//当final变量是基本数据类型以及String类型时，如果在编译期间能知道它的确切值，则编译器会把它当做编译期常量使用</code></pre>
+              <h1 id="Java理论查漏（初级）"><a href="#Java理论查漏（初级）" class="headerlink" title="Java理论查漏（初级）"></a>Java理论查漏（初级）</h1><h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><ol>
+<li><p>JAVA图形界面组件层次关系（SWING）：</p>
+<p>主要是window、canvas、button、checkbox、labe、levent、dialog</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/20190223221456236.jpg?token=ANRR26L4OXD3DKUIT6QJSMC7JSXI2" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
+<p>图源<a href="https://blog.csdn.net/zengxiantao1994/article/details/87898107" target="_blank" rel="noopener">https://blog.csdn.net/zengxiantao1994/article/details/87898107</a></p>
 </li>
-</ol>
-<ol start="2">
-<li><p>JAVA图形界面组件层次关系：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/20190223221456236.jpg?token=ANRR26L4OXD3DKUIT6QJSMC7JSXI2" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
+<li><p>JAVA程序运行不受系统限制。原本.class字节码文件需要java虚拟机解释称机器码才能执行，速度较慢，随着JVM（java虚拟机）的发展，执行速度直逼C++。结构：.java-&gt;编译器-&gt;字节码文件.class-&gt;解释器（JVM）</p>
 </li>
-<li><p>JAVA程序运行不受错做系统限制。原本.class字节码文件需要java虚拟机解释称机器码才能执行，虚度较慢，随着JVM的发展，执行速度直逼C++</p>
-<p>结构：.java-&gt;编译器-&gt;字节码文件.class-&gt;解释器（JVM）</p>
-</li>
-<li><p>JDK Java Development Kit 是Sun公司推出的Java开发工具包，包括Java类库、 Java编译器、 Java解释器、 Java运行环境和Java命令行工具。JDK主要有3种版本<br>J2SE：standard edition,  Java标准版或Java标准平台。可以开发Java桌面应用程序和低端服务器应用程序，也可开发Java Applet程序<br>J2EE：enterpsise edtion, Java企业版或Java企业平台,它包含J2SE平台，并增加了附加类库，支持目录管理，交易管理等功能。<br>J2ME：micro edtion,Java微型版或Java小型平台,用于嵌入式的消费产品中，如移动电话，掌上电脑等</p>
+<li><p><strong>JDK Java Development Kit</strong> 是Sun公司推出的Java开发工具包，包括<strong>Java类库、 Java编译器、 Java解释器、 Java运行环境和Java命令行工具</strong>。JDK主要有3种版本<br>J2SE：standard edition,  Java标准版或Java标准平台。可以开发Java桌面应用程序和低端服务器应用程序，也可开发Java Applet程序<br>J2EE：enterpsise edtion, Java企业版或Java企业平台,它包含J2SE平台，并增加了附加类库，支持目录管理，交易管理等功能。<br>J2ME：micro edtion,Java微型版或Java小型平台,用于嵌入式的消费产品中，如移动电话，掌上电脑等</p>
 <p>普通用户只需要安装 JRE来运行 Java 程序。而程序开发者必须安装JDK来编译、调试程序</p>
 <p>javac.exe是编译器</p>
 </li>
-<li><p><strong>JRE</strong>   Java runtime environment 是运行基于Java语言编写的程序所不可缺少的运行环境，用于解释执行Java的字节码文件。bin里的就是JVM，lib中则是JVM工作所需要的类库，而JVM和 lib和起来就称为JRE</p>
+<li><p><strong>JRE</strong>   Java runtime environment 是运行基于Java语言编写的程序所不可缺少的运行环境，用于解释执行Java的字节码文件。bin里的就是JVM，lib中则是JVM工作所需要的类库，<strong>而JVM和 lib和起来就称为JRE</strong></p>
 </li>
 <li><p><strong>JVM</strong>：Java Virtual Machine 是Java的虚拟机，是JRE的一部分。它是整个java实现跨平台的最核心的部分，负责解释执行字节码文件，是可运行java字节码文件的虚拟计算机。</p>
 <p>所有平台的上的JVM向编译器提供相同的接口，而编译器只需要面向虚拟机，生成虚拟机能识别的代码，然后由虚拟机来解释执行。</p>
 </li>
-<li><p><strong>编译执行和解释执行：</strong>编译过程只进行一次，所以，编译过程的速度并不是关键，目标代码的运行速度是关键。因此，编译器一般都集成尽可能多的优化技术，使生成的目标代码具备更好的执行效率。解释则在每次程序运行时都需要解释器和源代码，不能集成太多优化技术，因为代码优化技术会消耗运行时间，使整个程序的执行速度受到影响。</p>
+<li><p><strong>编译执行和解释执行：</strong>编译过程只进行一次，所以，编译过程的速度并不是关键，目标代码的运行速度是关键。因此，编译器一般都集成尽可能多的优化技术，使生成的目标代码具备更好的执行效率。解释则在每次程序运行时都需要解释器和源代码，不能集成太多优化技术，因为代码优化技术会消耗运行时间，使整个程序的执行速度受到影响。区别有点像笔译和同声传译的区别。</p>
 </li>
-<li><p>java没有头文件、指针、结构体、运算符重载、多重继承。</p>
+<li><p><strong>java没有头文件、指针、结构体、运算符重载、多重继承、无符号常量。</strong></p>
 </li>
 <li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827142041106.png?token=ANRR26PUSDXUDJHKQGBHHI27JSXJM" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827142041106"></p>
 </li>
 <li><p><strong>一个程序必须至少有一个输出</strong>。System是Java类库中的一个类，out是System类中的一个对象，println(或print)是out对象的一个方法。</p>
 </li>
-<li><p>可以是$开头：Java 的标识符由字母、数字、_和$组成，长度不限，但实际命名不宜过长。<br>标识符的第一个字符必须为字母、 “_”或 “$” 。标识符区分大小写。<strong>不能数字开头。</strong></p>
+</ol>
+<h2 id="变量和数据"><a href="#变量和数据" class="headerlink" title="变量和数据"></a>变量和数据</h2><ol>
+<li><p><strong>变量名可以是$开头</strong>：Java 的标识符由字母、数字、_和$组成，长度不限，但实际命名不宜过长。<br>标识符的第一个字符必须为字母、 “_”或 “$” 。标识符区分大小写。<strong>不能数字开头。</strong></p>
 </li>
-<li><p>变量名、对象名、方法名、包名等标识符全部采用小写字母；若标识符由多个单词构成，则首单词小写，其后单词的首字母大写，其余字母小写。如getAge。<br>类名首字母大写。<br>常量名全部字母大写。</p>
-<p>关键字全部小写。</p>
+<li><p><strong>Java严格区分大小写。</strong>变量名、对象名、方法名、包名等标识符全部采用小写字母；若标识符由多个单词构成，则首单词小写，其后单词的首字母大写，其余字母小写。如getAge。<br>类名首字母大写，常量名全部字母大写，关键字全部小写。</p>
 </li>
 <li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827142930953.png?token=ANRR26I7OMDJXI57VDIXFMC7JSXJ2" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827142930953"></p>
-<p>注意数组、接口和类叫做“引用类型“，没有一种类型叫“实型”</p>
+<p>注意数组、接口和类叫做“引用类型“，<strong>没有一种类型叫“实型”</strong></p>
 <p>其实String可以骑墙，在这里先视作引用类型。</p>
 </li>
 <li><p>Java的long型占8个字节，表示方式为数字后加L或者l。float也只占4个字节，double8个。</p>
 </li>
 <li><p>八进制：开头是0；十六进制：0X或0x为前缀。</p>
 </li>
-<li><p>关于“float精度”：<a href="https://blog.csdn.net/albertsh/article/details/92385277" target="_blank" rel="noopener">https://blog.csdn.net/albertsh/article/details/92385277</a></p>
+<li><p><strong>关于“float精度”</strong>：<a href="https://blog.csdn.net/albertsh/article/details/92385277" target="_blank" rel="noopener">https://blog.csdn.net/albertsh/article/details/92385277</a></p>
 <p>(±)a.b x 10^c</p>
 <p><code>float</code>的存储正是将4字节32位划分为了3部分来分别存储正负号，小数部分和指数部分的：</p>
 <ol>
 <li>Sign（1位）：用来表示浮点数是正数还是负数，0表示正数，1表示负数。</li>
 <li>Exponent（8位）：指数部分。即上文提到数字c，但是这里不是直接存储c，为了同时表示正负指数以及他们的大小顺序，这里实际存储的是c+127。</li>
 <li>Mantissa（23位）：尾数部分。也就是上文中提到的数字b。</li>
+<li>通常意义上float精度在6-7，double在16-17</li>
 </ol>
 </li>
-<li><p>2.5E4:2.5称为尾数，4称为阶码</p>
+<li><p><strong>科学计数法</strong>   2.5E4:  2.5称为尾数，4称为阶码</p>
 </li>
 <li><p>char类型：<strong>占两个字节</strong>，16位。表示方式：’a’，’\u0043’</p>
 </li>
 <li><p>boolean类型：占一个字节，和C++不同，不能与数值0或1等同</p>
 </li>
+</ol>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><ol>
 <li><p>单目运算符的优先级高于双目运算符，而在双目运算符中，先*、/、%运算，再+、-运算。但是当x=y–时，y先传递值，后–。n++：取n值作为表达式 n++ 的值；n = n + 1</p>
 </li>
-<li><p>字符类型操作数的比较依据是其Ascii码值，如’a’&lt;‘d ‘。字符串只能用==或者！=，不能比大小；boolean类的也是。Ascii码的顺序：数字-大写-小写；==和！=优先级低</p>
+<li><p><strong>字符类型操作数的比较依据是其Ascii码值</strong>，如’a’&lt;‘d ‘。字符串只能用==或者！=，不能比大小；boolean类的也是。Ascii码的顺序：数字-大写-小写；==和！=优先级低</p>
 </li>
-<li><p>运算有优先级，顺序为算术运算→关系运算→逻辑运算→条件运算→赋值运算。</p>
+<li><p>运算有优先级（后面贴了表格），括号-单目-乘除余加减-不相等相等比较-赋值</p>
 <p>算术关系没逻辑，给了条件才赋值</p>
 </li>
 <li><pre><code>System.out.println(&#39;A&#39;+1);//65
 System.out.println(&#39;A&#39;);//A</code></pre></li>
 <li><p>关于数据类型转化级别：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827150535730.png?token=ANRR26JSRN733ZMG5KJRBGS7JSXKQ" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827150535730"></p>
-<p>Char类型可自动转换成int类型，其值为字符的Ascii码值<br>而int类型到Char类型需要经过强制类型转换</p>
+<p>Char类型可自动转换成int类型，其值为字符的Ascii码值（隐式）<br>而int类型到Char类型需要经过强制类型转换（强制）</p>
 </li>
-<li><p>java.lang.Math类提供方法来执行基本数学函数的运算。round()方法:返回最接近操作数的整数<br>算法是将操作数加上0.5，并取最接近的最小整数<br>对于正数而言就是四舍五入取整，对负数时》0.6的小数向绝对值更大的方向舍。</p>
+<li><p>java.lang.Math类提供方法来执行基本数学函数的运算。round()方法:返回最接近操作数的整数<br>对于正数而言就是四舍五入取整，对负数时&gt;0.6的小数向绝对值更大的方向舍。</p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200827151117847.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200827151117847"></p>
 <p>random()方法:返回一个double型随机数，此方法不带参数<br>随机数范围：<strong>大于等于</strong>0.0且小于1.0<br>产生固定范围内的随机整数：<br>(Int)((上界-下界+1)<em>Math.random()+下界)<br>int a=(int)(Math.random()</em>10);    //大于等于0小于10的随机整数<br>int b= (int)(89*Math.random()+10);//大于等于10小于99的随机整数（如果是要两位数应该写到90）</p>
 <p>Math.exp(int n)返回e的n次幂</p>
 <p>重要常量：Math.PI 和 Math.E</p>
 </li>
-<li><p>和System类似，Scanner也是一个类（在import java.util.Scanner ; 或 import java.util.*; ），需要先创建实例化对象Scanner in=new Scanner(System.in); 然后用in.next来读取键盘输入，需要注意，并没有in.nextString，也没有nextChar，只有nextline(),nextInt(),nextDouble(),nextFloat() 。光一个next到空格就停止。</p>
+<li><p>和System类似，Scanner也是一个类（在import java.util.Scanner ; 或 import java.util.<em>; ），需要先创建实例化对象Scanner in=new Scanner(System.in); 然后用in.next来读取键盘输入，需要注意，*</em>并没有in.nextString，也没有nextChar，只有nextline(),nextInt(),nextDouble(),nextFloat() 。光一个next到空格就停止。**</p>
 </li>
 <li><p><code>;</code>也是一个语句，是空语句。</p>
 </li>
+</ol>
+<h2 id="三大基本结构和部分简单算法"><a href="#三大基本结构和部分简单算法" class="headerlink" title="三大基本结构和部分简单算法"></a>三大基本结构和部分简单算法</h2><ol>
 <li><p>任何程序有三种基本的结构：顺序、分支、选择。这是基本的结构。</p>
 </li>
 <li><p>java分支：if：二选一（不是多选一）  if扩展、嵌套、switch：多选一</p>
 </li>
 <li><p>闰年判断：<code>year%4==0 &amp;&amp; year%100!=0 || year%400==0</code></p>
 </li>
-<li><p>else总与离他最近的if配对。</p>
+<li><p><strong>else总与离他最近的if配对。</strong></p>
 </li>
-<li><p>switch语句判断数据类型可以是short，int，char，byte，不可以是浮点数和long。如果没有break，执行后续所有case语句中的语句块，default不执行。</p>
+<li><p><strong>switch语句判断数据类型可以是short，int，char，byte，不可以是浮点数和long</strong>。如果没有break，执行后续所有case语句中的语句块，default也执行。default的位置不影响。</p>
+<pre><code class="java">public class Pass {
+    public static void main(String[] args) {
+        char i = &#39;2&#39;;
+        switch (i) {
+            default:
+                System.out.println(&quot;default&quot;);
+            case &#39;2&#39;:
+                System.out.println(&quot;2&quot;);
+            case &#39;3&#39;:
+                System.out.println(&quot;3&quot;);
+            case &#39;4&#39;:
+                System.out.println(&quot;4&quot;);
+                break;//这句有无不影响结果
+        }
+    }
+}//输出234
+
+public class Pass {
+    public static void main(String[] args) {
+        char i = &#39;2&#39;;
+        switch (i) {
+            case &#39;2&#39;:
+                System.out.println(&quot;2&quot;);
+            case &#39;3&#39;:
+                System.out.println(&quot;3&quot;);
+            case &#39;4&#39;:
+                System.out.println(&quot;4&quot;);
+            default:
+                System.out.println(&quot;default&quot;);
+        }
+    }
+}//输出234default</code></pre>
 </li>
+</ol>
+<ol start="6">
 <li><p>循环的两种类型：计数控制和事态控制。</p>
 </li>
 <li><p>continue：是跳过当前这轮循环，剩下的语句全部跳过，不是只跳一个</p>
+<pre><code class="java">public class Pass {
+    public static void main(String[] args) {
+        int i = 0;
+        int s = 0;
+        while (i &lt; 5) {
+            i++;
+            System.out.print(&quot;\nthis is &quot; + i+&quot;:  &quot;);
+            System.out.print(&quot;1&quot;);
+            if (i == 3) continue;
+            System.out.print(&quot;2&quot;);
+            System.out.print(&quot;3&quot;);
+        }
+    }
+}
+//this is 1:  123
+//this is 2:  123
+//this is 3:  1
+//this is 4:  123
+//this is 5:  123</code></pre>
 </li>
+</ol>
+<ol start="8">
 <li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200829090024682.png?token=ANRR26KLCH7NX3OWBNQAVZK7JSXLC" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200829090024682"></p>
 </li>
 <li><p>水仙花数：三位数各位数字立方和等于它本身。</p>
@@ -314,7 +355,7 @@ System.out.println(&#39;A&#39;);//A</code></pre></li>
 </li>
 <li><p>Java叫方法，只能在类class中声明</p>
 </li>
-<li><p>void的标准含义：方法没有返回值。里面包含变量声明，语句，返回语句</p>
+<li><p>void的标准含义：<strong>方法没有返回值</strong>。里面包含变量声明，语句，返回语句</p>
 </li>
 <li><p>在JAVA中只有值传递</p>
 </li>
@@ -330,7 +371,7 @@ System.out.println(&#39;A&#39;);//A</code></pre></li>
      hanoi(n - 1, a, c, b);//先把n-1片移动好，从a借助c放到b上
      moves(a, c);//然后把最后一片移动
      hanoi(n - 1, b, a, c);//再把n-1片移动到这最后一片上去，从b借助a放到c上。
-            }
+ }
 </code></pre>
 </li>
 <li><p>保留2位小数：<code>(int)(a*100+0.5)/100.0</code></p>
@@ -378,7 +419,7 @@ System.out.println(&#39;A&#39;);//A</code></pre></li>
         return value.length;//因为value是一个private值，所以需要一个方法作为接口。
     }</code></pre>
 </li>
-<li><p>计算单词个数：要注意abandon       （多个空格）after这种情况。</p>
+<li><p>计算单词个数：要注意abandon       （多个空格）after这种情况。因为结尾没有空格，那么就计算空+有的结构，不要计算有+空的结构。</p>
 <pre><code class="java">import java.io.IOException;
 import java.util.Scanner;
 
@@ -404,15 +445,23 @@ public class Pass {
             System.out.println( count);
         }
     }
-}</code></pre>
+}
+
+</code></pre>
 </li>
-<li><p>nextint和nextline在一起用会出问题，因为nextint之后光标不略过回车。参考<code>repeat = in.nextLine().charAt(0)-&#39;0&#39;;</code></p>
-</li>
-<li><p>计算单词个数，因为结尾没有空格，那么就计算空+有的结构，不要计算有+空的结构。</p>
+</ol>
+<pre><code>public class Pass {
+    public static void main(String[] args) {
+        String a[] = &quot;111 22   33 4  5&quot;.split(&quot;\\s+&quot;);
+        System.out.println(a.length);
+    }
+}//\s表示空的字符，换行、tab。space等，+表示一个或多个
+```</code></pre><ol start="18">
+<li><p>nextint和nextline在一起用会出问题，<strong>因为nextint之后光标不略过回车</strong>。参考<code>repeat = in.nextLine().charAt(0)-&#39;0&#39;;</code></p>
 </li>
 <li><p>java数组数据类型要相同。数组必须进过申明和初始化，确定数组名、维数和元素数据类型才能使用。各元素的存数空间是连续的。</p>
 <p><strong>二维数组初始化时，可以每行单独进行，允许各行元素数目不同。</strong></p>
-<p>数组的复制：可以用循环语句，也可以直接a=b。</p>
+<p>数组的复制：可以用循环语句，<strong>也可以直接a=b。</strong></p>
 <pre><code class="java">
 public class Pass {
     public static void main(String[] args) {
@@ -448,7 +497,7 @@ public class Pass {
 </li>
 <li><p>杨辉三角：a[i][j]=a[i-1][j-1]+a[i-1][j];</p>
 </li>
-<li><p>数组作为参数，形参必须有[]，实参可以没有。数组名传递地址，数组元素做参数传递的是值。</p>
+<li><p>数组作为参数，形参必须有[ ]，实参可以没有。数组名传递地址，数组元素做参数传递的是值。</p>
 </li>
 <li><pre><code class="java">char a[]={&#39;C&#39;,&#39;h&#39;,&#39;i&#39;,&#39;n&#39;,&#39;a&#39;};
 System.out.println(a);//可以输出China</code></pre>
@@ -491,29 +540,28 @@ public class Pass {
     }
 }</code></pre>
 <p>equalsIgnoreCase（str）忽略大小写的比较。</p>
-<p>compareTo(str) 与str进行比较。大正小负，返回第一个不相等的差值，不是下标。</p>
+<p>compareTo(str) 与str进行比较。大正小负，返回第一个不相等的差值，<strong>不是下标</strong>。</p>
 <p>String.valueOf(数据)，把数据<strong>变成</strong>string类型。变成其他类型：</p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200830101458679.png?token=ANRR26P5DLTT5MJNWE5ABRS7JSXLY" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200830101458679"></p>
 </li>
+</ol>
+<h2 id="OOP部分"><a href="#OOP部分" class="headerlink" title="OOP部分"></a>OOP部分</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ol>
 <li><p>面向对象的程序设计认为：程序由类（对象）组成。</p>
 </li>
 <li><p>类属于引用数据类型，因此在声明时系统不会分配空间，需要手动new一个空间。当使用new运算符实例化一个对象时，Java做两件事：系统为对象创建内存区域，自动调用构造方法初始化成员变量。程序不能直接调用构造方法。New实例化一个对象时，自动调用；无构造方法，生成一个无参的默认构造方法，使用默认值初始化对象的成员变量：数值型-0；布尔型-false ;字符型’\0’,字符串型null。参数个数和参数类型都能用来区分构造方法的重载。</p>
 </li>
-<li><p>一个类就有一个.class文件，能被运行的是有main方法的类（主类）。</p>
+<li><p><strong>一个类就有一个.class文件，能被运行的是有main方法的类（主类）。</strong></p>
 </li>
-<li><p>new运算符实例化对象<br>过程：系统为对象分配所需的存储空间<br>但内存空间有限，不能存放无限多的对象<br>为此，Java提供了资源回收机制，自动销毁无用对象，回收其所占用的存储空间<br>如需主动释放对象，或在释放时执行特定操作，则在类中可以定义 finalize() 方法：</p>
+<li><p><strong>new运算符实例化对象</strong><br>过程：系统为对象分配所需的存储空间<br>但内存空间有限，不能存放无限多的对象<br>为此，Java提供了资源回收机制，自动销毁无用对象，回收其所占用的存储空间<br>如需主动释放对象，或在释放时执行特定操作，则在类中可以定义 finalize() 方法：</p>
 <pre><code class="java">    public void finalize()
     {
       方法体；
-     }  
-</code></pre>
+     }  </code></pre>
+</li>
+<li><p>封装性是面向对象的核心特征之一<br>类的封装（对设计者而言）包含2层含义<br><strong>将数据和对数据的操作组合起来构成类，类是一个不可分割的独立单位，类是Java程序的构成。</strong>类中包括：<br>数据、成员变量 、对象的属性<br>对数据的操作、成员方法 、对象所能完成的功能<br><strong>类中既要提供与外部联系的接口，同时又要尽可能隐藏类的实现细节。</strong><br>具体方法就是为类及成员变量和成员方法设置合理的访问权限<br>对于设计者而言,封装使模块之间的耦合和交差大大减少,降低了程序开发的复杂性<br>对于使用者，不需要关心类内部的细节，只要知道：<br>哪些类可以选择，类的功能,即提供了哪些方法可使用</p>
 </li>
 </ol>
-<ol start="58">
-<li><p>封装性是面向对象的核心特征之一<br>类的封装（对设计者而言）包含2层含义<br><strong>将数据和对数据的操作组合起来构成类，类是一个不可分割的独立单位，类是Java程序的构成。</strong>类中包括：<br>数据成员变量 对象的属性<br>对数据的操作成员方法 对象所能完成的功能<br><strong>类中既要提供与外部联系的接口，同时又要尽可能隐藏类的实现细节。</strong><br>具体方法就是为类及成员变量和成员方法设置合理的访问权限<br>对于设计者而言,封装使模块之间的耦合和交差大大减少,降低了程序开发的复杂性<br>对于使用者，不需要关心类内部的细节，只要知道：<br>哪些类可以选择，类的功能,即提供了哪些方法可使用</p>
-</li>
-<li><p>包是一组相关类和接口的集合</p>
-</li>
+<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><ol>
 <li><table>
 <thead>
 <tr>
@@ -557,11 +605,8 @@ public class Pass {
 </li>
 <li><p>声明一个类可使用的权限修饰符：public、缺省，<strong>不能使用：private、protected</strong></p>
 </li>
-<li><p><strong>Java的类中可以包含两种成员：实例成员和类成员</strong><br><strong>实例成员属于对象</strong><br>包括实例成员变量和实例成员方法<br>必须通过对象访问实例成员变量，调用实例成员方法</p>
-<p>实例方法使用变量是不是static都行</p>
-<p><strong>类成员属于类</strong><br>包括类成员变量和类成员方法，<strong>申明时用static修饰</strong><br>通过对象可以引用类成员变量和类方法<br>也可以通过类名可直接访问类成员变量，调用类成员方法<br>没有创建对象，也可以引用类成员</p>
-<p>类成员变量在该类被加载到内存时就分配了存储空间，是共享的。</p>
-<p>类成员方法使用变量只能访问同为static的变量，要调用实例成员方法时也必须通过创建对象才行。</p>
+<li><p><strong>Java的类中可以包含两种成员：实例成员和类成员</strong><br><strong>实例成员属于对象</strong><br>包括实例成员变量和实例成员方法<br>必须通过对象访问实例成员变量，调用实例成员方法<br>实例方法使用变量是不是static都行</p>
+<p><strong>类成员属于类</strong><br>包括类成员变量和类成员方法，<strong>申明时用static修饰</strong><br>通过对象可以引用类成员变量和类方法<br>也可以通过类名可直接访问类成员变量，调用类成员方法<br>没有创建对象，也可以引用类成员<br>类成员变量在该类被加载到内存时就分配了存储空间，是共享的。<br>类成员方法使用变量只能访问同为static的变量，要调用实例成员方法时也必须通过创建对象才行。</p>
 </li>
 <li><p>逆序数：</p>
 <pre><code class="java">while(number&gt;0){
@@ -577,11 +622,13 @@ public class Pass {
           n=n/2;  //获得除2后的商
       }while(n&gt;0);</code></pre>
 </li>
-<li><p>继承关键字：extend<strong>s</strong>注意有s。被继承的叫做superclass或baseclass或parentclass，新的类称为derived class，或者subclass，childclass。</p>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ol>
+<li><p>继承关键字：extend<strong>s</strong>  <strong>注意有s</strong>。被继承的叫做superclass或baseclass或parentclass，新的类称为derived class，或者subclass，childclass。</p>
 </li>
-<li><p>所有类都直接或间接的继承自object。所以如果没有指定，就默认继承它；object类有许多成员和方法，比如hashcode（）获取hash码，equals（）检测相等。</p>
+<li><p><strong>所有类都直接或间接的继承自object。</strong>所以如果没有指定，就默认继承它；object类有许多成员和方法，比如hashcode（）获取hash码，equal<strong>s</strong>（）检测相等。</p>
 </li>
-<li><p>子类不继承父类构造方法。保护和私有的成员也都继承，但是私有的变量不能直接访问。</p>
+<li><p><strong>子类不继承父类构造方法。</strong>保护和私有的成员也都继承，但是私有的变量不能直接访问。</p>
 </li>
 <li><pre><code class="java">public Ctor(){
     this(6);//是可以用this指代构造函数的
@@ -590,11 +637,32 @@ public Ctor(int a){
     this.a=a;
 }</code></pre>
 </li>
-<li><p>多态性：指同一名字的方法有多种实现。他们根据参数或调用对象进行区分。在oop中表现为，重载类的方法、子类覆盖父类方法。重载表现为形参的<strong>个数、类型和顺序</strong>不同。方法的<strong>返回值和参数名称</strong>不是判断依据；覆盖是指子类定义了父类中的同名方法。表现为父类与子类之间方法的多态性。寻找对应的执行方法时，先从当前类开始，如果没有符合的再看上一级。</p>
+<li><p>多态性：指同一名字的方法有多种实现。他们根据参数或调用对象进行区分。<strong>在oop中表现为，重载类的方法、子类覆盖父类方法。</strong>重载表现为形参的<strong>个数、类型和顺序</strong>不同。方法的<strong>返回值和参数名称</strong>不是判断依据；覆盖是指子类定义了父类中的同名方法。表现为父类与子类之间方法的多态性。寻找对应的执行方法时，先从当前类开始，如果没有符合的再看上一级。</p>
 </li>
 <li><p><strong>注意，用final修饰的类不能被继承（固定作用|已经完美）<br>用final修饰的成员方法不能被覆盖<br>用final修饰的成员变量不能被修改（编译错误）。</strong></p>
 </li>
-<li><p>接口是一组常量+抽象方法，包是一组类和接口。包&gt;接口。</p>
+</ol>
+<p>   final关键字：当用final修饰一个类时，表明这个类不能被继承（extend）。也就是说，如果一个类你永远不会让他被继承，就可以用final进行修饰。final类中的成员变量可以根据需要设为final，但是要注意final类中的所有成员方法都会被隐式地指定为final方法。</p>
+<p>   <a href="https://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3736238.html</a></p>
+<p>   下面这段话摘自《Java编程思想》第四版第143页：</p>
+<p>   　　“使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升。在最近的Java版本中，不需要使用final方法进行这些优化了。“</p>
+<p>   　　因此，如果只有在<strong>想明确禁止 该方法在子类中被覆盖</strong>的情况下才将方法设置为final的。</p>
+<p>   　　注：<strong>类的private方法会隐式地被指定为final方法。</strong></p>
+<p>   修饰变量是final用得最多的地方.对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改,<strong>但是它指向的对象的内容(如一个对象的成员变量）是可变的</strong>；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</p>
+<pre><code class="java">   public class Pass {
+       public static void main(String[] args) {
+           final String a = &quot;hello&quot;;
+           String b = &quot;hello&quot;;
+           String c=&quot;hello2&quot;;
+           System.out.println(&quot;a+2=&quot; + (a + 2));//hello2
+           System.out.println(&quot;b+2=&quot; + (b + 2));//hello2
+           System.out.println(&quot;a==c is &quot;+(a+2==c));//true
+           System.out.println(&quot;b==c is &quot;+(b+2==c));//false
+       }
+   }
+   //当final变量是基本数据类型以及String类型时，如果在编译期间能知道它的确切值，则编译器会把它当做编译期常量使用</code></pre>
+<h3 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h3><ol>
+<li><p><strong>接口是一组常量+抽象方法，包是一组类和接口。包&gt;接口。</strong></p>
 </li>
 <li><p>抽象类是供子类继承、但不能创建实例的类。关键字是abstract:</p>
 <pre><code class="java">[权限修饰符] abstract class   类名{
@@ -602,15 +670,15 @@ public Ctor(int a){
     [权限修饰符] abstract  返回类型  方法名(参数表);
 } </code></pre>
 </li>
-<li><p>抽象类可以有不抽象的方法，反之不行。即使抽象类不包含抽象方法也不能被继承。子类必须给出所有具体实现。</p>
+<li><p>抽象类可以有不抽象的方法，反之不行。<br>即使抽象类不包含抽象方法也不能被继承。<br>子类必须给出所有具体实现。</p>
 </li>
-<li><p>相比之下接口的要求更严格，只能定义public的抽象方法和静态的、公有常量。接口提供了方法声明与实现相分离的机制，实现相同接口的多个类表现出相同的行为模式，每个实现接口的类可以根据各自要求，给出抽象方法的具体实现。</p>
+<li><p>相比之下<strong>接口的要求更严格，只能定义public的抽象方法和静态的、公有常量</strong>。接口提供了方法声明与实现相分离的机制，实现相同接口的多个类表现出相同的行为模式，每个实现接口的类可以根据各自要求，给出抽象方法的具体实现。</p>
 <pre><code class="java">[访问权限] interface  接口名 [extends  父接口名] {
     成员变量表(常量)
  成员方法列表（抽象）
 }</code></pre>
 </li>
-<li><p>接口的权限只能是public和缺省，方法必须是public abstract所以可以省略，常量必须是public static final所以也可以省略，接口允许没有父接口，也就是没有最高层（类有最高层、必须有父接口Object）</p>
+<li><p>接口的权限只能是public和缺省，方法必须是<strong>public abstract</strong>所以可以省略，常量必须是<strong>public static final</strong>所以也可以省略，接口<strong>允许没有父接口</strong>，也就是没有最高层（类有最高层、必须有父接口Object）</p>
 <pre><code class="java">class 类名 [extends 父类名] implements 接口名列表{
      类体
 }
@@ -623,8 +691,10 @@ public Ctor(int a){
 实现抽象方法，需指定访问权限为public</code></pre>
 </li>
 <li><p>接口和抽象类比较：</p>
-<p><strong>相同点</strong><br>都不能被实例化<br><strong>不同点</strong><br>一个类只能继承一个抽象类，是单继承；一类可以实现多个接口,具有多重继承功能<br>抽象类是类,类中可以包含成员变量、构造方法、抽象方法和普通方法；而接口是<strong>一组抽象方法和常量的组合</strong>。<br>抽象类中的成员具有和普通类中的成员一样的访问权限，而接口中成员访问权限只能是public。</p>
+<p><strong>相同点</strong><br>都不能被实例化<br><strong>不同点</strong><br>一个类只能继承一个抽象类，是单继承；一类可以实现多个接口,具有多重继承功能<br>抽象类是类,类中可以包含成员变量、构造方法、抽象方法和方法；而接口是<strong>一组抽象方法和常量的组合</strong>。<br>抽象类中的成员具有和普通类中的成员一样的访问权限，而接口中成员访问权限只能是public。</p>
 </li>
+</ol>
+<h3 id="import-package"><a href="#import-package" class="headerlink" title="import/package"></a>import/package</h3><ol>
 <li><p>一个源程序导入包中的类或接口后，引用该类和接口时，包名可省略，Import语句在源程序中必须位于其他类或接口申明之前。</p>
 </li>
 <li><p>一个Java的源程序文件（.java文件）中可包含：</p>
@@ -634,7 +704,10 @@ public Ctor(int a){
 [ public ] class | interface     //声明类或接口</code></pre>
 <p>一个源程序文件中，最多只能有<strong>一条package</strong>语句，并且必须是第一条语句。一个源程序文件中，可以有<strong>多条import</strong>语句，并且必须位于其它类或接口声明之前。一个源程序文件中，可定义多个类或接口，但只能定义一个<strong>public类或public接口，并且该类或接口名与文件名相同</strong>。</p>
 </li>
-<li><p>异常：程序运行过程中出现的非正常现象。Java提供了异常处理机制：异常类，用来<strong>描述和处理</strong>异常，每个异常类只反映一类运行错误。异常情况分为Exception和Error两大类，Error是内部系统错误，只能关闭程序，Exception可在程序中捕获和处理。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831105153693.png?token=ANRR26J33HULFCPC5M422D27JSXMS" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831105153693"></p>
+</ol>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><ol>
+<li><p><strong>异常：程序运行过程中出现的非正常现象。</strong>Java提供了异常处理机制：异常类，用来<strong>描述和处理</strong>异常，每个异常类只反映一类运行错误。异常情况分为Exception和Error两大类，Error是内部系统错误，只能关闭程序，Exception可在程序中捕获和处理。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831105153693.png?token=ANRR26J33HULFCPC5M422D27JSXMS" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831105153693"></p>
 </li>
 <li><p>Exception的处理方法：</p>
 <ol>
@@ -680,6 +753,8 @@ public class Exception2
 </li>
 <li><p>自定义异常类，可以继承Exception。</p>
 </li>
+</ol>
+<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><ol>
 <li><p>Java的输入输出，以流的方式处理。如字节流、字符流等。特点是都按照数据序列的顺序。InputStream和OutStream是java处理字节流的基本类，Reader和Writer是处理字符流的基本类。<strong>都包含在io包中。</strong></p>
 </li>
 <li><p>Java系统预先定义2个流对象分别<strong>表示标准输入、输出设备：</strong></p>
@@ -743,6 +818,7 @@ public class Pass {
 
 }</code></pre>
 <p>输出：<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831131350058.png?token=ANRR26OTVQQBIM4KA7WXYQS7JSXNE" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831131350058"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/wps1.jpg" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
 </li>
 </ol>
 </li>
@@ -769,8 +845,8 @@ public class Drawing extends Applet{
 //在命令行窗口，用appletviewer.exe程序运行，格式：
 //appletviewer  HTML文件名.html</code></pre>
 </li>
-<li><p>多线程机制：可以同时云香精多个执行体。</p>
-<p>主线程是main对应的县城。要实现多线程要在主线程中创建新的线程（Thread类和它的子类来表示）每个线程要经历由“新生就绪运行阻塞死亡”五种状态，线程从新生到死亡的状态变化过程称为生命周期。 <img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831132017018.png?token=ANRR26KC24SNB3BIIQREK2S7JSXOO" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831132017018"></p>
+<li><p>多线程机制：可以同时运行多个执行体。</p>
+<p>主线程是main对应的线程。要实现多线程要在主线程中创建新的线程（Thread类和它的子类来表示）每个线程要经历由“新生就绪运行阻塞死亡”五种状态，线程从新生到死亡的状态变化过程称为生命周期。 <img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200831132017018.png?token=ANRR26KC24SNB3BIIQREK2S7JSXOO" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200831132017018"></p>
 <ol>
 <li><p>通过Tread类继承实现：</p>
 <pre><code class="java">class Thread1 extends Thread{//是一个类
@@ -808,6 +884,185 @@ public static void main(String args[]) {
 </ol>
 </li>
 </ol>
+<h1 id="彩蛋-知识点表和提示"><a href="#彩蛋-知识点表和提示" class="headerlink" title="彩蛋-知识点表和提示"></a>彩蛋-知识点表和提示</h1><table>
+<thead>
+<tr>
+<th>A</th>
+<th>数据的定义</th>
+<th>01</th>
+<th>基本数据类型：整型、实型和字符型、布尔型常量各种表示形式的整数、实数、字符、布尔(true,false)常量和字符串常量，符号常量（final）的定义和使用。包括整数的十进制、八进制和十六进制的表示形式、长整型常量和无符号型常量的表示形式，实数的浮点表示法和科学记数法，字符的转义序列等</th>
+<th>Final定义的数据不能修改十进制正常的数，八进制是0开头，十六进制是0X或0x浮点表示法：float，4字节，32位，精度是7到8位Double，8字节，64位，精度是16到17位。<a href="https://blog.csdn.net/a327369238/article/details/52354811科学计数法：4E3表示4*10^3不是e^3。1e-49，如果是float打印，会变成1.0E-49而且E之前的数字可以不是只有一位整数位的。100l，表示long" target="_blank" rel="noopener">https://blog.csdn.net/a327369238/article/details/52354811科学计数法：4E3表示4*10^3不是e^3。1e-49，如果是float打印，会变成1.0E-49而且E之前的数字可以不是只有一位整数位的。100l，表示long</a> 类型，</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>02</td>
+<td>变量的概念、定义和初始化；</td>
+<td>java变量包含静态变量(static Variable)、成员变量()和局部(local Variable )变量三种。其实，也可以说两种，静态变量和成员变量都是全局变量(Global Variable)，只是成员变量是动态的,还有就是，静态变量的生存周期是由类决定的，是在加载类文件时初始化的；而成员变量则是在类中没有用static修饰的变量，它的生存周期是由对象决定的，是在new 一个对象时初始化的。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td>基本运算和表达式：（含对应的表达式语句）包括算术运算（含自增、自减操作）、关系运算、逻辑运算、<strong>*\</strong>位运算、****条件运算、赋值运算等。熟练掌握运算符的功能熟练掌握运算符的优先级和结合方向熟练掌握隐式类型转换和强制类型转换</td>
+<td><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/wps2.jpg" srcset="/silmont2000.github.io/img/loading.gif" alt="img"> <strong><em>\</em>括号 -&gt; 单目（非、正负、自增自减） -&gt; 乘除取余加减 -&gt; 位移 -&gt;比较相等**</strong>异或运算符是用符号“^”表示的，其运算规律是： 两个操作数的位中，相同则结果为0，不同则结果为1。低级变量可以直接转换为高级变量（隐式）。String-&gt;其他： Integer.parseInt(（str）;其他 -&gt;string：String.valueOf( ).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>系统提供的方法（函数）及包含方法的表达式。（含对应的表达式语句）Math类：PI、abs、sin、cos、sqrt、pow、exp、log、log10、random、round等</td>
+<td>Random()返回[0,1)的随机double值。Exp：e的多少次方返回二位数：（int）（random（）<em>90）+10；返回m，n之间的数（包括m不包括n）（int）（random()</em>(n-m)）+m round()方法:返回最接近操作数的整数 对于正数而言就是四舍五入取整，对负数时&gt;0.6的小数向绝对值更大的方向舍。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>编程基础</td>
+<td>01</td>
+<td>第1章中的其它Java概念结构化程序设计方法（如逐步求精法）良好的程序设计风格（如程序模块化、加注释、缩进的书写格式）文件扩展名等概念</td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td>输入：<strong>*\</strong>命令行参数；*<strong><em>Scanner类：nextInt()、nextShort()、nextLong()、nextDouble()、nextFloat()、next()、nextLine()等；BufferedReader类：read()、readLine()；</em></strong>*<em>JoptionPane类中的showInputDialog方法***</em>输出：System.out.print()/println()/<strong>*\</strong>printf()*<strong><em>等</em></strong>*<em>JoptionPane类中的showMessageDialog方法***</em>数据类型转换：Integer.parseInt()、Long.parseLong()、Short.parseShort()、Float.valueOf()、Double.valueOf()、String.valueOf()等</td>
+<td><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/wps3.jpg" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td>选择控制语句(if、switch，含break)，复合语句</td>
+<td>无break的时候执行的是case语句，default也要执行。Default放的位置是无所谓的</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>循环控制语句(for、while、do—while，含break和continue)，空语句</td>
+<td>Continue是跳过当前循环</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>方法（函数）</td>
+<td>01</td>
+<td>空类型的声明（定义）和使用；main方法与其他方法之间的关系；方法定义的格式；return语句；方法的参数（形式参数和实在参数）及参数传递；方法的返回值；方法调用；嵌套调用和递归调用的概念；</td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td>数组和字符串</td>
+<td>01</td>
+<td>一维数组。一维数组的定义和初始化及赋初值，数组元素的引用（含数组的length）。</td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td>二维数组。二维数组的定义和初始化及赋初值，数组元素的引用（含数组的length）。</td>
+<td>必须类型相同</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td>数组和数组元素作为方法的参数传递</td>
+<td>数组名直接传递地址，数组元素是值传递</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>字符数组；字符串：String类(常用方法：length()，charAt()，subString()，equals(),compareTo()……);<strong>*\</strong>字符串数组****</td>
+<td><strong><em>\</em>见blog**</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E</td>
+<td>类和对象</td>
+<td>01</td>
+<td>掌握类的概念，特点，对象的概念，对象域运算符；掌握类的声明：类名（形式，修饰符），方法（构造方法）；掌握对象的创建，类的封装，类的继承和多态（方法的重载、方法覆盖）；</td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td>接口与包、图形界面程序与其它</td>
+<td>01</td>
+<td>掌握接口的基本概念、接口的声明及包的概念；<strong>*\</strong>了解接口的实现、抽象类与方法、图形界面程序；****</td>
+<td><strong><em>\</em>接口是一组常量+抽象方法*****</strong>*包是类和接口（比较宏观）****</td>
+</tr>
+<tr>
+<td>02</td>
+<td><strong>*\</strong>了解异常处理，多线程;****</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>G</td>
+<td><strong><em>\</em>常用算法程序设计*****</strong>*（可包括函数）此类题目是程序阅读和程序填空题****</td>
+<td>01</td>
+<td>顺序、分支简单程序设计；</td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td>累加、累乘、多项式计算；</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td>统计个数（计数）、最值、平均值、公倍数、公约数</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>穷举法（含素数等）、迭代法（Fib、数列）</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>05</td>
+<td>分类（排序）（包括数值或字符串）（包括数组元素插入）；检索（查找）（包括数值或字符串）；一维数组其它处理</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>06</td>
+<td>数组矩阵的相加、相减和相乘，二维数组的处理</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>07</td>
+<td>字符串处理</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>08</td>
+<td>方法（函数），不包含<strong><em>\</em>排序、检索相关题（放G05）**</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>09</td>
+<td>其它（面向对象部分）：构造方法、访问权限、类的继承、super、this、方法重载、方法覆盖</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
             </div>
             <hr>
