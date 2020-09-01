@@ -208,7 +208,7 @@ https://www.cnblogs.com/dolphin0520/p/3736238.html
 优化 optimization因为不同的语句可能得到相同的结果，我们要执行当中代价最小、效率最高的那种；同一个语句还可以有很多种不同的实现算法（重点）。
 查询执行计划：不仅要标注关系代数关系，还要标注算法。
 优化器的功能：选出代价最小的等价语句。代价小指需要的时间，需要估算。
-时间包括：disk accesses + CPU + network communication，我们主要估算磁盘IO时间。IO时间包括寻道时间、读时间、写时间。为了简便，我们不区分读写，统一成传输时间。T</div>
+时间包括：disk accesses + CPU（计算时间） + network communication，我们主要估算磁盘IO时间。IO时间包括寻道时间、读时间、写时间。（一般来说，写的时间比读的时间要</div>
         </div>
       </a>
 
