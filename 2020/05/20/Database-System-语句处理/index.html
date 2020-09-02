@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    2.4k 字
+                    3.4k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      8 分钟
+                      13 分钟
                   </span>
                 
 
@@ -274,7 +274,48 @@ Num of blocks of customer: b = 400, depositor: b=100
 </li>
 </ol>
 <h3 id="indexed-nested-loop-join"><a href="#indexed-nested-loop-join" class="headerlink" title="indexed nested-loop join"></a>indexed nested-loop join</h3><p>要求是natural join或者就是equi-join，在inner对应的属性上有一个索引。优化就是用索引直接找对应的inner元组。那我们定义 Disk access cost = 1 Tt + 1 Ts;</p>
-<p>对于每一个outer的元组，</p>
+<p>对于每一个outer的元组，都要有一次用索引在inner中找的过程，这个次数我们记做c，所以一共找的就是  outer元组总数*c ，加上outer需要的寻道数br。</p>
+<p>Disk access cost ＝  $$n_r  \times  c + b_r$$</p>
+<p>那么C就会影响整个cost。<strong>最坏情况下，</strong>要有Hi+1，那么一共花费的时间就是$$Cost= [ n_r \times (H_i +1 ) + b_r ] \times (t_T + t_S)$$, 很有可能是一个不小的花费。那么要把比较小的放在outer。$$n_r$$和$$b_r$$都小一些。<strong>最好情况下</strong>，内存的buffer很大，seek只需要outer、inner、inner-index三次就够了。</p>
+<pre><code>给出一组数据：
+Num of records of customer: n = 10,000, depositor: n=5000
+Num of blocks of customer: b = 400, depositor: b=100
+customer存储在n=50的B+树里面，假设半满。所以高度是log50（10000）=3，c是4
+
+最坏开销：（5000*4+100）（t_T*t_s）
+
+一般让少的作为外循环。最好的情况是内存足够大，外循环一下子全读进来，那么
+传输块数：1*100+400（相当于在内存是一大块）
+寻道次数：1+1（所以不是outer的数目二倍，而是在内存中这个“块”数的2倍）</code></pre><h3 id="merge-join"><a href="#merge-join" class="headerlink" title="merge-join"></a>merge-join</h3><p>输入的两个relation是排好序的。join就是一个归并过程。</p>
+<p>每块都是只读了一次，所以块传输消耗是$$b_r+b_s$$, 寻道开销就是$$(b_r+b_s)/b_b$$，$$b_b$$是空余的buffer块数。如果没有排序，就还需要加上排序的开销。</p>
+<h3 id="hash-join"><a href="#hash-join" class="headerlink" title="hash-join"></a>hash-join</h3><h4 id="partition分区"><a href="#partition分区" class="headerlink" title="partition分区"></a>partition分区</h4><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901163209958.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901163209958"></p>
+<p>需要全部读进来再全部写出去，BTcost是2*$$b_r$$。处理过程是先读一大堆进来，再一个个处理写出去，所以每个“一大堆”都需要2次寻道（一次读进来，一次写出去）。总共的seek就是$$2\times(b_r/b_b)$$.</p>
+<p>两个relation都要进行分区。好处就是这样一来需要join的元组都在相同编号的区里面了。</p>
+<p> BTcost就是$b_r+b_s（还是要全读一次）,seeks数目就是，2\times n_h$，nh是一共分好区之后区的数量。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901164527691.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901164527691"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901164543428.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901164543428"></p>
+<ol>
+<li>Partition the relation s using hashing function h.  Partition r similarly.</li>
+<li>For each i:<br>(a)    Load Hsi into memory and build an in-memory hash index on it using the join attribute.  This hash index uses a different hash function than the earlier one h. (将Hsi 读入内存，并建索引)<br>(b)    Read the tuples in Hri from the disk one by one.  For each tuple tr locate each matching tuple ts in Hsi using the in-memory hash index. Output the concatenation of their attributes.</li>
+</ol>
+<p>这里提到，作为build input的relation，每次读入都是完整的一块partition，那么就要求每一块partition的大小不能超过M(内存总共块数)-1（输出）-1（probe input）。然而在分配时，每一个partition都要对应一块输出缓存，也就是总的partition不能超过M-1(放读进来的relation)。这里出现了矛盾：内存小时，限制partition数目少、容量大，会导致后续build input读不进来，那么就需要递归分解，直到可以放下。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901170342103.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901170342103"></p>
+<p>但是实际上还是有可能溢出的，<strong>最坏的情况下，</strong>每个分区都溢出了也就是要多一块出来，相当于读写多了$$2\times n_h$$，那么总共需要的BTcost就是$$3\times(b_r+b_s)+4\times n_h$$，3是排序时候各自两次，join匹配1次，r和s都多$$2\times n_h$$的读写。Seeks就是$$2(\lceil b_r / b_b\rceil + \lceil b_s / b_b \rceil)+2n_h$$次，前面是排序时的seek，后面是连接时的seek。</p>
+<p>假如是需要循环分区的话，需要循环$$2\lceil log_{M-1} (b_s)-1\rceil$$，减一是因为第一次不在循环里面。注意！！！这他妈只是partition的开销！！！</p>
+<p>我草打公式太麻烦了</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901194518163.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901194518163"></p>
+<p>其实就是乘上一个系数。那么现在全部的cost就是：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901194738388.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901194738388"></p>
+<p>所以还是要小的做那个build input。</p>
+<p>最好的情况下，全都直接加载进来，BTcost只有一次性的$$b_r+b_s$$就没了。</p>
+<pre><code>给出一组数据：
+Num of records of customer: n = 10,000, depositor: n=5000
+Num of blocks of customer: b = 400, depositor: b=100
+M=20块，depositer比较少，拿来做build input，然后加载了6块partition，每个分区大小是18块。对应的customer也加载6个分区，那么每个分区就有400/6约为67。
+
+最坏的情况下
+BTcost：3*（100+400）
+Seeks：2*（100/3+400/3）+2*6（因为现在20块内存分给6个partition，每个都有3块内存了）</code></pre><h2 id="Complex-joins"><a href="#Complex-joins" class="headerlink" title="Complex  joins"></a>Complex  joins</h2><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901203431544.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901203431544"></p>
 
             </div>
             <hr>
