@@ -273,7 +273,7 @@ Num of blocks of customer: b = 400, depositor: b=100
 <li><p>见下面</p>
 </li>
 </ol>
-<h3 id="indexed-nested-loop-join"><a href="#indexed-nested-loop-join" class="headerlink" title="indexed nested-loop join"></a>indexed nested-loop join</h3><p>要求是natural join或者就是equi-join，在inner对应的属性上有一个索引。优化就是用索引直接找对应的inner元组。那我们定义 Disk access cost = 1 Tt + 1 Ts;</p>
+<h2 id="indexed-nested-loop-join"><a href="#indexed-nested-loop-join" class="headerlink" title="indexed nested-loop join"></a>indexed nested-loop join</h2><p>要求是natural join或者就是equi-join，在inner对应的属性上有一个索引。优化就是用索引直接找对应的inner元组。那我们定义 Disk access cost = 1 Tt + 1 Ts;</p>
 <p>对于每一个outer的元组，都要有一次用索引在inner中找的过程，这个次数我们记做c，所以一共找的就是  outer元组总数*c ，加上outer需要的寻道数br。</p>
 <p>Disk access cost ＝  $$n_r  \times  c + b_r$$</p>
 <p>那么C就会影响整个cost。<strong>最坏情况下，</strong>要有Hi+1，那么一共花费的时间就是$$Cost= [ n_r \times (H_i +1 ) + b_r ] \times (t_T + t_S)$$, 很有可能是一个不小的花费。那么要把比较小的放在outer。$$n_r$$和$$b_r$$都小一些。<strong>最好情况下</strong>，内存的buffer很大，seek只需要outer、inner、inner-index三次就够了。</p>
@@ -286,9 +286,9 @@ customer存储在n=50的B+树里面，假设半满。所以高度是log50（1000
 
 一般让少的作为外循环。最好的情况是内存足够大，外循环一下子全读进来，那么
 传输块数：1*100+400（相当于在内存是一大块）
-寻道次数：1+1（所以不是outer的数目二倍，而是在内存中这个“块”数的2倍）</code></pre><h3 id="merge-join"><a href="#merge-join" class="headerlink" title="merge-join"></a>merge-join</h3><p>输入的两个relation是排好序的。join就是一个归并过程。</p>
+寻道次数：1+1（所以不是outer的数目二倍，而是在内存中这个“块”数的2倍）</code></pre><h2 id="merge-join"><a href="#merge-join" class="headerlink" title="merge-join"></a>merge-join</h2><p>输入的两个relation是排好序的。join就是一个归并过程。</p>
 <p>每块都是只读了一次，所以块传输消耗是$$b_r+b_s$$, 寻道开销就是$$(b_r+b_s)/b_b$$，$$b_b$$是空余的buffer块数。如果没有排序，就还需要加上排序的开销。</p>
-<h3 id="hash-join"><a href="#hash-join" class="headerlink" title="hash-join"></a>hash-join</h3><h4 id="partition分区"><a href="#partition分区" class="headerlink" title="partition分区"></a>partition分区</h4><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901163209958.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901163209958"></p>
+<h2 id="hash-join"><a href="#hash-join" class="headerlink" title="hash-join"></a>hash-join</h2><h3 id="partition分区"><a href="#partition分区" class="headerlink" title="partition分区"></a>partition分区</h3><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200901163209958.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200901163209958"></p>
 <p>需要全部读进来再全部写出去，BTcost是2*$$b_r$$。处理过程是先读一大堆进来，再一个个处理写出去，所以每个“一大堆”都需要2次寻道（一次读进来，一次写出去）。总共的seek就是$$2\times(b_r/b_b)$$.</p>
 <p>两个relation都要进行分区。好处就是这样一来需要join的元组都在相同编号的区里面了。</p>
 <p> BTcost就是$b_r+b_s（还是要全读一次）,seeks数目就是，2\times n_h$，nh是一共分好区之后区的数量。</p>
