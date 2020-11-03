@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>计网交换机实验的一些问题</title>
+    <link href="/silmont2000.github.io/2020/11/03/%E8%AE%A1%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%AE%9E%E9%AA%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/"/>
+    <url>/silmont2000.github.io/2020/11/03/%E8%AE%A1%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%AE%9E%E9%AA%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<ol><li><p>在思科模拟器上建立虚拟网络：首先将需要的交换机、PC拖入界面，然后使用直连网络线连接交换机和PC，交换机之间使用交叉网络线连接交换机。双击之后可以进入交换机的CLI命令和PC的模拟桌面，桌面上第一个应用设置IP。</p></li><li><p><strong>关于IP、掩码、网络号、网关：我们在这里没搞清楚浪费了大量时间：</strong></p><p>A. IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，用来掩盖物理地址，在本地局域网上是唯一的。</p><p>B. 掩码：互联网是由许多小型网络构成的，每个网络上都有许多主机，这样便构成了一个有层次的结构。IP地址在设计时就考虑到地址分配的层次特点，将每个IP地址都分割成网络号和主机号两部分，以便于IP地址的寻址操作。<strong><em>\</em>子网掩码作用就是标记如何分割。**</strong>与IP地址相同，子网掩码的长度也是32位，左边是网络位，用二进制数字“1”表示；右边是主机位，用二进制数字“0”表示。假设IP地址为“192.168.1.1”子网掩码为“255.255.255.0”。其中，“1”有24个，代表与此相对应的IP地址左边24位是网络号；“0”有8个，代表与此相对应的IP地址右边8位是主机号。通过子网掩码能表明一台主机所在的子网与其他子网的关系。</p><p>C. 如何判断是不是在一个子网：把ip和掩码进行一个按位或的操作，得到的结果是网络号，网络号相同则在同一个子网。</p><p>D. 网关：Windows下叫默认网关，<strong>网关就是路由，路由就是网关</strong>。网关实质上是一个网络通向其他网络的IP地址。比如有网络A和网络B，网络A的IP地址范围为“192.168.1.1<del>192.168.1.254”，子网掩码为255.255.255.0；网络B的IP地址范围为“192.168.2.1</del>192.168.2.254”，子网掩码为255.255.255.0。在没有路由器的情况下，两个网络之间是不能进行TCP/IP通信的，即使是两个网络连接在同一台交换机（或集线器）上，TCP/IP协议也会根据子网掩码（255.255.255.0）判定两个网络中的主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。</p></li><li><p>Ping不通的几种可能：防火墙没关或者禁用了某个ip；网关错误；以及线没连好。无法访问目标主机的时候检查一下双网卡的机器和其他两个有没有在一个局域网下。</p></li></ol><p>昨天研究了半天GNS3，有时间再写一篇（。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>问题总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Computer Network</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>post关于python读写图片像素值跳变的问题</title>
+    <link href="/silmont2000.github.io/2020/10/27/post%E5%85%B3%E4%BA%8Epython%E8%AF%BB%E5%86%99%E5%9B%BE%E7%89%87%E5%83%8F%E7%B4%A0%E5%80%BC%E8%B7%B3%E5%8F%98%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/silmont2000.github.io/2020/10/27/post%E5%85%B3%E4%BA%8Epython%E8%AF%BB%E5%86%99%E5%9B%BE%E7%89%87%E5%83%8F%E7%B4%A0%E5%80%BC%E8%B7%B3%E5%8F%98%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>今天做数字水印的时候发现水印总是这种花里胡哨的</p><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/mark20201027114525301443.jpg" srcset="/silmont2000.github.io/img/loading.gif" alt="mark20201027114525301443"></p><h1 id="排除二进制算法问题"><a href="#排除二进制算法问题" class="headerlink" title="排除二进制算法问题"></a>排除二进制算法问题</h1><p>首先确定RBG通道的确是占8位，我要取后两位直接%4，应该是没有问题的</p><p>其他的方法：</p><pre><code class="python">decrypt_array[row, col, c] - ((decrypt_array[row, col, c] &gt;&gt; 2) &lt;&lt; 2)</code></pre><h1 id="激情打log"><a href="#激情打log" class="headerlink" title="激情打log"></a>激情打log</h1><p>不得不说虽然dip这门课给我留下了无穷的阴影，但是也教会了我耐心读log= =</p><p>输出写的时候和读的时候的rgb信息</p><p>（因为我已经改了所以没图哈哈）</p><p>大概就是原图写进去是255，读出来是254等等这种，其实差的不多，肉眼是看不出来的</p><p>原来是因为我的存储格式是jpg，有损压缩，导致了rgb跳变，可能对阅读没有什么影响，但是在数据处理的时候就会出现意想不到的结果。<strong>所以把存储格式换成无损压缩的png就好了！</strong></p><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201027132534053.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201027132534053"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>问题总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>记录一次python改写txt的代码</title>
     <link href="/silmont2000.github.io/2020/10/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1python%E6%94%B9%E5%86%99txt%E4%B8%BAjson%E6%A0%BC%E5%BC%8F%E7%9A%84%E4%BB%A3%E7%A0%81/"/>
     <url>/silmont2000.github.io/2020/10/14/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1python%E6%94%B9%E5%86%99txt%E4%B8%BAjson%E6%A0%BC%E5%BC%8F%E7%9A%84%E4%BB%A3%E7%A0%81/</url>
