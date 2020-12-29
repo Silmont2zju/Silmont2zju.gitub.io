@@ -18,7 +18,7 @@
     <meta name="description" content=" 找个地方记录自己的学习和成长&lt;br&gt; 写不出东西的时候就去草坪晒个太阳&lt;br&gt; 堕落街吃个鸡丝拌面缙云烧饼摩天脆脆&lt;br&gt; 之后虽然还是写不出来&lt;br&gt; 但日子又好过很多了&lt;br&gt;">
     <meta name="author" content="Silmont">
     <meta name="keywords" content="">
-    <title>计网-读书笔记(随堂更新 - 今天也有晒太阳欸</title>
+    <title>计网读书笔记-第一章 - 今天也有晒太阳欸</title>
 
     <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    2.3k 字
+                    4.1k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      8 分钟
+                      14 分钟
                   </span>
                 
 
@@ -177,7 +177,8 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h1 id="1-2-网络硬件"><a href="#1-2-网络硬件" class="headerlink" title="1.2 网络硬件"></a>1.2 网络硬件</h1><p>传输技术和网络尺度是在对计算机网络分类时比较重要的两个维度。</p>
+              <p>[TOC]</p>
+<h1 id="1-2-网络硬件"><a href="#1-2-网络硬件" class="headerlink" title="1.2 网络硬件"></a>1.2 网络硬件</h1><p>传输技术和网络尺度是在对计算机网络分类时比较重要的两个维度。</p>
 <h2 id="传输技术"><a href="#传输技术" class="headerlink" title="传输技术"></a>传输技术</h2><h3 id="广播式链路-broadcast"><a href="#广播式链路-broadcast" class="headerlink" title="广播式链路 broadcast"></a>广播式链路 broadcast</h3><p>数据包能被共享，通过检查数据包的地址字段来筛选需要处理的数据。有点像一个人在办公室大喊“沃森，我需要你”。通过对地址字段使用特殊编码，可以让所有机器都处理这个数据（广播，broadcasting），也可以只让一个组处理这一数据（组播，multicasting）</p>
 <h3 id="点到点链路-point-2-point"><a href="#点到点链路-point-2-point" class="headerlink" title="点到点链路 point 2 point"></a>点到点链路 point 2 point</h3><p>也称为单播（unicasting），只有一个发送方和接收方。因为网络中存在长度不同的路由，所以找到一个好的路由是关键。</p>
 <h2 id="网络尺度"><a href="#网络尺度" class="headerlink" title="网络尺度"></a>网络尺度</h2><p>可以简单地理解为是作用范围。</p>
@@ -209,10 +210,73 @@
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20200923104140344.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20200923104140344"></p>
 <p>它的设计思想是将不同的功能完全分开。</p>
 <p>物理层用来进行实际的比特传输。</p>
-<p>数据链路层掩盖错误，使网络层看不到。同时还要设置流量调节机制，避免信息发的太快把接收方“淹没”。</p>
+<p>数据链路层掩盖错误，使网络层看不到。同时还要设置流量调节机制，避免信息发的太快把接收方“淹没”，同时调整共享信道的使用。</p>
 <p>网络层控制子网运行，处理拥堵、解决异构网络之间的互联。</p>
-<p>传输层接收上层数据并发给网络层</p>
-<h2 id="调制和解调"><a href="#调制和解调" class="headerlink" title="调制和解调"></a>调制和解调</h2><p>幅度调制</p>
+<p>传输层接收上层数据并发给网络层。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201121110335036.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201121110335036"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201121112058933.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201121112058933"></p>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a><a href="https://hit-alibaba.github.io/interview/basic/network/UDP.html" target="_blank" rel="noopener">协议</a></h3><h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>域名系统（Domain Name System，缩写：DNS）对于人来说，对于IP地址的记忆能力远不及一串有含义的字符串，因此DNS做的就是这件事——将IP地址和我们熟悉的主机名称对应起来的一种服务。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/65076033" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65076033</a> </p>
+<p><strong>DNS域名系统的划分</strong>（想象一颗倒立的树，从顶级域名到二级域名，到三级域名…注意：越顶级的域名放在后面。比如<a href="https://link.zhihu.com/?target=http%3A//www.baidu.com">http://www.baidu.com</a>中，com是顶级域名，baidu是二级域名，www是三级域名）</p>
+<p><strong>域名解析过程</strong></p>
+<blockquote>
+<p>当一个应用进程需要把主机名解析为ip地址时，该应用进程就调用解析程序，并成为dns的一个客户，把待解析的域名在dns请求报文中，以<strong>udp用户数据报</strong>方式发送给本地域名服务器。<strong>本地域名服务器</strong>在查找域名后，把对应的ip地址放在回答报文中返回。应用进程获得目的主机的ip地址后即可进行通信。<br>若本地域名服务器不能回答该请求，则此域名服务器就暂时成为了dns中的另一个客户，并向其它域名服务器发送查询请求。这种过程直至找到能够回答该请求的域名服务器为止。</p>
+</blockquote>
+<p>首先，主机想要解析<a href="https://link.zhihu.com/?target=http%3A//www.baidu.com">http://www.baidu.com</a>的IP地址，会先查看自己的DNS缓存记录里是否有该域名记录，如果有，就不用这么麻烦按照这个图来查询了。假如没有就会按如下方式来查询：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/v2-8dbf7af2d0f2cfa4f20b95550c310cdf_720w.jpg" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
+<p>本地域名服务器与根服务器之一联系，根服务器根据顶级域名com，会响应命名空间为com的顶级域服务器的ip；于是该应用接着向com顶级域服务器发出请求，com顶级域服务器会响应命名空间为baidu.com的权威DNS服务器的ip地址；最后该应用将请求命名空间为baidu.com的权威DNS服务器，该权威DNS服务器会响应主机名为baidu.com的ip。</p>
+<p>nslookup 的实用程序手动查询域名服务器，来解析给定的主机名。该实用程序也可以用于检修域名解析的故障，以及验证域名服务器的当前状态。</p>
+<p><strong>域名服务解析的两种方式：</strong></p>
+<blockquote>
+<p><strong>客户端发出的查询都是递归查询，DNS服务器向外发出的查询一般都是迭代查询</strong></p>
+</blockquote>
+<p><a href="https://blog.51cto.com/hbgslz/2074068" target="_blank" rel="noopener">https://blog.51cto.com/hbgslz/2074068</a></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201121113700613.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201121113700613"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201121113713740.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201121113713740"></p>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。<strong>URL是一种特殊类型的URI</strong>，包含了用于查找某个资源的足够的信息.URL,全称是UniformResourceLocator, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。</p>
+<h4 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h4><p>1、SMTP协议简介</p>
+<p>SMTP称为简单邮件传输协议（Simple Mail Transfer Protocal），目标是向用户提供高效、可靠的邮件传输。它的一个重要特点是它能够在传送中接力传送邮件，即邮件可以通过不同网络上的主机接力式传送。通常它工作在两种情况下：一是邮件从客户机传输到服务器；二是从某一个服务器传输到另一个服务器。SMTP是一个请求/响应协议，它监听25号端口，用于接收用户的Mail请求，并与远端Mail服务器建立SMTP连接。</p>
+<p>2、SMTP协议工作机制</p>
+<p>SMTP通常有两种工作模式。发送SMTP和接收SMTP。具体工作方式为：发送SMTP在接收到用户的邮件请求后，判断此邮件是否为本地邮件，若是直接投送到用户的邮箱，否则向DNS查询远端邮件服务器的MX记录，并建立与远端接收SMTP之间的一个双向传送通道，此后SMTP命令由发送SMTP发出，由接收SMTP接收，而应答则反方向传送。一旦传送通道建立，SMTP发送者发送MAIL命令指明邮件发送者。如果SMTP接收者可以接收邮件则返回OK应答。SMTP发送者再发出RCPT命令确认邮件是否接收到。如果SMTP接收者接收，则返回OK应答；如果不能接收到，则发出拒绝接收应答（但不中止整个邮件操作），双方将如此反复多次。当接收者收到全部邮件后会接收到特别的序列，入伏哦接收者成功处理了邮件，则返回OK应答。</p>
+<p>3、SMTP的连接和发送过程</p>
+<p>（a）建立TCP连接</p>
+<p>（b）客户端发送HELO命令以标识发件人自己的身份，然后客户端发送MAIL命令；</p>
+<p>​     服务器端正希望以OK作为响应，表明准备接收</p>
+<p>（c）客户端发送RCPT命令，以标识该电子邮件的计划接收人，可以有多个RCPT行；</p>
+<p>​     服务器端则表示是否愿意为收件人接收邮件</p>
+<p>（d）协商结束，发送邮件，用命令DATA发送</p>
+<p>（e）以.表示结束输入内容一起发送出去</p>
+<p>（f）结束此次发送，用QUIT命令退出</p>
+<p>示例如下：</p>
+<pre><code class="C">C: telent SMTP.163.com 25  //以telenet方式连接163邮件服务器
+S: 220 163.com Anti-spam GT for Coremail System //220为响应数字，其后的为欢迎信息
+C: HELO SMTP.163.com //除了HELO所具有的功能外，EHLO主要用来查询服务器支持的扩充功能 
+S: 250-mail
+S: 250-AUTH LOGIN PLAIN
+S: 250-AUTH=LOGIN PLAIN
+S: 250 8BITMIME //最后一个响应数字应答码之后跟的是一个空格，而不是&#39;-&#39; 
+C: AUTH LOGIN   //请求认证
+S: 334 dxNlcm5hbWU6  //服务器的响应——经过base64编码了的“Username”=
+C: Y29zdGFAYW1heGl0Lm5ldA==  //发送经过BASE64编码了的用户名
+S: 334 UGFzc3dvcmQ6  //经过BASE64编码了的&quot;Password:&quot;=
+C: MTk4MjIxNA==  //客户端发送的经过BASE64编码了的密码
+S: 235 auth successfully  //认证成功 
+C: MAIL FROM: bripengandre@163.com  //发送者邮箱
+S: 250 … .  //“…”代表省略了一些可读信息
+C: RCPT TO: bripengandre@smail.hust.edu.cn　//接收者邮箱
+S: 250 … .    // “…”代表省略了一些可读信息
+C: DATA //请求发送数据
+S: 354 Enter mail, end with &quot;.&quot; on a line by itself
+C: Enjoy Protocol Studing
+C: .
+S: 250 Message sent
+C: QUIT //退出连接 
+S: 221 Bye</code></pre>
+<h4 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h4><p>在很多情况下，它只是利用 IP 进行通信时所必须用到的协议群的统称。具体来说，IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协议(也就是图上的那些)。</p>
+<p>TCP协议的几个特性是可靠、面向连接。可靠是因为使用校验和，确认-重传机制，接受数据的顺序不变，使用滑动窗口控制流量。经典的三次握手：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/tcp-connection-made-three-way-handshake.png" srcset="/silmont2000.github.io/img/loading.gif" alt="three-way-handshake"></p>
+<h2 id="调制和解调"><a href="#调制和解调" class="headerlink" title="调制和解调"></a>调制和解调</h2><p>308</p>
+<p>幅度调制</p>
 <p>0和1对应不同波形，0是直线（f=0），即用有没有区分，基本没有误码</p>
 <p>频率调制</p>
 <p>用不同f的正弦波调制 基本没有误码</p>
@@ -493,7 +557,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "计网-读书笔记(随堂更新&nbsp;",
+        "计网读书笔记-第一章&nbsp;",
       ],
       cursorChar: "：P",
       typeSpeed: 70,
