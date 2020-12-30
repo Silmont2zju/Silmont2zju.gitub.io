@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    2k 字
+                    3.6k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      6 分钟
+                      12 分钟
                   </span>
                 
 
@@ -184,6 +184,7 @@
 <li>语音信号<br> 音素的表示，语音产生模型，元滤波器模型，akbk是声道参数，全极点模型/线性预测模型。</li>
 <li>语音处理<br> 耳蜗，阻抗匹配，转换成频域，响度的刻画，能量的刻画：幅值，短时平稳假设，切分成小段。lti，线性时不变，10-30ms之间一个frame，它对应的akbk就是共振峰的参数。<br>加窗，汉明窗，得出特征值。z变换30分钟，变换到频域。等响度曲线掌握。人耳的响度感受也受频率影响。<br> 能量/过零率，和信号频率成比例。纯音：过零率可以等同频率，复音不行。公式。<br> 端点检测算法掌握～PPT。双门限，先检测浊音，再去找轻音的刷脸.相关函数。提出的周期有可能是答案。<br>雨图’y有傅立叶 说话认识别(离散傅立叶变换<br>灰度图  关联频带  mfcc<br>转换mail语句，滤波器  低频滤波  log操作<br>dct解相关</li>
 </ol>
+<p><a href="https://www.cnblogs.com/mengnan/p/9465402.html" target="_blank" rel="noopener">https://www.cnblogs.com/mengnan/p/9465402.html</a></p>
 <h1 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h1><h2 id="语音链-语音模型"><a href="#语音链-语音模型" class="headerlink" title="语音链 语音模型"></a>语音链 语音模型</h2><ol>
 <li><p>語音處理涉及语音学、音系学、形态学、句法、词汇语义学、语用学、话语规约</p>
 </li>
@@ -231,8 +232,9 @@
 <p>短时平均能量：叠加率50%，相当于一维卷积。</p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229155833480.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229155833480"></p>
 <p>等主观音量曲线：100db-6k敏感，而且主观音量除了和频率有关外，也和语音的內容（音色）有关。</p>
-<p><img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/upload%5Cimage-20201229160452333.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229160452333"></p>
-<p>过零率：短时帧内的过零次数，反映信号平均频率，但是有可能受采样频率影响。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229160452333.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229160452333"></p>
+<p>过零率：短时帧内的过零次数，反映信号平均频率，但是有可能受采样频率影响。下图：绿色为能量，红色为过零率，黑色为窗的大小。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229220612444.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229220612444"></p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229160938286.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229160938286"></p>
 </li>
 <li><p>频域：共振峰（Formant ）音高/基音周期（Pitch ）<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229155141060.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229155141060"></p>
@@ -260,6 +262,10 @@
 </ol>
 </li>
 <li><p>短时分析：基本都是加汉明窗+卷积</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229184124821.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229184124821"></p>
+<p>帧能量：公式是方差公式。。应用时可以是：和均值差的绝对值平均，或者方差的ln。</p>
+<p>帧之间静态参数：倒谱，帧能量</p>
+<p>帧之间动态参数：一阶差分为<img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/upload%5Cimage-20201229195329552.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229195329552" style="zoom: 33%;">，二阶差分为<img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/upload%5Cimage-20201229195401965.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229195401965" style="zoom:33%;"></p>
 </li>
 </ol>
 <h3 id="频域分析"><a href="#频域分析" class="headerlink" title="频域分析"></a>频域分析</h3><ol>
@@ -267,13 +273,97 @@
 </li>
 <li><p>端点检测流程：首先注意到浊音的能量大，过零率约为0，轻音过零率骤增</p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229163900607.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229163900607"></p>
-<p><strong>算法流程：</strong><br>\1. 计算信号前100毫秒的能量与过零率的均值与方差（假设这段时间里没有语音）<br>\2. 寻找整段录音中最大的能量值<br>\3. 根据步骤1和2确定能量阈值，如选取整个语音区间的一些百分比的峰值，基于清音的过零率分布确定过零率的阈值<br>\4. 寻找一个超过高阈值ITU的能量区间En<br>\5. 在En从下穿过ITL的地方找到一个假定存在的起始点N1，在En从上穿过ITL的地方找到一个假定存在的终止点N2<br>\6. 通过比较Zn和IZCT往回移动N1，找到Zn超过IZCT的第一个点，相似地，往后移动N2，找到Zn超过IZCT的最后一个点<br><strong>简易理解版本：</strong><br>先通过能量找到浊音（一般的发声规律是清音 - 浊音 - 清音），从浊音向外扩展找到清音边缘（清音通过过零率检测）。发清音时，会出现过零率递增，结束后会出现过零率递减</p>
-</li>
-<li></li>
+<p><strong>算法流程：</strong></p>
+<ol>
+<li>计算信号前100毫秒的能量与过零率的均值与方差（假设这段时间里没有语音）</li>
+<li>寻找整段录音中最大的能量值</li>
+<li>根据步骤1和2确定能量阈值，如选取整个语音区间的一些百分比的峰值，基于清音的过零率分布确定过零率的阈值</li>
+<li>寻找一个超过高阈值ITU的能量区间En</li>
+<li>在En从下穿过ITL的地方找到一个假定存在的起始点N1，在En从上穿过ITL的地方找到一个假定存在的终止点N2</li>
+<li>通过比较Zn和IZCT往回移动N1，找到Zn超过IZCT的第一个点，相似地，往后移动N2，找到Zn超过IZCT的最后一个点<br><strong>简易理解版本：</strong><br>先通过能量找到浊音（一般的发声规律是清音 - 浊音 - 清音），从浊音向外扩展找到清音边缘（清音通过过零率检测）。发清音时，会出现过零率递增，结束后会出现过零率递减</li>
 </ol>
-<h1 id="历年题整理"><a href="#历年题整理" class="headerlink" title="历年题整理"></a>历年题整理</h1><h2 id="2013-2014"><a href="#2013-2014" class="headerlink" title="2013-2014"></a>2013-2014</h2><ol>
-<li>语音信号处理方法：时域/频域</li>
-<li></li>
+</li>
+<li><p>自相关计算的是信号延迟后于原信号的相似程度。自相关计算的结果自己就是周期性的。缺陷在于，当两组峰很近时分组会出问题。偏移一个周期以后二者之间的相似度最大，所以就用这个数字（最低最强）作为基音周期，那么基频就是其倒数。</p>
+</li>
+</ol>
+<h2 id="短时分析"><a href="#短时分析" class="headerlink" title="短时分析"></a>短时分析</h2><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229184806150.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229184806150"></p>
+<p>这个其实还比较好理解，相乘表示效果的叠加，无非重复了一下轻音浊音的区别。</p>
+<ol>
+<li><p>语图   横坐标是时间，纵坐标是频率，点的数值是能量大小。出现横线说明某频率的声音集中有高能量出现，也称为声纹。</p>
+</li>
+<li><p>窄带语谱图可以清晰的显示谐波的结构，反映基频的时变过程；宽带语谱图能清晰的显示共振峰结构，和语谱包络，能反映频谱的快速时变过程。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229191428108.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229191428108"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229191512406.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229191512406"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229191715045.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229191715045"></p>
+</li>
+<li><p>MFCC倒谱分析：MFCC是除了基频之外之和声道有关的参数</p>
+<p><em>算法：</em></p>
+<p>预处理：预加重/分帧/加窗</p>
+<p>依次fft</p>
+<p>求mel能量</p>
+<p>对mel结果倒谱分析（DCT）</p>
+<p> <a href="https://www.cnblogs.com/wsine/p/4635518.html" target="_blank" rel="noopener">https://www.cnblogs.com/wsine/p/4635518.html</a></p>
+<p><a href="https://www.shuzhiduo.com/A/nAJv0AM8dr/" target="_blank" rel="noopener">https://www.shuzhiduo.com/A/nAJv0AM8dr/</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/139867698" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/139867698</a></p>
+<p>感知实验表明，人耳对于声音信号的感知聚焦于某一特定频率区域内，而非在整个频谱包络中。语音的MFCC特征是基于人耳感知实验得到，将人耳当成特定的滤波器，只考虑某些特定频率成分。这些滤波器是在频域上不均匀分布的。更多的滤波器聚集于低频部分，高频部分的滤波器较少。采样率16Khz时，下图实例：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229192037803.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229192037803"></p>
+<p>这之后为了消除声道的影响（有点类似消除光线的影响）需要对结果进行一个标准化。假设我对一帧F做mfcc变换，得到t个特征帧，这些特征帧的值求一个标准差（方差开方），然后标准化的算法就是当前值—平均值再除以方差。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229222912707.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229222912707"></p>
+</li>
+</ol>
+<h2 id="说话人识别"><a href="#说话人识别" class="headerlink" title="说话人识别"></a>说话人识别</h2><ol>
+<li><p>识别性能评价：D删除错误  I插入错误  S替换错误<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193202515.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193202515" style="zoom:25%;"></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193310831.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193310831" style="zoom: 25%;"> <img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/D:%5CProgram%20Files%20(x86)%5CGit%5Cblog%5Csource%5C_posts%5Cupload%5Cimage-20201229193706582.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193706582" style="zoom:25%;"></p>
+</li>
+<li><p>技术结构：<br><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193952641.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193952641"></p>
+</li>
+<li><p>mel频率：模拟人耳对不同频率语音的感知。人类对不同频率语音有不同的感知能力：1kHz以下，与频率成线性关系，1kHz以上，与频率成对数关系。1mel频率为人类对1kHz音调感知程度的1/1000。B表示mel频率。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229194430018.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229194430018"></p>
+</li>
+<li><p>对数能量对噪音和谱估计误差有鲁棒性。</p>
+</li>
+</ol>
+<h3 id="动态规整DTM-Dynamic-Time-Warping"><a href="#动态规整DTM-Dynamic-Time-Warping" class="headerlink" title="动态规整DTM Dynamic Time Warping"></a>动态规整DTM Dynamic Time Warping</h3><p><a href="https://zhuanlan.zhihu.com/p/43247215" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43247215</a></p>
+<p>构建一个矩阵，矩阵中i,j处的值为模板Ci与等待对齐的Qj之间的欧氏距离。这样得到一张map，在map中贪心求最短路径。</p>
+<img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/upload%5Cimage-20201229224320370.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229224320370" style="zoom: 50%;">
+
+<p>DTW适合于特定人、基元较少的场合，多用于孤立词识别。缺点：运算量较大；识别性能过分依赖于端点检测；太依赖于说话人的原来发音；不能对样本作动态训练；没有充分利用语音信号的时序动态特性；</p>
+<h3 id="矢量量化VQ-Vector-Quantization"><a href="#矢量量化VQ-Vector-Quantization" class="headerlink" title="矢量量化VQ  Vector Quantization"></a>矢量量化VQ  Vector Quantization</h3><p><a href="https://www.cnblogs.com/xingshansi/p/6925955.html" target="_blank" rel="noopener">https://www.cnblogs.com/xingshansi/p/6925955.html</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6164214.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/6164214.html</a></p>
+<p>VQ 是将一个向量空间中的点用其中的一个有限子集来进行编码的过程。这过程中用到K-means方法。可以参见链接。下图中的Vi称为码字矢量，表征第i类向量，集合{Vi}称为码本。</p>
+<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229230135946.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229230135946" style="zoom:50%;">
+
+<h3 id="隐式马尔可夫模型HMM"><a href="#隐式马尔可夫模型HMM" class="headerlink" title="隐式马尔可夫模型HMM"></a>隐式马尔可夫模型HMM</h3><p><a href="https://www.cnblogs.com/liuwu265/p/4732797.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuwu265/p/4732797.html</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6945257.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/6945257.html</a></p>
+<p>观测状态就是能被我们看到的，对应的隐藏状态就是不可见的。先来看MM模型，MM意味着所有状态均可见。MM的2个重要假设：1阶马尔科夫链假设，观测独立性假设–任意时刻的观测只依赖于该时刻的状态，与其他状态无关。，参数不变性假设–上面介绍的三大要素不随时间的变化而改变，即在整个训练过程中一直保持不变。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229233936717.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229233936717"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229234147931.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229234147931"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229234254440.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229234254440"></p>
+<p>然后来看HMM：HMM–状态不可见，但状态之间的转移仍然是概率的–观测/输出结果是状态的概率函数。</p>
+<p>比如从缸里摸球，缸的状态由转移概率决定但是不可见，每次取的球有概率分布。根据观察输出函数的依据，HMM又分为：</p>
+<p>–离散HMM (DHMM, Discrete HMM)，基于VQ</p>
+<p>–连续密度HMM (CDHMM, Continuous Density HMM, 简称CHMM)基于连续密度 </p>
+<p>–半连续HMM (SCHMM, Semi-Continuous HMM)</p>
+<h1 id="历年题整理"><a href="#历年题整理" class="headerlink" title="历年题整理"></a>历年题整理</h1><ol>
+<li><p>语音信号处理方法：频域 时域 实频域 复频域</p>
+</li>
+<li><p>预处理目的：</p>
+<p>在对语音信号进行分析和处理之前，必须对其进行预加重、分帧、加窗等预处理操作。这些操作的目的是消除因为人类发声器官本身和由于采集语音信号的设备所带来的混叠、高次谐波失真、高频等等因素，对语音信号质量的影响。尽可能保证后续语音处理得到的信号更均匀、平滑，为信号参数提取提供优质的参数，提高语音处理质量</p>
+</li>
+<li><p>pitch提取：ACF自相关法，最低且最强的频率。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/20170112164351822" srcset="/silmont2000.github.io/img/loading.gif" alt="img"></p>
+</li>
+<li><p>端点检测算法：</p>
+<p>在语音信号中确定起始点，并把语音和非语音时段区分开来。</p>
+<p>​    1.基于短时能量和短时过零率的端点检测：语音段能量比噪声段能量大，可以很好区分；过零率粗略描述频率，判别清音和浊音，有声和无声；过零率检测清音，短时能量检测浊音，两者配合。开始出在静音段，两者之一超过最低门限，进入过渡段，都降到门限之下，回到静音段。两者之一超过高门限，进入语音段，这时若两者都降到门限下，则为噪声段。</p>
+<p>​    2.倒谱特征端点检测。倒谱距离代替短时能量。</p>
+</li>
+<li><p>说话人识别图</p>
+<p><a href="https://cread.jd.com/read/startRead.action?bookId=30036572&amp;readType=1" target="_blank" rel="noopener">https://cread.jd.com/read/startRead.action?bookId=30036572&amp;readType=1</a></p>
+<p>流程：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201230092803303.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201230092803303"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201230092831442.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201230092831442"></p>
+</li>
 </ol>
 
             </div>
