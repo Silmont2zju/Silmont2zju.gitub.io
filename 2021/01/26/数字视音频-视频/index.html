@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    646 字
+                    725 字
                   </span>
                 
 
@@ -229,7 +229,15 @@
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127101823300.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127101823300"></p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127101948898.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127101948898"></p>
 <h3 id="二维DCT"><a href="#二维DCT" class="headerlink" title="二维DCT"></a>二维DCT</h3><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127102227213.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127102227213"></p>
-<p>过程：</p>
+<p>过程：先把图片8*8分块然后用公式变换：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127102945705.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127102945705"></p>
+<p>简化：分解成2个一维DCT</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127103246247.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127103246247"></p>
+<p>之后对DCT结果进行量化，大量归零，再做IDCT</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127103347803.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127103347803"></p>
+<p>这里的游程编码是看每个数前面有几个0，最后的一大堆0都可以不编码了</p>
+<p><strong>应用：数字水印</strong></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127103545238.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127103545238"></p>
 
             </div>
             <hr>
