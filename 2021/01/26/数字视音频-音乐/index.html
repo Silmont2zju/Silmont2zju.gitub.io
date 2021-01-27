@@ -134,7 +134,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    0 字
+                    1.3k 字
                   </span>
                 
 
@@ -142,7 +142,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      4 分钟
                   </span>
                 
 
@@ -177,19 +177,85 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              
+              <p>[TOC]</p>
+<h1 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h1><h2 id="数字音乐处理"><a href="#数字音乐处理" class="headerlink" title="数字音乐处理"></a>数字音乐处理</h2><p>数字音乐处理是指以数字化方式进行音乐合成、分析、检索等一系列处理过程的统称，它主要依靠计算机为中心进行操作处理，所以又称它为“计算机音乐”。</p>
+<p>音乐艺术与信息科学、软件工程的结合。</p>
+<h2 id="产业链和发展趋势"><a href="#产业链和发展趋势" class="headerlink" title="产业链和发展趋势"></a>产业链和发展趋势</h2><p>生产：大众化创作：编曲、合成、混音</p>
+<p>消费：在线收听、互动娱乐：节奏控制、音准评分</p>
+<p>流通：互联网、移动网传播：音乐搜索与推送(音乐社区，last.fm)</p>
+<h1 id="乱七八糟概念"><a href="#乱七八糟概念" class="headerlink" title="乱七八糟概念"></a>乱七八糟概念</h1><p>音乐基本要素：音高、音色、音强、音长</p>
+<p>音高：发音物体的振动频率</p>
+<p>音色：发音物体产生的谐波所决定的，性质、形状不同，谐波也不同，音色也不同。</p>
+<p>音长：振动时间的长短</p>
+<p>音强：振幅的大小</p>
+<p>mutex：乐谱排版语言</p>
+<p>数字乐器接口（Music Instrument Digital Interface，MIDI）：用于电子设备，它是发声指令而不是具体音频信号，不同的设备对MIDI指令的解释有很大差异。</p>
+<h2 id="音乐合成"><a href="#音乐合成" class="headerlink" title="音乐合成"></a>音乐合成</h2><p>软件：Overture，SONAR,AU</p>
+<p>语言：Niquist，OpenAL，Matlab，Flash Action Script</p>
+<p>overture：打谱软件，边听边改</p>
+<p>SONAR：创作声音和音乐的专业工具软件</p>
+<p>Niquist：Nyquist是一个基于LISP用于声音合成的语言，由CMU的Roger B. Dannenberg 教授带领开发。官方URL：<a href="http://www.cs.cmu.edu/~music/music.software.html" target="_blank" rel="noopener">http://www.cs.cmu.edu/~music/music.software.html</a><br>适用平台：Windows、Unix、Linux、Mac OS</p>
+<p>Nyquist是一种声音合成和合成语言，提供Lisp语法，命令式语言语法（SAL）和强大的集成开发环境。Nyquist是基于函数式编程的优雅而强大的系统。</p>
+<pre><code>(play (osc 69))                        播放单音节
+(play (scale 0.1 (osc 69)))            调节音量
+(play (stretch 0.1 (osc 69)))        调节播放时间
+(play (seq (osc 50) (osc 69)))        连续播放
+(play (sim (osc 69) (osc 50)))        声音叠加
+(play (sim (at 0.0 (note c4 0.2))   声音分时叠加
+            (at 0.5 (note c1 0.2))
+            (at 1.0 (note c4 0.2))
+    ))    </code></pre><p>OpenAL:介绍：自由软件界的跨平台音效API，面向多通道三维位置音效制作， API 风格模仿自 OpenGL。功能：在来源物体、音效缓冲和收听者中编码；应用：音乐制作、大型的3D游戏、大型电影</p>
+<p>更倾向于音乐艺术与软件工程的结合<br>创意<br>协作<br>软件/语言的使用</p>
+<h2 id="音乐分析"><a href="#音乐分析" class="headerlink" title="音乐分析"></a>音乐分析</h2><p>旋律、节奏、和声</p>
+<p>旋律：是指长短、强弱、高低不同的一组乐音有组织的进行。旋律又是曲调，它是音乐的基础和灵魂。</p>
+<p>节奏：节奏是指组织起来的乐音的长短关系，它是音乐的骨架。</p>
+<p>节拍：时长相等的强拍和弱拍有规律的交替出现</p>
+<p>和声：包括和弦和和弦进行。</p>
+<p>和弦：三个或三个以上按一定法则在纵向重叠形成的音响组合</p>
+<p>和弦进行：和弦的横向组织</p>
+<p>节奏识别：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127225944540.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127225944540"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230012844.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230012844"></p>
+<p>旋律识别-音准评分：</p>
+<p>旋律评分模块：求取演唱者演唱旋律，并与歌曲原旋律对比，匹配越好给分越高<br>抢拍与慢拍分析模块：分析演唱者抢拍与慢拍情况，并酌情给予减分<br>节奏分析模块：分析演唱者的节奏感是否与歌曲的节奏一致，节奏感越好给分越多<br>演唱情绪分析模块：分析演唱者演唱的情绪，如果演唱者演唱的情绪与歌曲的意境相符，会有相应的加分<br>声音圆润饱满度分析模块：分析演唱者演唱的声音是否圆润，是否饱满，越圆润越饱满给分越多<br>语音识别模块：分析演唱者演唱的歌词是否与歌曲的歌词相符，错误率越少给分赵多</p>
+<h2 id="音乐检索"><a href="#音乐检索" class="headerlink" title="音乐检索"></a>音乐检索</h2><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230404471.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230404471"></p>
+<p>乐纹：</p>
+<p>乐纹的概念：可以代表一段音乐重要声学特征的基于内容的紧致数字签名</p>
+<p>乐纹的主要特性</p>
+<p>鲁棒性：指未知音频能在经受比较严重的音频信号处理后仍然能够被识别出来</p>
+<p>区分性：即不同歌曲之间的指纹应该具有较大的差异，而同一音乐不同版本之间的指纹应该具有很小的差异．</p>
+<p>乐纹索引：通过特征点对索引技术构建乐纹库</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230723560.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230723560"></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230759609.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230759609"></p>
+<p>哼唱检索：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230820923.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230820923"></p>
+<p>中科院框架：</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230836072.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230836072"></p>
+<p>旋律表示：三层表示<br>在最低的声学层上，哼唱的旋律经过基频提取，被表示为基于帧的音高序列；<br>在较高的符号层（或音符层）上，系统综合基频曲线、谐波和能量等信息，将基频序列切分成格式化的音符序列；<br>最后，系统将在乐句的层次上寻找旋律中的轮廓点，并试图确定数据库中的旋律乐句边界。</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230907479.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230907479"></p>
+<p>旋律特征提取：基频提取、音符切分、轮廓点提取等各级旋律提取结果</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127230933710.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127230933710"></p>
+<p>旋律查询：基于轮廓因子索引的快速检索</p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210127231009312.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210127231009312"></p>
+
             </div>
             <hr>
             <div>
               <p>
                 
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/silmont2000.github.io/categories/%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">试题整理</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
                 
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Typora/">Typora</a>
-                    
-                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/Markdown/">Markdown</a>
+                      <a class="hover-with-bg" href="/silmont2000.github.io/tags/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91/">数字视音频</a>
                     
                   </span>
                 
