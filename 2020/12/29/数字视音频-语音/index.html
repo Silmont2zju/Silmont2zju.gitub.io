@@ -193,7 +193,8 @@
 </li>
 <li><p>呼吸器官：<strong>动力源</strong>  <strong>发音体</strong>包括声带 声门-声门振动快慢决定f  共鸣器  口腔鼻腔咽腔</p>
 </li>
-<li><p>语音模型：<a href="https://blog.csdn.net/jojozhangju/article/details/25219503![image-20201229151527426](https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229151527426.png)" target="_blank" rel="noopener">https://blog.csdn.net/jojozhangju/article/details/25219503![image-20201229151527426](https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229151527426.png)</a></p>
+<li><p>语音模型：<a href="https://blog.csdn.net/jojozhangju/article/details/25219503" target="_blank" rel="noopener">https://blog.csdn.net/jojozhangju/article/details/25219503</a></p>
+<p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229151527426.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229151527426"></p>
 </li>
 <li><p>辐射模型：    从声道模型输出的是速度波，而语音信号是声压波。二者的倒比称为辐射阻抗，它表征口唇的辐射效应。</p>
 </li>
@@ -304,16 +305,19 @@
 <p>对mel结果倒谱分析（DCT）</p>
 <p> <a href="https://www.cnblogs.com/wsine/p/4635518.html" target="_blank" rel="noopener">https://www.cnblogs.com/wsine/p/4635518.html</a></p>
 <p><a href="https://www.shuzhiduo.com/A/nAJv0AM8dr/" target="_blank" rel="noopener">https://www.shuzhiduo.com/A/nAJv0AM8dr/</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/139867698" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/139867698</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/37965204" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37965204</a></p>
 <p>感知实验表明，人耳对于声音信号的感知聚焦于某一特定频率区域内，而非在整个频谱包络中。语音的MFCC特征是基于人耳感知实验得到，将人耳当成特定的滤波器，只考虑某些特定频率成分。这些滤波器是在频域上不均匀分布的。更多的滤波器聚集于低频部分，高频部分的滤波器较少。采样率16Khz时，下图实例：</p>
 <p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229192037803.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229192037803"></p>
 <p>这之后为了消除声道的影响（有点类似消除光线的影响）需要对结果进行一个标准化。假设我对一帧F做mfcc变换，得到t个特征帧，这些特征帧的值求一个标准差（方差开方），然后标准化的算法就是当前值—平均值再除以方差。<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229222912707.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229222912707"></p>
 </li>
 </ol>
 <h2 id="说话人识别"><a href="#说话人识别" class="headerlink" title="说话人识别"></a>说话人识别</h2><ol>
-<li><p>识别性能评价：D删除错误  I插入错误  S替换错误<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193202515.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193202515" style="zoom:25%;"></p>
+<li><p>识别性能评价：D删除错误  I插入错误  S替换错误</p>
+<img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193202515.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193202515">
 </li>
-<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193310831.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193310831" style="zoom: 25%;"> <img src="/silmont2000.github.io/2020/12/29/%E6%95%B0%E5%AD%97%E8%A7%86%E9%9F%B3%E9%A2%91-%E8%AF%AD%E9%9F%B3/D:%5CProgram%20Files%20(x86)%5CGit%5Cblog%5Csource%5C_posts%5Cupload%5Cimage-20201229193706582.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193706582" style="zoom:25%;"></p>
+<li><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193310831.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193310831"> 
+</li>
+<li><p><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20210128002619354.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20210128002619354"></p>
 </li>
 <li><p>技术结构：<br><img src="https://raw.githubusercontent.com/silmont2000/BlogPic/master/img/image-20201229193952641.png" srcset="/silmont2000.github.io/img/loading.gif" alt="image-20201229193952641"></p>
 </li>
